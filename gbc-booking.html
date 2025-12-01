@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Global Beauty Circle Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Live demo of Global Beauty Circle's AI concierge for medical tourism and aesthetic surgery."
+  />
+
+  <style>
+    :root {
+      /* Global Beauty Circle Branding Colors */
+      --bg: #F9FAFB;
+      --bg-card: #FFFFFF;
+      --accent: #D4AF37; /* Luxury Gold */
+      --accent-hover: #B5952F;
+      --text: #111827;
+      --text-muted: #6B7280;
+      --border: #E5E7EB;
+      --success: #22c55e;
+      --radius: 16px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    /* Header & Nav */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .lang-btn {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+
+    .lang-btn:hover {
+      background: #f3f4f6;
+      color: var(--text);
+      border-color: var(--text-muted);
+    }
+
+    /* Demo Section - Top Priority */
+    .demo-grid {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s;
+      width: 100%;
+      max-width: 600px; /* Centered single card */
+    }
+    
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .card p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .highlight-bg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.08), transparent 60%);
+      pointer-events: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      transition: background 0.2s;
+      font-size: 1rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    /* Features / Minimal Overview */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature h3 {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feature p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    /* Utility */
+    .hidden {
+      display: none;
+    }
+    
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--success);
+      display: inline-block;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="logo">Global Beauty Circle</div>
+      <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">
+        🇪🇸 Español
+      </button>
+    </header>
+
+    <!-- HERO / DEMO AREA -->
+    <div class="demo-grid">
+      
+      <!-- CHATBOT DEMO -->
+      <div class="card">
+        <div class="highlight-bg"></div>
+        <h2 data-i18n="chat_title">Start Your Journey</h2>
+        <p data-i18n="chat_desc">
+          Chat with our AI concierge to explore procedures, get quotes, and plan your medical trip instantly.
+        </p>
+        <div style="margin-top: auto; width: 100%;">
+          <button class="btn-primary" onclick="openKateDemo()">
+            <span data-i18n="chat_btn">Start Live Chat</span> 💬
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MINIMAL OVERVIEW -->
+    <div class="features">
+      <div class="feature">
+        <h3>
+          <span class="status-dot"></span> 
+          <span data-i18n="feat_1_title">Premium Care</span>
+        </h3>
+        <p data-i18n="feat_1_desc">
+          Safe, personalized, and luxurious care. We support you at every stage of your transformation.
+        </p>
+      </div>
+      
+      <div class="feature">
+        <h3>
+          <span class="status-dot"></span> 
+          <span data-i18n="feat_2_title">Top Surgeons</span>
+        </h3>
+        <p data-i18n="feat_2_desc">
+          Access to a vetted network of board-certified, internationally trained surgeons in DR and Colombia.
+        </p>
+      </div>
+      
+      <div class="feature">
+        <h3>
+          <span class="status-dot"></span> 
+          <span data-i18n="feat_3_title">Full Support</span>
+        </h3>
+        <p data-i18n="feat_3_desc">
+          We handle all logistics: appointments, transfers, accommodation, and recovery suites.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // --- Translation Data ---
+    const translations = {
+      en: {
+        chat_title: "Start Your Journey",
+        chat_desc: "Chat with our AI concierge to explore procedures, get quotes, and plan your medical trip instantly.",
+        chat_btn: "Start Live Chat",
+        feat_1_title: "Premium Care",
+        feat_1_desc: "Safe, personalized, and luxurious care. We support you at every stage of your transformation.",
+        feat_2_title: "Top Surgeons",
+        feat_2_desc: "Access to a vetted network of board-certified, internationally trained surgeons in DR and Colombia.",
+        feat_3_title: "Full Support",
+        feat_3_desc: "We handle all logistics: appointments, transfers, accommodation, and recovery suites.",
+        lang_btn: "🇪🇸 Español"
+      },
+      es: {
+        chat_title: "Inicia Tu Transformación",
+        chat_desc: "Chatea con nuestro asistente de IA para explorar procedimientos, obtener cotizaciones y planear tu viaje.",
+        chat_btn: "Iniciar Chat en Vivo",
+        feat_1_title: "Cuidado Premium",
+        feat_1_desc: "Atención segura, personalizada y lujosa. Te apoyamos en cada etapa de tu transformación.",
+        feat_2_title: "Mejores Cirujanos",
+        feat_2_desc: "Acceso a una red verificada de cirujanos certificados e internacionalmente capacitados en RD y Colombia.",
+        feat_3_title: "Soporte Completo",
+        feat_3_desc: "Manejamos toda la logística: citas, traslados, alojamiento y suites de recuperación.",
+        lang_btn: "🇺🇸 English"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'es' : 'en';
+      updateContent();
+    }
+
+    function updateContent() {
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang][key]) {
+          el.textContent = translations[currentLang][key];
+        }
+      });
+      
+      document.getElementById('langToggle').textContent = translations[currentLang].lang_btn;
+    }
+
+    // --- Demo Logic ---
+    let isWidgetLoaded = false;
+
+    function loadChatwoot(callback) {
+      var BASE_URL = "https://inbox.automatia.bot";
+      var d = document, t = "script";
+      var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      g.src = BASE_URL + "/packs/js/sdk.js";
+      g.async = true;
+      s.parentNode.insertBefore(g, s);
+      
+      g.onload = function() {
+        window.chatwootSDK.run({
+          websiteToken: 'wbfmUavChdHhzW4f6KYGAeDq',
+          baseUrl: BASE_URL
+        });
+        isWidgetLoaded = true;
+        // Give it a moment to initialize the internal object
+        setTimeout(function() {
+          if (callback) callback();
+        }, 500);
+      };
+    }
+
+    function openKateDemo() {
+      // 1. If widget is ready, just toggle it
+      if (window.$chatwoot && typeof window.$chatwoot.toggle === "function") {
+        window.$chatwoot.toggle();
+        return;
+      }
+
+      // 2. If not loaded yet, load it now (Lazy Load)
+      if (!isWidgetLoaded) {
+        const btn = document.querySelector('.btn-primary');
+        const originalContent = btn.innerHTML;
+        
+        // Show loading state
+        btn.innerHTML = '<span>Loading...</span> ⏳';
+        btn.style.opacity = '0.8';
+        btn.disabled = true;
+
+        loadChatwoot(function() {
+          // Restore button
+          btn.innerHTML = originalContent;
+          btn.style.opacity = '1';
+          btn.disabled = false;
+          
+          // Open the widget
+          if (window.$chatwoot) {
+            window.$chatwoot.toggle();
+          }
+        });
+        return;
+      }
+
+      // 3. Fallback if loading but not ready
+      console.warn("Widget is still initializing...");
+    }
+  </script>
+</body>
+</html>

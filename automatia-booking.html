@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Automatia Kate Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Live demo of Kate, Automatia's AI receptionist, growth engine, and voice agent."
+  />
+
+  <style>
+    :root {
+      /* Automatia Branding Colors */
+      --bg: #F9FAFB;
+      --bg-card: #FFFFFF;
+      --accent: #1D338B; /* Automatia Blue */
+      --accent-hover: #162668;
+      --text: #111827;
+      --text-muted: #6B7280;
+      --border: #E5E7EB;
+      --success: #22c55e;
+      --radius: 16px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    /* Header & Nav */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .lang-btn {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+
+    .lang-btn:hover {
+      background: #f3f4f6;
+      color: var(--text);
+      border-color: var(--text-muted);
+    }
+
+    /* Demo Section - Top Priority */
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .demo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .card p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .highlight-bg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top right, rgba(29, 51, 139, 0.08), transparent 60%);
+      pointer-events: none;
+    }
+
+    .highlight-bg.green {
+      background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.08), transparent 60%);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      transition: background 0.2s;
+      font-size: 1rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-voice {
+      background: #F0FDF4; /* Green-50 */
+      color: #166534;      /* Green-800 */
+      border: 1px solid #BBF7D0; /* Green-200 */
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 0.75rem;
+      transition: all 0.2s;
+    }
+
+    .btn-voice:hover {
+      background: #DCFCE7; /* Green-100 */
+      transform: translateX(2px);
+      border-color: #86EFAC;
+    }
+
+    .btn-voice strong {
+      color: #14532D; /* Green-900 */
+    }
+
+    /* Features / Minimal Overview */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature h3 {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feature p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 99px;
+      background: #E0E7FF;
+      color: var(--accent);
+    }
+
+    /* Utility */
+    .hidden {
+      display: none;
+    }
+    
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--success);
+      display: inline-block;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="logo">Automatia <span style="color: var(--accent);">Kate</span></div>
+      <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">
+        🇪🇸 Español
+      </button>
+    </header>
+
+    <!-- HERO / DEMO AREA -->
+    <div class="demo-grid">
+      
+      <!-- CHATBOT DEMO -->
+      <div class="card">
+        <div class="highlight-bg"></div>
+        <h2 data-i18n="chat_title">Experience Chatbot</h2>
+        <p data-i18n="chat_desc">
+          See how Kate handles inquiries, books appointments, and qualifies leads instantly via chat.
+        </p>
+        <div style="margin-top: auto; width: 100%;">
+          <button class="btn-primary" onclick="openKateDemo()">
+            <span data-i18n="chat_btn">Start Live Chat Demo</span> 💬
+          </button>
+        </div>
+      </div>
+
+      <!-- VOICE DEMO -->
+      <div class="card">
+        <div class="highlight-bg green"></div>
+        <h2 data-i18n="voice_title">Test Voice Agent</h2>
+        <p data-i18n="voice_desc">
+          Call now to hear Kate answer, route calls, and book visits in natural human voice.
+        </p>
+        
+        <div style="width: 100%;">
+          <a href="tel:+18572400230" class="btn-voice">
+            <span data-i18n="voice_global_label">Global Demo</span>
+            <strong>+1 (857) 240-0230</strong>
+          </a>
+          <a href="tel:+19738624243" class="btn-voice">
+            <span data-i18n="voice_spanish_label">Spanish / Latam</span>
+            <strong>+1 (973) 862-4243</strong>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MINIMAL OVERVIEW -->
+    <div class="features">
+      <div class="feature">
+        <h3>
+          <span class="status-dot"></span> 
+          <span data-i18n="feat_1_title">24/7 Receptionist</span>
+        </h3>
+        <p data-i18n="feat_1_desc">
+          Never miss a lead. Kate answers calls and messages instantly, day or night, in 50+ languages.
+        </p>
+      </div>
+      
+      <div class="feature">
+        <h3>
+          <span class="status-dot"></span> 
+          <span data-i18n="feat_2_title">Instant Booking</span>
+        </h3>
+        <p data-i18n="feat_2_desc">
+          Direct integration with Dentrix, OpenDental, and Dolphin to schedule appointments automatically.
+        </p>
+      </div>
+      
+      <div class="feature">
+        <h3>
+          <span class="status-dot"></span> 
+          <span data-i18n="feat_3_title">Growth Engine</span>
+        </h3>
+        <p data-i18n="feat_3_desc">
+          From ads to booking. We qualify leads and filter noise so you only focus on confirmed patients.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // --- Translation Data ---
+    const translations = {
+      en: {
+        chat_title: "Experience Chatbot",
+        chat_desc: "See how Kate handles inquiries, books appointments, and qualifies leads instantly via chat. If the widget doesn't open immediately, please refresh.",
+        chat_btn: "Start Live Chat Demo",
+        voice_title: "Test Voice Agent",
+        voice_desc: "Call now to hear Kate answer, route calls, and book visits in natural human voice.",
+        voice_global_label: "Global Demo",
+        voice_spanish_label: "Spanish / Latam",
+        feat_1_title: "24/7 Receptionist",
+        feat_1_desc: "Never miss a lead. Kate answers calls and messages instantly, day or night, in 50+ languages.",
+        feat_2_title: "Instant Booking",
+        feat_2_desc: "Direct integration with Dentrix, OpenDental, and Dolphin to schedule appointments automatically.",
+        feat_3_title: "Growth Engine",
+        feat_3_desc: "From ads to booking. We qualify leads and filter noise so you only focus on confirmed patients.",
+        lang_btn: "🇪🇸 Español"
+      },
+      es: {
+        chat_title: "Prueba el Chatbot",
+        chat_desc: "Mira cómo Kate maneja consultas, agenda citas y califica leads al instante por chat. Si el widget no abre, actualiza la página.",
+        chat_btn: "Iniciar Demo de Chat",
+        voice_title: "Prueba de Voz",
+        voice_desc: "Llama ahora para escuchar a Kate responder, dirigir llamadas y agendar visitas con voz natural.",
+        voice_global_label: "Demo Global",
+        voice_spanish_label: "Español / Latam",
+        feat_1_title: "Recepcionista 24/7",
+        feat_1_desc: "Nunca pierdas un lead. Kate responde llamadas y mensajes al instante, día y noche, en más de 50 idiomas.",
+        feat_2_title: "Agendamiento Instantáneo",
+        feat_2_desc: "Integración directa con Dentrix, OpenDental y Dolphin para agendar citas automáticamente.",
+        feat_3_title: "Motor de Crecimiento",
+        feat_3_desc: "De anuncios a reservas. Calificamos leads y filtramos el ruido para que solo te enfoques en pacientes confirmados.",
+        lang_btn: "🇺🇸 English"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'es' : 'en';
+      updateContent();
+    }
+
+    function updateContent() {
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang][key]) {
+          el.textContent = translations[currentLang][key];
+        }
+      });
+      
+      // Update button text specifically if it's not covered by data-i18n loop correctly or needs specific handling
+      document.getElementById('langToggle').textContent = translations[currentLang].lang_btn;
+    }
+
+    // --- Demo Logic ---
+    let isWidgetLoaded = false;
+
+    function loadChatwoot(callback) {
+      var BASE_URL = "https://inbox.automatia.bot";
+      var d = document, t = "script";
+      var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      g.src = BASE_URL + "/packs/js/sdk.js";
+      g.async = true;
+      s.parentNode.insertBefore(g, s);
+      
+      g.onload = function() {
+        window.chatwootSDK.run({
+          websiteToken: 'scMVwAQ9gkf3fWVmhgQjq1a1',
+          baseUrl: BASE_URL
+        });
+        isWidgetLoaded = true;
+        // Give it a moment to initialize the internal object
+        setTimeout(function() {
+          if (callback) callback();
+        }, 500);
+      };
+    }
+
+    function openKateDemo() {
+      // 1. If widget is ready, just toggle it
+      if (window.$chatwoot && typeof window.$chatwoot.toggle === "function") {
+        window.$chatwoot.toggle();
+        return;
+      }
+
+      // 2. If not loaded yet, load it now (Lazy Load)
+      if (!isWidgetLoaded) {
+        const btn = document.querySelector('.btn-primary');
+        const originalContent = btn.innerHTML;
+        
+        // Show loading state
+        btn.innerHTML = '<span>Loading...</span> ⏳';
+        btn.style.opacity = '0.8';
+        btn.disabled = true;
+
+        loadChatwoot(function() {
+          // Restore button
+          btn.innerHTML = originalContent;
+          btn.style.opacity = '1';
+          btn.disabled = false;
+          
+          // Open the widget
+          if (window.$chatwoot) {
+            window.$chatwoot.toggle();
+          }
+        });
+        return;
+      }
+
+      // 3. Fallback if loading but not ready
+      console.warn("Kate widget is still initializing...");
+    }
+
+    // Removed auto-initialization to prevent 429 Rate Limiting on page load
+    // The widget will now load only when the user clicks the "Start Live Chat Demo" button.
+  </script>
+</body>
+</html>
