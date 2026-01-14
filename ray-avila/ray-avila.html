@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ray Avila Demo – Automatia Bot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Custom Automatia Bot demo page for Ray Avila's sales presentations." />
+  
+  <!-- Fonts: Matching automatia.bot exactly -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Automatia Brand Colors */
+      --automatia-blue: #4A5DFF;
+      --automatia-navy: #1E2E6D;
+      --automatia-navy-hover: #162254;
+      --bg: #F5F5F0;
+      --bg-card: #FFFFFF;
+      --text: #1D1E20;
+      --text-muted: #6B7280;
+      --border: #E5E7EB;
+      --success: #22C55E;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 48px;
+      width: auto;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .lang-toggle {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .lang-toggle:hover {
+      border-color: var(--automatia-blue);
+    }
+
+    .back-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .back-btn:hover {
+      border-color: var(--automatia-navy);
+      color: var(--automatia-navy);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(74, 93, 255, 0.1);
+      color: var(--automatia-blue);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      color: var(--automatia-blue);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Demo Card */
+    .demo-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 3rem;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(30, 46, 109, 0.08);
+    }
+
+    .demo-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(74, 93, 255, 0.1);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 1.5rem;
+    }
+
+    .demo-card h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .demo-card p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .cta-btn {
+      background: var(--automatia-navy);
+      color: #F6F7F4;
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cta-btn:hover {
+      background: var(--automatia-navy-hover);
+      transform: translateY(-2px);
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--success);
+      font-weight: 500;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--success);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      padding: 2rem 0 4rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+
+    .feature {
+      text-align: center;
+      padding: 1.5rem;
+      border-radius: 16px;
+      transition: all 0.2s;
+    }
+
+    .feature:hover {
+      background: var(--bg-card);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(74, 93, 255, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.25rem;
+    }
+
+    .feature h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--automatia-blue);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Dashboard Section */
+    .dashboard-section {
+      background: linear-gradient(135deg, rgba(74, 93, 255, 0.05) 0%, rgba(74, 93, 255, 0.02) 100%);
+      border: 1px solid rgba(74, 93, 255, 0.15);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .dashboard-section h3 {
+      color: var(--automatia-blue);
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
+    .steps-row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      text-align: left;
+      max-width: 250px;
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      background: var(--automatia-blue);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .step-item strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .step-item p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    .dashboard-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--automatia-blue);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .dashboard-btn:hover {
+      background: #3a4bcc;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+      }
+
+      .header-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        padding: 2rem 1rem;
+      }
+
+      .demo-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .container {
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://www.automatia.bot/" target="_blank" class="logo">
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=328,fit=crop,q=95/mk3DGypyG0UyWqob/untitled-2-m7Vbk6JorgUJKn4r.png" alt="Automatia Bot">
+    </a>
+    <div class="header-controls">
+      <button class="lang-toggle" onclick="toggleLanguage()">
+        <span id="langFlag">🇺🇸</span>
+        <span id="langText">English</span>
+      </button>
+      <a href="../index.html" class="back-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span data-i18n="back_btn">Back to Portal</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="hero">
+      <div class="hero-badge">
+        🎯 <span data-i18n="badge">Custom Demo</span>
+      </div>
+      <h1 data-i18n="hero_title">Ray Avila <span data-i18n="hero_accent">Sales Demo</span></h1>
+      <p data-i18n="hero_desc">Tailored presentation environment for showcasing Automatia's AI capabilities to your clients.</p>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-icon">💬</div>
+      <h2 data-i18n="card_title">Chat with Kate AI</h2>
+      <p data-i18n="card_desc">Experience our intelligent AI assistant. Ask questions, book appointments, and see how Kate can transform your client's business operations.</p>
+      
+      <button class="cta-btn" id="chatBtn" onclick="openChat()">
+        <span data-i18n="cta_btn">Start Conversation</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+
+      <div class="status">
+        <span class="status-dot"></span>
+        <span data-i18n="status">Assistant Online</span>
+      </div>
+    </div>
+
+    <!-- DASHBOARD SECTION -->
+    <div class="dashboard-section">
+      <h3 data-i18n="dash_title">Demo Steps</h3>
+      <div class="steps-row">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div>
+            <strong data-i18n="step1_title">Chat with the Bot</strong>
+            <p data-i18n="step1_desc">Start a conversation and provide info as a test patient</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div>
+            <strong data-i18n="step2_title">Check the Dashboard</strong>
+            <p data-i18n="step2_desc">See captured data and conversations in real-time</p>
+          </div>
+        </div>
+      </div>
+      <a href="https://dash.automatia.bot/sign-in" target="_blank" class="dashboard-btn">
+        📊 <span data-i18n="dash_btn">Open Dashboard</span>
+      </a>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">📅</div>
+        <h3 data-i18n="feat1_title">Smart Booking</h3>
+        <p data-i18n="feat1_desc">Automated appointment scheduling integrated with your client's calendar system.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🎯</div>
+        <h3 data-i18n="feat2_title">Lead Qualification</h3>
+        <p data-i18n="feat2_desc">Intelligent filtering ensures only qualified leads reach your client's team.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">⏰</div>
+        <h3 data-i18n="feat3_title">24/7 Availability</h3>
+        <p data-i18n="feat3_desc">Never miss a potential customer with round-the-clock AI assistance.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>
+      © 2026 <a href="https://www.automatia.bot/" target="_blank">Automatia Bot</a> · <span data-i18n="footer">Ray Avila Sales Demo</span>
+    </p>
+  </footer>
+
+  <script>
+    // ===========================================
+    // TRANSLATIONS
+    // ===========================================
+    const translations = {
+      en: {
+        back_btn: 'Back to Portal',
+        badge: 'Custom Demo',
+        hero_title: 'Ray Avila ',
+        hero_accent: 'Sales Demo',
+        hero_desc: "Tailored presentation environment for showcasing Automatia's AI capabilities to your clients.",
+        card_title: 'Chat with Kate AI',
+        card_desc: "Experience our intelligent AI assistant. Ask questions, book appointments, and see how Kate can transform your client's business operations.",
+        cta_btn: 'Start Conversation',
+        status: 'Assistant Online',
+        dash_title: 'Demo Steps',
+        step1_title: 'Chat with the Bot',
+        step1_desc: 'Start a conversation and provide info as a test patient',
+        step2_title: 'Check the Dashboard',
+        step2_desc: 'See captured data and conversations in real-time',
+        dash_btn: 'Open Dashboard',
+        feat1_title: 'Smart Booking',
+        feat1_desc: "Automated appointment scheduling integrated with your client's calendar system.",
+        feat2_title: 'Lead Qualification',
+        feat2_desc: "Intelligent filtering ensures only qualified leads reach your client's team.",
+        feat3_title: '24/7 Availability',
+        feat3_desc: 'Never miss a potential customer with round-the-clock AI assistance.',
+        footer: 'Ray Avila Sales Demo',
+        lang_name: 'English'
+      },
+      es: {
+        back_btn: 'Volver al Portal',
+        badge: 'Demo Personalizado',
+        hero_title: 'Ray Avila ',
+        hero_accent: 'Demo de Ventas',
+        hero_desc: 'Entorno de presentación personalizado para mostrar las capacidades de IA de Automatia a tus clientes.',
+        card_title: 'Chatea con Kate AI',
+        card_desc: 'Experimenta nuestro asistente de IA inteligente. Haz preguntas, agenda citas y descubre cómo Kate puede transformar las operaciones de negocio de tu cliente.',
+        cta_btn: 'Iniciar Conversación',
+        status: 'Asistente en Línea',
+        dash_title: 'Pasos del Demo',
+        step1_title: 'Chatea con el Bot',
+        step1_desc: 'Inicia una conversación y proporciona información como paciente de prueba',
+        step2_title: 'Revisa el Dashboard',
+        step2_desc: 'Ve los datos capturados y conversaciones en tiempo real',
+        dash_btn: 'Abrir Dashboard',
+        feat1_title: 'Agendamiento Inteligente',
+        feat1_desc: 'Programación automatizada de citas integrada con el sistema de calendario de tu cliente.',
+        feat2_title: 'Calificación de Leads',
+        feat2_desc: 'Filtrado inteligente que asegura que solo leads calificados lleguen al equipo de tu cliente.',
+        feat3_title: 'Disponibilidad 24/7',
+        feat3_desc: 'Nunca pierdas un cliente potencial con asistencia de IA las 24 horas.',
+        footer: 'Demo de Ventas Ray Avila',
+        lang_name: 'Español'
+      }
+    };
+
+    // ===========================================
+    // STATE
+    // ===========================================
+    let currentLang = localStorage.getItem('automatia_lang') || 'en';
+    let widgetInitialized = false;
+
+    // ===========================================
+    // LANGUAGE FUNCTIONS
+    // ===========================================
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'es' : 'en';
+      localStorage.setItem('automatia_lang', currentLang);
+      updateLanguage();
+    }
+
+    function updateLanguage() {
+      const t = translations[currentLang];
+      
+      // Update all data-i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+          el.textContent = t[key];
+        }
+      });
+      
+      // Update language toggle
+      const flag = currentLang === 'en' ? '🇺🇸' : '🇪🇸';
+      const langName = currentLang === 'en' ? 'English' : 'Español';
+      
+      document.getElementById('langFlag').textContent = flag;
+      document.getElementById('langText').textContent = langName;
+      
+      // Update HTML lang attribute
+      document.documentElement.lang = currentLang;
+    }
+
+    // ===========================================
+    // CHATWOOT INTEGRATION
+    // ===========================================
+    function initChatwoot() {
+      if (widgetInitialized) return;
+      
+      var BASE_URL = "https://inbox.automatia.bot";
+      var d = document, t = "script";
+      var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      g.src = BASE_URL + "/packs/js/sdk.js";
+      g.async = true;
+      s.parentNode.insertBefore(g, s);
+      
+      g.onload = function() {
+        window.chatwootSDK.run({
+          websiteToken: 'scMVwAQ9gkf3fWVmhgQjq1a1', // Kate demo token
+          baseUrl: BASE_URL
+        });
+        widgetInitialized = true;
+      };
+    }
+
+    function openChat() {
+      const btn = document.getElementById('chatBtn');
+      
+      // If widget is ready, just toggle it
+      if (window.$chatwoot && typeof window.$chatwoot.toggle === "function") {
+        window.$chatwoot.toggle();
+        return;
+      }
+
+      // Initialize widget if not done yet
+      if (!widgetInitialized) {
+        // Show loading state
+        const t = translations[currentLang];
+        btn.innerHTML = `<span>${currentLang === 'en' ? 'Loading...' : 'Cargando...'}</span> ⏳`;
+        btn.style.opacity = '0.8';
+        btn.disabled = true;
+
+        initChatwoot();
+        
+        // Wait for widget to initialize then open
+        const checkReady = setInterval(() => {
+          if (window.$chatwoot && typeof window.$chatwoot.toggle === "function") {
+            clearInterval(checkReady);
+            
+            // Restore button
+            btn.innerHTML = `<span data-i18n="cta_btn">${t.cta_btn}</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>`;
+            btn.style.opacity = '1';
+            btn.disabled = false;
+            
+            window.$chatwoot.toggle();
+          }
+        }, 100);
+        
+        // Timeout after 10 seconds
+        setTimeout(() => clearInterval(checkReady), 10000);
+      }
+    }
+
+    // ===========================================
+    // INITIALIZATION
+    // ===========================================
+    document.addEventListener('DOMContentLoaded', function() {
+      updateLanguage();
+    });
+  </script>
+
+</body>
+</html>

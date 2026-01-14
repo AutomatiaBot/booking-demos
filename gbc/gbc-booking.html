@@ -310,6 +310,84 @@
       text-decoration: underline;
     }
 
+    /* Dashboard Section */
+    .dashboard-section {
+      background: linear-gradient(135deg, rgba(161, 69, 79, 0.05) 0%, rgba(161, 69, 79, 0.02) 100%);
+      border: 1px solid rgba(161, 69, 79, 0.15);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .dashboard-section h3 {
+      color: var(--gbc-red);
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
+    .steps-row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      text-align: left;
+      max-width: 250px;
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      background: var(--gbc-red);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .step-item strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .step-item p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    .dashboard-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gbc-red);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .dashboard-btn:hover {
+      background: #8a3a44;
+      transform: translateY(-2px);
+    }
+
     /* Utility */
     .hidden {
       display: none;
@@ -353,6 +431,30 @@
           <span data-i18n="status_online">AI Concierge Online</span>
         </div>
       </div>
+    </div>
+
+    <!-- DASHBOARD SECTION -->
+    <div class="dashboard-section">
+      <h3 data-i18n="dash_title">Demo Steps</h3>
+      <div class="steps-row">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div>
+            <strong data-i18n="step1_title">Chat with the Bot</strong>
+            <p data-i18n="step1_desc">Start a conversation and provide info as a test patient</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div>
+            <strong data-i18n="step2_title">Check the Dashboard</strong>
+            <p data-i18n="step2_desc">See captured data and conversations in real-time</p>
+          </div>
+        </div>
+      </div>
+      <a href="https://dash.automatia.bot/sign-in" target="_blank" class="dashboard-btn">
+        📊 <span data-i18n="dash_btn">Open Dashboard</span>
+      </a>
     </div>
 
     <!-- FEATURES -->
@@ -399,6 +501,12 @@
         chat_desc: "Chat with our AI concierge to explore procedures, get personalized quotes, and plan your medical trip instantly.",
         chat_btn: "Start Live Chat",
         status_online: "AI Concierge Online",
+        dash_title: "Demo Steps",
+        step1_title: "Chat with the Bot",
+        step1_desc: "Start a conversation and provide info as a test patient",
+        step2_title: "Check the Dashboard",
+        step2_desc: "See captured data and conversations in real-time",
+        dash_btn: "Open Dashboard",
         feat_1_title: "Premium Care",
         feat_1_desc: "Safe, personalized, and luxurious care. We support you at every stage of your transformation.",
         feat_2_title: "Top Surgeons",
@@ -414,6 +522,12 @@
         chat_desc: "Chatea con nuestro asistente de IA para explorar procedimientos, obtener cotizaciones personalizadas y planear tu viaje al instante.",
         chat_btn: "Iniciar Chat en Vivo",
         status_online: "Asistente IA en Línea",
+        dash_title: "Pasos del Demo",
+        step1_title: "Chatea con el Bot",
+        step1_desc: "Inicia una conversación y proporciona información como paciente de prueba",
+        step2_title: "Revisa el Dashboard",
+        step2_desc: "Ve los datos capturados y conversaciones en tiempo real",
+        dash_btn: "Abrir Dashboard",
         feat_1_title: "Cuidado Premium",
         feat_1_desc: "Atención segura, personalizada y lujosa. Te apoyamos en cada etapa de tu transformación.",
         feat_2_title: "Mejores Cirujanos",

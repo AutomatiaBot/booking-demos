@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Demo Portal – Automatia Bot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Automatia Bot sales demo portal. Select and present live demos to clients." />
+  
+  <!-- Fonts: Matching automatia.bot exactly -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Automatia Brand Colors - Extracted from automatia.bot */
+      --automatia-blue: #4A5DFF;
+      --automatia-navy: #1E2E6D;
+      --automatia-navy-hover: #162254;
+      --bg: #F5F5F0;
+      --bg-card: #FFFFFF;
+      --text: #1D1E20;
+      --text-muted: #6B7280;
+      --border: #E5E7EB;
+      --success: #22C55E;
+      --error: #EF4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* Login Overlay */
+    .login-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .login-overlay.hidden {
+      display: none;
+    }
+
+    .login-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 3rem;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(30, 46, 109, 0.1);
+    }
+
+    .login-card img {
+      height: 56px;
+      margin-bottom: 2rem;
+    }
+
+    .login-card h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .login-card p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .login-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .login-input {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .login-input:focus {
+      outline: none;
+      border-color: var(--automatia-blue);
+      box-shadow: 0 0 0 3px rgba(74, 93, 255, 0.1);
+    }
+
+    .login-input.error {
+      border-color: var(--error);
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
+    }
+
+    .login-error {
+      color: var(--error);
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .login-error.show {
+      display: block;
+    }
+
+    .login-btn {
+      width: 100%;
+      background: var(--automatia-navy);
+      color: #F6F7F4;
+      border: none;
+      padding: 1rem;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .login-btn:hover {
+      background: var(--automatia-navy-hover);
+    }
+
+    /* Main Content - Hidden until logged in */
+    .main-content {
+      display: none;
+    }
+
+    .main-content.visible {
+      display: block;
+    }
+
+    /* Header - Matching automatia.bot */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 48px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--automatia-blue);
+    }
+
+    /* User badge and controls */
+    .user-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-badge {
+      background: rgba(74, 93, 255, 0.1);
+      color: var(--automatia-blue);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lang-toggle {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lang-toggle:hover {
+      border-color: var(--automatia-blue);
+    }
+
+    .logout-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .logout-btn:hover {
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero Section - Matching automatia.bot style */
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 span {
+      color: var(--automatia-blue);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text);
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero p strong {
+      color: var(--automatia-blue);
+    }
+
+    /* Buttons - Matching automatia.bot exactly */
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .btn-primary {
+      background: var(--automatia-navy);
+      color: #F6F7F4;
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+      min-width: 200px;
+      justify-content: center;
+    }
+
+    .btn-primary:hover {
+      background: var(--automatia-navy-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--automatia-navy);
+      padding: 1rem 2.5rem;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+      min-width: 200px;
+      justify-content: center;
+    }
+
+    .btn-secondary:hover {
+      background: var(--automatia-navy);
+      color: #F6F7F4;
+    }
+
+    /* Demo Grid */
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-title span {
+      color: var(--automatia-blue);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .demo-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid transparent;
+    }
+
+    .demo-card.hidden {
+      display: none !important;
+    }
+
+    .demo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(30, 46, 109, 0.1);
+      border-color: var(--automatia-blue);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--bg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .card-industry {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--automatia-blue);
+      background: rgba(74, 93, 255, 0.1);
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+    }
+
+    .demo-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .card-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+    }
+
+    .card-action {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--automatia-navy);
+      transition: gap 0.3s ease;
+    }
+
+    .demo-card:hover .card-action {
+      gap: 0.75rem;
+      color: var(--automatia-blue);
+    }
+
+    .card-action svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .demo-card:hover .card-action svg {
+      transform: translateX(4px);
+    }
+
+    /* Quick Access Section */
+    .quick-section {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .quick-section.hidden {
+      display: none;
+    }
+
+    .quick-section h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .quick-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 1.25rem 1rem;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .quick-link:hover {
+      border-color: var(--automatia-blue);
+      background: rgba(74, 93, 255, 0.05);
+    }
+
+    .quick-link.voice {
+      background: rgba(34, 197, 94, 0.08);
+      border-color: rgba(34, 197, 94, 0.2);
+    }
+
+    .quick-link.voice:hover {
+      background: rgba(34, 197, 94, 0.15);
+      border-color: var(--success);
+    }
+
+    .quick-link .quick-icon {
+      font-size: 1.5rem;
+    }
+
+    .quick-link .quick-number {
+      color: var(--text-muted);
+      font-weight: 400;
+      font-size: 0.85rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    footer a {
+      color: var(--automatia-blue);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Search Bar */
+    .search-container {
+      max-width: 500px;
+      margin: 0 auto 3rem;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.875rem 1.5rem;
+      transition: all 0.2s;
+    }
+
+    .search-bar:focus-within {
+      border-color: var(--automatia-blue);
+      box-shadow: 0 0 0 3px rgba(74, 93, 255, 0.1);
+    }
+
+    .search-bar input {
+      border: none;
+      background: transparent;
+      flex: 1;
+      font-size: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      outline: none;
+    }
+
+    .search-bar input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .search-bar svg {
+      width: 20px;
+      height: 20px;
+      color: var(--text-muted);
+    }
+
+    /* No demos message */
+    .no-demos {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-muted);
+      display: none;
+    }
+
+    .no-demos.show {
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .user-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        padding: 2rem 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .btn-row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .demo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        padding: 0 1rem;
+      }
+
+      .quick-section {
+        padding: 1.5rem;
+      }
+
+      .login-card {
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    /* Animations */
+    .demo-card {
+      animation: fadeInUp 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    .demo-card:nth-child(1) { animation-delay: 0.1s; }
+    .demo-card:nth-child(2) { animation-delay: 0.2s; }
+    .demo-card:nth-child(3) { animation-delay: 0.3s; }
+    .demo-card:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Overlay -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-card">
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=328,fit=crop,q=95/mk3DGypyG0UyWqob/untitled-2-m7Vbk6JorgUJKn4r.png" alt="Automatia Bot">
+      <h2 data-i18n="login_title">Access Demo Portal</h2>
+      <p data-i18n="login_subtitle">Enter your seller ID to access available demos</p>
+      <div class="login-input-group">
+        <input type="text" class="login-input" id="userIdInput" placeholder="Seller ID" data-i18n-placeholder="login_placeholder" autocomplete="off">
+        <p class="login-error" id="loginError" data-i18n="login_error">Invalid ID. Please try again.</p>
+        <button class="login-btn" onclick="handleLogin()" data-i18n="login_btn">Access Portal</button>
+      </div>
+      <div style="margin-top: 1.5rem;">
+        <button class="lang-toggle" onclick="toggleLanguage()" style="margin: 0 auto;">
+          <span id="loginLangFlag">🇺🇸</span>
+          <span id="loginLangText">English</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content" id="mainContent">
+    <!-- Header - Matching automatia.bot -->
+    <header>
+      <a href="https://www.automatia.bot/" target="_blank" class="logo">
+        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=328,fit=crop,q=95/mk3DGypyG0UyWqob/untitled-2-m7Vbk6JorgUJKn4r.png" alt="Automatia Bot">
+      </a>
+      <nav class="nav-links">
+        <a href="https://www.automatia.bot/" target="_blank">Home</a>
+        <a href="https://www.automatia.bot/our-products" target="_blank" data-i18n="nav_products">Our products</a>
+        <a href="https://www.automatia.bot/blog" target="_blank">Blog</a>
+      </nav>
+      <div class="user-controls">
+        <button class="lang-toggle" onclick="toggleLanguage()">
+          <span id="mainLangFlag">🇺🇸</span>
+          <span id="mainLangText">English</span>
+        </button>
+        <span class="user-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span id="userIdDisplay">-</span>
+        </span>
+        <button class="logout-btn" onclick="handleLogout()" data-i18n="logout_btn">Logout</button>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- Hero Section -->
+      <div class="hero">
+        <h1 data-i18n="hero_title">Select a demo <span data-i18n="hero_title_accent">to present</span></h1>
+        <p data-i18n="hero_subtitle">
+          Choose from our collection of live client demos.<br>
+          Each showcases <strong data-i18n="hero_kate">Kate's AI capabilities</strong> for different industries.
+        </p>
+        
+        <div class="btn-row">
+          <a href="https://cal.com/automatia-bot/automatia-bot-30-minute-meeting" target="_blank" class="btn-primary" data-i18n="btn_book_demo">
+            Book a demo
+          </a>
+          <a href="https://www.automatia.bot/our-products" target="_blank" class="btn-secondary" data-i18n="btn_see_products">
+            See products
+          </a>
+        </div>
+      </div>
+
+      <!-- Search -->
+      <div class="search-container">
+        <div class="search-bar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <input type="text" id="searchInput" data-i18n-placeholder="search_placeholder" placeholder="Search demos by name or industry..." oninput="filterDemos()">
+        </div>
+      </div>
+
+      <!-- Section Title -->
+      <h2 class="section-title" data-i18n="section_demos">Available <span data-i18n="section_demos_accent">Demos</span></h2>
+
+      <!-- No demos message -->
+      <div class="no-demos" id="noDemos">
+        <p data-i18n="no_demos">No demos available for your account. Contact your administrator.</p>
+      </div>
+
+      <!-- Demo Cards -->
+      <div class="demo-grid" id="demoGrid">
+        
+        <!-- Manhattan Smiles -->
+        <a href="manhattan-smiles/manhattan-smiles.html" class="demo-card" data-demo-id="manhattan-smiles" data-keywords="dental dentist healthcare teeth smile manhattan new york appointment booking healthtech">
+          <div class="card-header">
+            <div class="card-icon">🦷</div>
+            <span class="card-industry">HealthTech</span>
+          </div>
+          <h3 data-i18n="demo_manhattan_title">Manhattan Smiles</h3>
+          <p data-i18n="demo_manhattan_desc">Premium dental studio in NYC. Showcases AI appointment booking, patient inquiries, and 24/7 support for a high-end dental practice.</p>
+          <div class="card-features">
+            <span class="feature-tag" data-i18n="tag_chatbot">Chatbot</span>
+            <span class="feature-tag" data-i18n="tag_booking">Appointment Booking</span>
+            <span class="feature-tag" data-i18n="tag_support">Patient Support</span>
+          </div>
+          <div class="card-action">
+            <span data-i18n="launch_demo">Launch Demo</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Global Beauty Circle -->
+        <a href="gbc/gbc-booking.html" class="demo-card" data-demo-id="gbc" data-keywords="beauty medical tourism aesthetic surgery cosmetic plastic dominican colombia gbc global medtourism">
+          <div class="card-header">
+            <div class="card-icon">✨</div>
+            <span class="card-industry">MedTourism</span>
+          </div>
+          <h3 data-i18n="demo_gbc_title">Global Beauty Circle</h3>
+          <p data-i18n="demo_gbc_desc">Medical tourism platform for aesthetic procedures. AI concierge helps clients explore surgeries, get quotes, and plan trips to DR & Colombia.</p>
+          <div class="card-features">
+            <span class="feature-tag" data-i18n="tag_chatbot">Chatbot</span>
+            <span class="feature-tag" data-i18n="tag_lead">Lead Qualification</span>
+            <span class="feature-tag" data-i18n="tag_bilingual">Bilingual</span>
+          </div>
+          <div class="card-action">
+            <span data-i18n="launch_demo">Launch Demo</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Kate General Demo -->
+        <a href="dr-michael-doe/automatia-booking.html" class="demo-card" data-demo-id="dr-michael-doe" data-keywords="kate automatia general voice call phone demo test agent assistant receptionist flagship">
+          <div class="card-header">
+            <div class="card-icon">🤖</div>
+            <span class="card-industry">General</span>
+          </div>
+          <h3 data-i18n="demo_kate_title">Kate AI Demo</h3>
+          <p data-i18n="demo_kate_desc">Our flagship demo showcasing Kate's full capabilities: chatbot interaction and voice agent testing with live phone numbers.</p>
+          <div class="card-features">
+            <span class="feature-tag" data-i18n="tag_chatbot">Chatbot</span>
+            <span class="feature-tag" data-i18n="tag_voice">Voice Agent</span>
+            <span class="feature-tag" data-i18n="tag_phone">Phone Demo</span>
+          </div>
+          <div class="card-action">
+            <span data-i18n="launch_demo">Launch Demo</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Ray Avila Demo -->
+        <a href="ray-avila/ray-avila.html" class="demo-card" data-demo-id="ray-avila" data-keywords="ray avila custom personalized sales">
+          <div class="card-header">
+            <div class="card-icon">🎯</div>
+            <span class="card-industry">Custom</span>
+          </div>
+          <h3 data-i18n="demo_ray_title">Ray Avila Demo</h3>
+          <p data-i18n="demo_ray_desc">Custom demo page for Ray Avila's sales presentations. Tailored content and configuration for specific client needs.</p>
+          <div class="card-features">
+            <span class="feature-tag" data-i18n="tag_custom">Custom</span>
+            <span class="feature-tag" data-i18n="tag_sales">Sales</span>
+            <span class="feature-tag" data-i18n="tag_personalized">Personalized</span>
+          </div>
+          <div class="card-action">
+            <span data-i18n="launch_demo">Launch Demo</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Quick Access -->
+      <div class="quick-section" id="quickAccess">
+        <h2>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+          <span data-i18n="quick_access">Quick Access</span>
+        </h2>
+        <div class="quick-grid">
+          <a href="tel:+18572400230" class="quick-link voice">
+            <span class="quick-icon">📞</span>
+            <span data-i18n="voice_global">Voice Demo (Global)</span>
+            <span class="quick-number">+1 (857) 240-0230</span>
+          </a>
+          <a href="tel:+19738624243" class="quick-link voice">
+            <span class="quick-icon">🇪🇸</span>
+            <span data-i18n="voice_spanish">Voice Demo (Spanish)</span>
+            <span class="quick-number">+1 (973) 862-4243</span>
+          </a>
+          <a href="https://www.automatia.bot/" target="_blank" class="quick-link">
+            <span class="quick-icon">🌐</span>
+            <span data-i18n="quick_website">Automatia Website</span>
+          </a>
+          <a href="https://cal.com/automatia-bot/automatia-bot-30-minute-meeting" target="_blank" class="quick-link">
+            <span class="quick-icon">📅</span>
+            <span data-i18n="quick_meeting">Book a Meeting</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        © 2026 <a href="https://www.automatia.bot/" target="_blank">Automatia Bot</a> · <span data-i18n="footer_text">Sales Demo Portal · Internal Use Only</span>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // ===========================================
+    // ACCESS CONTROL CONFIGURATION
+    // ===========================================
+    // ===========================================
+    // ACCESS CONFIG (Hashed IDs for security)
+    // IDs are SHA-256 hashed - competitors can't see/guess them
+    // Format: lowercase, separated by hyphens
+    // ===========================================
+    const ACCESS_CONFIG = {
+      // Hash of valid seller ID
+      '834f98eef8e411c3c8639447617f06be08b05b163feb190aefeec9e63722e8c6': {
+        name: 'Admin',
+        access: ['manhattan-smiles', 'gbc', 'dr-michael-doe', 'ray-avila'],
+        quickAccess: true
+      },
+      '1303a7ac100381762de7765e8b28dd0535387f59803fe9392a335d33d365e591': {
+        name: 'GBC Team',
+        access: ['dr-michael-doe', 'gbc'],
+        quickAccess: true
+      },
+      '1f9dcbc177af9f94768b94f5c021b39442eafc858e79c2e2068b90418654f94b': {
+        name: 'Ray Avila',
+        access: ['dr-michael-doe', 'ray-avila'],
+        quickAccess: true
+      }
+    };
+
+    // ===========================================
+    // HASH FUNCTION (SHA-256)
+    // ===========================================
+    async function hashId(id) {
+      // Normalize: lowercase, trim whitespace
+      const normalized = id.toLowerCase().trim();
+      const encoder = new TextEncoder();
+      const data = encoder.encode(normalized);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    // ===========================================
+    // TRANSLATIONS
+    // ===========================================
+    const translations = {
+      en: {
+        // Login
+        login_title: 'Access Demo Portal',
+        login_subtitle: 'Enter your seller ID to access available demos',
+        login_placeholder: 'Seller ID',
+        login_error: 'Invalid ID. Please try again.',
+        login_btn: 'Access Portal',
+        
+        // Navigation
+        nav_products: 'Our products',
+        logout_btn: 'Logout',
+        
+        // Hero
+        hero_title: 'Select a demo ',
+        hero_title_accent: 'to present',
+        hero_subtitle: 'Choose from our collection of live client demos.',
+        hero_kate: "Kate's AI capabilities",
+        btn_book_demo: 'Book a demo',
+        btn_see_products: 'See products',
+        
+        // Search
+        search_placeholder: 'Search demos by name or industry...',
+        
+        // Section
+        section_demos: 'Available ',
+        section_demos_accent: 'Demos',
+        no_demos: 'No demos available for your account. Contact your administrator.',
+        
+        // Demo Cards
+        demo_manhattan_title: 'Manhattan Smiles',
+        demo_manhattan_desc: 'Premium dental studio in NYC. Showcases AI appointment booking, patient inquiries, and 24/7 support for a high-end dental practice.',
+        demo_gbc_title: 'Global Beauty Circle',
+        demo_gbc_desc: 'Medical tourism platform for aesthetic procedures. AI concierge helps clients explore surgeries, get quotes, and plan trips to DR & Colombia.',
+        demo_kate_title: 'Kate AI Demo',
+        demo_kate_desc: "Our flagship demo showcasing Kate's full capabilities: chatbot interaction and voice agent testing with live phone numbers.",
+        demo_ray_title: 'Ray Avila Demo',
+        demo_ray_desc: "Custom demo page for Ray Avila's sales presentations. Tailored content and configuration for specific client needs.",
+        
+        // Tags
+        tag_chatbot: 'Chatbot',
+        tag_booking: 'Appointment Booking',
+        tag_support: 'Patient Support',
+        tag_lead: 'Lead Qualification',
+        tag_bilingual: 'Bilingual',
+        tag_voice: 'Voice Agent',
+        tag_phone: 'Phone Demo',
+        tag_custom: 'Custom',
+        tag_sales: 'Sales',
+        tag_personalized: 'Personalized',
+        launch_demo: 'Launch Demo',
+        
+        // Quick Access
+        quick_access: 'Quick Access',
+        voice_global: 'Voice Demo (Global)',
+        voice_spanish: 'Voice Demo (Spanish)',
+        quick_website: 'Automatia Website',
+        quick_meeting: 'Book a Meeting',
+        
+        // Footer
+        footer_text: 'Sales Demo Portal · Internal Use Only',
+        
+        // Language
+        lang_name: 'English'
+      },
+      es: {
+        // Login
+        login_title: 'Acceder al Portal de Demos',
+        login_subtitle: 'Ingresa tu ID de vendedor para acceder a los demos disponibles',
+        login_placeholder: 'ID de Vendedor',
+        login_error: 'ID inválido. Por favor intenta de nuevo.',
+        login_btn: 'Acceder al Portal',
+        
+        // Navigation
+        nav_products: 'Nuestros productos',
+        logout_btn: 'Cerrar sesión',
+        
+        // Hero
+        hero_title: 'Selecciona un demo ',
+        hero_title_accent: 'para presentar',
+        hero_subtitle: 'Elige de nuestra colección de demos de clientes en vivo.',
+        hero_kate: 'Las capacidades de IA de Kate',
+        btn_book_demo: 'Agendar demo',
+        btn_see_products: 'Ver productos',
+        
+        // Search
+        search_placeholder: 'Buscar demos por nombre o industria...',
+        
+        // Section
+        section_demos: 'Demos ',
+        section_demos_accent: 'Disponibles',
+        no_demos: 'No hay demos disponibles para tu cuenta. Contacta a tu administrador.',
+        
+        // Demo Cards
+        demo_manhattan_title: 'Manhattan Smiles',
+        demo_manhattan_desc: 'Estudio dental premium en NYC. Muestra reserva de citas con IA, consultas de pacientes y soporte 24/7 para una práctica dental de alto nivel.',
+        demo_gbc_title: 'Global Beauty Circle',
+        demo_gbc_desc: 'Plataforma de turismo médico para procedimientos estéticos. El asistente de IA ayuda a clientes a explorar cirugías, obtener cotizaciones y planear viajes a RD y Colombia.',
+        demo_kate_title: 'Demo Kate AI',
+        demo_kate_desc: 'Nuestro demo principal mostrando las capacidades completas de Kate: interacción por chat y prueba de agente de voz con números telefónicos reales.',
+        demo_ray_title: 'Demo Ray Avila',
+        demo_ray_desc: 'Página de demo personalizada para las presentaciones de ventas de Ray Avila. Contenido y configuración adaptados a necesidades específicas del cliente.',
+        
+        // Tags
+        tag_chatbot: 'Chatbot',
+        tag_booking: 'Reserva de Citas',
+        tag_support: 'Soporte al Paciente',
+        tag_lead: 'Calificación de Leads',
+        tag_bilingual: 'Bilingüe',
+        tag_voice: 'Agente de Voz',
+        tag_phone: 'Demo Telefónico',
+        tag_custom: 'Personalizado',
+        tag_sales: 'Ventas',
+        tag_personalized: 'A Medida',
+        launch_demo: 'Iniciar Demo',
+        
+        // Quick Access
+        quick_access: 'Acceso Rápido',
+        voice_global: 'Demo de Voz (Global)',
+        voice_spanish: 'Demo de Voz (Español)',
+        quick_website: 'Sitio Web Automatia',
+        quick_meeting: 'Agendar Reunión',
+        
+        // Footer
+        footer_text: 'Portal de Demos de Ventas · Solo Uso Interno',
+        
+        // Language
+        lang_name: 'Español'
+      }
+    };
+
+    // ===========================================
+    // STATE
+    // ===========================================
+    let currentLang = localStorage.getItem('automatia_lang') || 'en';
+    let currentUser = localStorage.getItem('automatia_user') || null;
+
+    // ===========================================
+    // LANGUAGE FUNCTIONS
+    // ===========================================
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'es' : 'en';
+      localStorage.setItem('automatia_lang', currentLang);
+      updateLanguage();
+    }
+
+    function updateLanguage() {
+      const t = translations[currentLang];
+      
+      // Update all data-i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+          el.textContent = t[key];
+        }
+      });
+      
+      // Update placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key]) {
+          el.placeholder = t[key];
+        }
+      });
+      
+      // Update language toggle buttons
+      const flag = currentLang === 'en' ? '🇺🇸' : '🇪🇸';
+      const langName = currentLang === 'en' ? 'English' : 'Español';
+      
+      document.getElementById('loginLangFlag').textContent = flag;
+      document.getElementById('loginLangText').textContent = langName;
+      document.getElementById('mainLangFlag').textContent = flag;
+      document.getElementById('mainLangText').textContent = langName;
+      
+      // Update HTML lang attribute
+      document.documentElement.lang = currentLang;
+    }
+
+    // ===========================================
+    // AUTH FUNCTIONS
+    // ===========================================
+    async function handleLogin() {
+      const input = document.getElementById('userIdInput');
+      const errorEl = document.getElementById('loginError');
+      const userId = input.value.trim();
+      
+      if (!userId) {
+        input.classList.add('error');
+        setTimeout(() => input.classList.remove('error'), 400);
+        return;
+      }
+      
+      // Hash the input ID and check against stored hashes
+      const hashedId = await hashId(userId);
+      
+      if (ACCESS_CONFIG[hashedId]) {
+        // Valid user - store the hash for session
+        localStorage.setItem('automatia_user', hashedId);
+        currentUser = hashedId;
+        showMainContent();
+        input.classList.remove('error');
+        errorEl.classList.remove('show');
+      } else {
+        // Invalid user
+        input.classList.add('error');
+        errorEl.classList.add('show');
+        setTimeout(() => input.classList.remove('error'), 400);
+      }
+    }
+
+    function handleLogout() {
+      localStorage.removeItem('automatia_user');
+      currentUser = null;
+      document.getElementById('loginOverlay').classList.remove('hidden');
+      document.getElementById('mainContent').classList.remove('visible');
+      document.getElementById('userIdInput').value = '';
+    }
+
+    function showMainContent() {
+      document.getElementById('loginOverlay').classList.add('hidden');
+      document.getElementById('mainContent').classList.add('visible');
+      // Display user name from config (not the hash)
+      const config = ACCESS_CONFIG[currentUser];
+      document.getElementById('userIdDisplay').textContent = config ? config.name : 'User';
+      applyAccessControl();
+    }
+
+    function applyAccessControl() {
+      if (!currentUser || !ACCESS_CONFIG[currentUser]) return;
+      
+      const config = ACCESS_CONFIG[currentUser];
+      const allowedDemos = config.access;
+      
+      // Hide/show demo cards based on access
+      const cards = document.querySelectorAll('.demo-card');
+      let visibleCount = 0;
+      
+      cards.forEach(card => {
+        const demoId = card.getAttribute('data-demo-id');
+        if (allowedDemos.includes(demoId)) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      
+      // Show/hide "no demos" message
+      const noDemos = document.getElementById('noDemos');
+      if (visibleCount === 0) {
+        noDemos.classList.add('show');
+      } else {
+        noDemos.classList.remove('show');
+      }
+      
+      // Show/hide quick access based on config
+      const quickAccess = document.getElementById('quickAccess');
+      if (config.quickAccess) {
+        quickAccess.classList.remove('hidden');
+      } else {
+        quickAccess.classList.add('hidden');
+      }
+    }
+
+    // ===========================================
+    // SEARCH FUNCTION
+    // ===========================================
+    function filterDemos() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.demo-card:not(.hidden)');
+      
+      cards.forEach(card => {
+        const keywords = card.getAttribute('data-keywords') || '';
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const desc = card.querySelector('p').textContent.toLowerCase();
+        const searchText = `${keywords} ${title} ${desc}`;
+        
+        if (searchText.includes(input)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // ===========================================
+    // INITIALIZATION
+    // ===========================================
+    document.addEventListener('DOMContentLoaded', function() {
+      // Apply saved language
+      updateLanguage();
+      
+      // Check if user is already logged in
+      if (currentUser && ACCESS_CONFIG[currentUser]) {
+        showMainContent();
+      }
+      
+      // Allow Enter key to submit login
+      document.getElementById('userIdInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          handleLogin();
+        }
+      });
+      
+      // Keyboard shortcut: Cmd/Ctrl + K to focus search
+      document.addEventListener('keydown', function(e) {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+          e.preventDefault();
+          document.getElementById('searchInput').focus();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
