@@ -8,7 +8,7 @@ from datetime import datetime, timedelta, timezone
 from dataclasses import dataclass
 from typing import Optional, List
 
-from secrets import get_secret, get_secret_int
+from secret_manager import get_secret, get_secret_int
 
 
 @dataclass

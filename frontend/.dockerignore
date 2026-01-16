@@ -1,0 +1,5 @@
+# Ignore deployment files (but keep nginx.conf - needed by Dockerfile)
+Dockerfile
+.dockerignore
+FRONTEND-DEPLOYMENT.md
+*.md

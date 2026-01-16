@@ -725,14 +725,14 @@
   <script src="../js/activity-tracker.js"></script>
   <script>
     // Activity tracker configuration for this demo page
-    const ACTIVITY_API_URL = ''; // Set after deploying: https://us-central1-backend-471615.cloudfunctions.net
+    const ACTIVITY_API_BASE_URL = 'https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev';
     
-    if (ACTIVITY_API_URL) {
+    if (ACTIVITY_API_BASE_URL) {
       // Get token from localStorage (set during login)
       const token = localStorage.getItem('automatia_token');
       
       ActivityTracker.init({
-        apiUrl: ACTIVITY_API_URL,
+        apiBaseUrl: ACTIVITY_API_BASE_URL,
         demoId: 'manhattan-smiles',
         debug: true
       });

@@ -18,7 +18,7 @@ from auth import (
     TokenPayload,
 )
 from database import get_db
-from secrets import get_secret
+from secret_manager import get_secret
 
 
 # ============================================

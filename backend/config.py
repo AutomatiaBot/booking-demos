@@ -6,7 +6,7 @@ All sensitive values are loaded from GCP Secret Manager.
 from dataclasses import dataclass
 from typing import List
 
-from secrets import get_secret, get_secret_int
+from secret_manager import get_secret, get_secret_int
 
 
 @dataclass

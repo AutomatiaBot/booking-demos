@@ -1,22 +1,62 @@
-# Frontend Deployment Guide - Cloudflare Pages
+# Frontend Deployment Guide
 
-This guide documents how to deploy the Automatia Demo Portal frontend to Cloudflare Pages.
+This guide documents how to deploy the Automatia Demo Portal frontend.
 
 ## Table of Contents
 
-1. [Why Cloudflare Pages?](#why-cloudflare-pages)
-2. [Prerequisites](#prerequisites)
-3. [Deployment Methods](#deployment-methods)
-4. [Method 1: Git Integration (Recommended)](#method-1-git-integration-recommended)
-5. [Method 2: Direct Upload](#method-2-direct-upload)
-6. [Method 3: Wrangler CLI](#method-3-wrangler-cli)
-7. [Custom Domain Setup](#custom-domain-setup)
-8. [Environment Configuration](#environment-configuration)
-9. [Troubleshooting](#troubleshooting)
+1. [Deployment Options](#deployment-options)
+2. [Method 1: GCP Cloud Run (Recommended)](#method-1-gcp-cloud-run-recommended)
+3. [Method 2: Cloudflare Pages](#method-2-cloudflare-pages)
+4. [Custom Domain Setup](#custom-domain-setup)
+5. [Environment Configuration](#environment-configuration)
+6. [Troubleshooting](#troubleshooting)
 
 ---
 
-## Why Cloudflare Pages?
+## Deployment Options
+
+| Platform | URL | Best For |
+|----------|-----|----------|
+| **GCP Cloud Run** | `https://automatia-demo-portal-*.run.app` | Integrated with backend, same project |
+| **Cloudflare Pages** | `https://demo.automatia.bot` | Global CDN, custom domain |
+
+---
+
+## Method 1: GCP Cloud Run (Recommended)
+
+Deploy directly to Cloud Run alongside your backend functions.
+
+### Quick Deploy
+
+```bash
+cd frontend
+gcloud run deploy automatia-demo-portal \
+  --source=. \
+  --region=us-central1 \
+  --project=backend-471615
+```
+
+> **Note:** If `--allow-unauthenticated` fails due to org policy, enable public access manually in Cloud Run console.
+
+### Enable Public Access (if needed)
+
+1. Go to [Cloud Run Console](https://console.cloud.google.com/run?project=backend-471615)
+2. Click on `automatia-demo-portal`
+3. Go to **Security** tab
+4. Select **Allow unauthenticated invocations**
+5. Click **Save**
+
+### Current Cloud Run URL
+
+```
+https://automatia-demo-portal-1016893210029.us-central1.run.app
+```
+
+---
+
+## Method 2: Cloudflare Pages
+
+### Why Cloudflare Pages?
 
 We chose Cloudflare Pages over GCP hosting due to organization policy restrictions:
 
@@ -253,17 +293,32 @@ Cloudflare automatically provisions an SSL certificate. No configuration needed.
 The frontend calls the backend API hosted on GCP Cloud Functions:
 
 ```
-https://us-central1-backend-471615.cloudfunctions.net/automatia-booking-api-dev-login
+https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev-{function_name}
+```
+
+**API Base URL used in frontend:**
+```javascript
+const API_BASE_URL = 'https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev';
+```
+
+### Activity Tracker Configuration
+
+The activity tracker uses Cloud Functions URL pattern:
+```javascript
+ActivityTracker.init({
+  apiBaseUrl: 'https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev',
+  demoId: 'manhattan-smiles'
+});
 ```
 
 ### CORS Configuration
 
-Ensure the backend allows requests from Cloudflare Pages. Update the backend's CORS_ORIGINS environment variable:
-
-```bash
-export CORS_ORIGINS="https://automatia-demo-portal.pages.dev,https://demo.automatia.bot"
-cd backend && serverless deploy
+The backend CORS_ORIGINS is configured in `serverless.yml` (hardcoded):
 ```
+http://localhost:8080,https://www.automatia.bot/
+```
+
+To add more origins, update `serverless.yml` and redeploy the backend.
 
 ---
 
@@ -346,10 +401,11 @@ wrangler pages deployment delete <deployment-id> --project-name=automatia-demo-p
 
 After deployment, your frontend is available at:
 
-| URL | Description |
-|-----|-------------|
-| `https://automatia-demo-portal.pages.dev` | Default Cloudflare Pages URL |
-| `https://demo.automatia.bot` | Custom domain |
+| URL | Platform | Description |
+|-----|----------|-------------|
+| `https://automatia-demo-portal-1016893210029.us-central1.run.app` | Cloud Run | GCP hosted |
+| `https://automatia-demo-portal.pages.dev` | Cloudflare | Default Cloudflare Pages URL |
+| `https://demo.automatia.bot` | Cloudflare | Custom domain |
 
 ### Demo Pages
 
@@ -363,14 +419,20 @@ After deployment, your frontend is available at:
 
 ---
 
-## Comparison: GCP vs Cloudflare Pages
+## Comparison: Cloud Run vs Cloudflare Pages
 
 | Feature | GCP Cloud Run | Cloudflare Pages |
 |---------|---------------|------------------|
-| **Public Access** | Blocked by org policy | Works out of the box |
-| **Setup Complexity** | Docker + IAM + VPC | Upload files |
-| **Cost** | Pay per request | Free tier (generous) |
-| **Global CDN** | Additional setup | Built-in |
-| **Custom Domains** | Cloud DNS required | Simple CNAME |
-| **Preview Deployments** | Manual branches | Automatic |
-| **Build Time** | ~2 minutes | ~30 seconds |
+| **Public Access** | Manual setup (Security tab) | Works out of the box |
+| **Setup Complexity** | `gcloud run deploy --source=.` | Upload files or Git integration |
+| **Cost** | Free tier available | Free tier (generous) |
+| **Global CDN** | Regional (us-central1) | Global edge network |
+| **Custom Domains** | Cloud Run domains | Simple CNAME |
+| **Preview Deployments** | Manual | Automatic per branch |
+| **Build Time** | ~1-2 minutes | ~30 seconds |
+| **Same Project as Backend** | Yes | No (separate platform) |
+
+### Recommendation
+
+- Use **Cloud Run** if you want everything in one GCP project
+- Use **Cloudflare Pages** for best performance with global CDN and custom domains

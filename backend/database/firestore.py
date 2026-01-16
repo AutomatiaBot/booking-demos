@@ -7,7 +7,7 @@ from google.cloud.firestore_v1.base_query import FieldFilter
 from datetime import datetime, timezone
 from typing import Optional, List, Dict, Any
 
-from secrets import get_secret
+from secret_manager import get_secret
 
 
 class FirestoreDB:

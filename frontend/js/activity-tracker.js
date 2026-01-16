@@ -8,7 +8,7 @@
  *   <script src="/js/activity-tracker.js"></script>
  *   <script>
  *     ActivityTracker.init({
- *       apiUrl: 'https://your-api-url',
+ *       apiBaseUrl: 'https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev',
  *       demoId: 'manhattan-smiles'  // optional
  *     });
  *   </script>
@@ -19,7 +19,7 @@ const ActivityTracker = (function() {
 
   // Configuration
   let config = {
-    apiUrl: '',
+    apiBaseUrl: '',  // Cloud Functions base: https://region-project.cloudfunctions.net/service-stage
     demoId: null,
     batchSize: 10,
     batchInterval: 5000,  // 5 seconds
@@ -110,9 +110,10 @@ const ActivityTracker = (function() {
     const eventsToSend = eventQueue.splice(0, config.batchSize);
     
     try {
+      // Cloud Functions URL pattern: baseUrl-function_name
       const endpoint = eventsToSend.length === 1 
-        ? `${config.apiUrl}/activity/track`
-        : `${config.apiUrl}/activity/track-batch`;
+        ? `${config.apiBaseUrl}-track_activity`
+        : `${config.apiBaseUrl}-track_activity_batch`;
 
       const body = eventsToSend.length === 1 
         ? eventsToSend[0]
@@ -290,7 +291,7 @@ const ActivityTracker = (function() {
       const authToken = getToken();
       if (authToken && eventQueue.length > 0) {
         const blob = new Blob([JSON.stringify({ events: eventQueue })], { type: 'application/json' });
-        navigator.sendBeacon(`${config.apiUrl}/activity/track-batch`, blob);
+        navigator.sendBeacon(`${config.apiBaseUrl}-track_activity_batch`, blob);
       }
     });
   }
@@ -368,8 +369,8 @@ const ActivityTracker = (function() {
     // Merge options with defaults
     config = { ...config, ...options };
 
-    if (!config.apiUrl) {
-      console.error('[ActivityTracker] apiUrl is required');
+    if (!config.apiBaseUrl) {
+      console.error('[ActivityTracker] apiBaseUrl is required');
       return;
     }
 
@@ -440,10 +441,10 @@ const ActivityTracker = (function() {
 
 // Auto-initialize if data attributes are present
 document.addEventListener('DOMContentLoaded', function() {
-  const script = document.querySelector('script[data-api-url]');
+  const script = document.querySelector('script[data-api-base-url]');
   if (script) {
     ActivityTracker.init({
-      apiUrl: script.dataset.apiUrl,
+      apiBaseUrl: script.dataset.apiBaseUrl,
       demoId: script.dataset.demoId || null,
       debug: script.dataset.debug === 'true',
     });

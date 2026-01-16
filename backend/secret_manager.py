@@ -6,7 +6,7 @@ In production (Cloud Run), it reads from GCP Secret Manager.
 For local development, it can fall back to environment variables.
 
 Usage:
-    from secrets import get_secret
+    from secret_manager import get_secret
     
     jwt_secret = get_secret("JWT_SECRET")
     gcp_project = get_secret("GCP_PROJECT_ID")

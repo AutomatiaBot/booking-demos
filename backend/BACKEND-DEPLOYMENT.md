@@ -21,7 +21,7 @@ Before deploying, ensure you have the following installed:
 | Tool | Purpose | Installation |
 |------|---------|--------------|
 | **Node.js** (v18+) | Required for Serverless Framework | [nodejs.org](https://nodejs.org) |
-| **Python** (3.9+) | Runtime for Cloud Functions | [python.org](https://python.org) |
+| **Python** (3.9+ or 3.12) | Runtime for Cloud Functions | [python.org](https://python.org) |
 | **gcloud CLI** | GCP command-line interface | [cloud.google.com/sdk](https://cloud.google.com/sdk/docs/install) |
 | **GCP Account** | Cloud hosting platform | [console.cloud.google.com](https://console.cloud.google.com) |
 
@@ -29,9 +29,16 @@ Before deploying, ensure you have the following installed:
 
 ```bash
 node --version    # Should be v18 or higher
-python --version  # Should be 3.9 or higher
+python --version  # Should be 3.9 or higher (3.12 recommended for deploy.sh)
 gcloud --version  # Should show gcloud CLI version
 ```
+
+## Deployment Options
+
+| Method | Runtime | Pros | Cons |
+|--------|---------|------|------|
+| **Serverless Framework** | Python 3.9 | Simple `serverless deploy` | Plugin doesn't support Python 3.10+ |
+| **deploy.sh script** | Python 3.12 | Latest runtime, Gen2 functions | Requires `gcloud` CLI |
 
 ---
 
@@ -137,24 +144,17 @@ gcloud projects add-iam-policy-binding YOUR_PROJECT_ID \
 
 ## Environment Variables
 
-### Required Environment Variables
+### Configuration
 
-**Why:** The deployment needs to know your project ID and JWT secret for the Cloud Functions.
+The project ID and other non-sensitive config are now **hardcoded** in `serverless.yml` and `deploy.sh`:
 
-Set these before deploying:
+| Setting | Value | Location |
+|---------|-------|----------|
+| `GCP_PROJECT_ID` | `backend-471615` | Hardcoded in serverless.yml |
+| `CORS_ORIGINS` | `http://localhost:8080,https://www.automatia.bot/` | Hardcoded in serverless.yml |
+| `JWT_SECRET` | *(secret)* | GCP Secret Manager (runtime) |
 
-```bash
-# Your GCP project ID (required)
-export GCP_PROJECT_ID=your-project-id
-
-# JWT secret for token signing (required)
-# Generate a secure secret with:
-# python -c "import secrets; print(secrets.token_urlsafe(64))"
-export JWT_SECRET=your-super-secret-jwt-key
-
-# Optional: CORS origins for your frontend
-export CORS_ORIGINS=http://localhost:8080,https://your-domain.com
-```
+**No environment variables are required for deployment!** Secrets are read from GCP Secret Manager at runtime.
 
 ### For Local Development
 
@@ -162,6 +162,8 @@ If testing locally without Secret Manager:
 
 ```bash
 export USE_ENV_SECRETS=true
+export GCP_PROJECT_ID=backend-471615
+export JWT_SECRET=your-local-test-secret
 ```
 
 ### Creating Secrets in GCP Secret Manager (Production)
@@ -189,6 +191,8 @@ gcloud secrets add-iam-policy-binding JWT_SECRET \
 
 ```bash
 cd backend
+export GCP_PROJECT_ID=backend-471615
+export USE_ENV_SECRETS=true
 python scripts/seed_users.py
 ```
 
@@ -196,28 +200,50 @@ python scripts/seed_users.py
 
 ### 2. Deploy to GCP
 
-**Why:** Uploads and deploys all Cloud Functions to your GCP project.
+#### Option A: Using Serverless Framework (Python 3.9)
 
 ```bash
 cd backend
 serverless deploy
 ```
 
+#### Option B: Using deploy.sh Script (Python 3.12 - Recommended)
+
+```bash
+cd backend
+./deploy.sh
+```
+
+**deploy.sh commands:**
+```bash
+./deploy.sh                    # Deploy all functions
+./deploy.sh --stage prod       # Deploy to production stage
+./deploy.sh --function login   # Deploy single function
+./deploy.sh --list             # List deployed functions
+./deploy.sh --delete           # Delete all functions
+```
+
 Expected output on success:
 
 ```
-Service Information
-service: automatia-booking-api
-project: your-project-id
-stage: dev
-region: us-central1
+╔═══════════════════════════════════════════════════════════════════════════╗
+║  Automatia Demo - Cloud Functions Deployment                              ║
+╠═══════════════════════════════════════════════════════════════════════════╣
+║  Project:  backend-471615                                                 ║
+║  Region:   us-central1                                                    ║
+║  Runtime:  python312                                                      ║
+║  Stage:    dev                                                            ║
+╚═══════════════════════════════════════════════════════════════════════════╝
 
-Deployed functions
-login
-  https://us-central1-your-project-id.cloudfunctions.net/automatia-booking-api-dev-login
-validate
-  https://us-central1-your-project-id.cloudfunctions.net/automatia-booking-api-dev-validate
+Deploying 15 functions...
+✓ Deployed: automatia-demo-dev-login
+✓ Deployed: automatia-demo-dev-validate
 ...
+
+Function URLs:
+  https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev-login
+  https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev-validate
+  ...
 ```
 
 ### 3. Verify Deployment
@@ -226,9 +252,9 @@ Test the health of deployed functions:
 
 ```bash
 # Test login endpoint
-curl -X POST https://us-central1-YOUR_PROJECT_ID.cloudfunctions.net/automatia-booking-api-dev-login \
+curl -X POST https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev-login \
   -H "Content-Type: application/json" \
-  -d '{"username": "admin-automatia", "password": "your-password"}'
+  -d '{"user_id": "admin-automatia", "password": "your-password"}'
 ```
 
 ---
@@ -356,7 +382,19 @@ serverless deploy function -f login
 
 ## Project Info
 
-- **Service Name:** automatia-booking-api
-- **Region:** us-central1
-- **Runtime:** Python 3.9
-- **Framework:** Serverless Framework v3
+- **Service Name:** `automatia-demo`
+- **Project ID:** `backend-471615`
+- **Region:** `us-central1`
+- **Runtime:** Python 3.9 (Serverless) or Python 3.12 (deploy.sh)
+- **Framework:** Serverless Framework v3 or gcloud CLI
+- **Function Naming:** `automatia-demo-{stage}-{function_name}`
+
+### GCP Console Links
+
+| Resource | URL |
+|----------|-----|
+| **Cloud Functions** | [console.cloud.google.com/functions](https://console.cloud.google.com/functions?project=backend-471615) |
+| **Cloud Run** | [console.cloud.google.com/run](https://console.cloud.google.com/run?project=backend-471615) |
+| **Firestore** | [console.cloud.google.com/firestore](https://console.cloud.google.com/firestore?project=backend-471615) |
+| **Logs** | [console.cloud.google.com/logs](https://console.cloud.google.com/logs?project=backend-471615) |
+| **Secret Manager** | [console.cloud.google.com/security/secret-manager](https://console.cloud.google.com/security/secret-manager?project=backend-471615) |

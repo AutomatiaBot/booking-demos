@@ -40,16 +40,18 @@ booking-demos/
 
 | Service | URL |
 |---------|-----|
-| **Frontend** | https://demo.automatia.bot |
-| **Backend API** | https://us-central1-backend-471615.cloudfunctions.net/automatia-booking-api-dev-* |
+| **Frontend (Cloudflare)** | https://demo.automatia.bot |
+| **Frontend (Cloud Run)** | https://automatia-demo-portal-1016893210029.us-central1.run.app |
+| **Backend API** | https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev-* |
 
 ---
 
 ## Quick Start
 
 ### Production URLs
-- **Frontend**: https://demo.automatia.bot
-- **Backend API**: https://us-central1-backend-471615.cloudfunctions.net/automatia-booking-api-dev-login
+- **Frontend (Cloudflare)**: https://demo.automatia.bot
+- **Frontend (Cloud Run)**: https://automatia-demo-portal-1016893210029.us-central1.run.app
+- **Backend API**: https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev-login
 
 ### Local Development
 ```bash
@@ -92,10 +94,17 @@ Each demo page includes a "Demo Steps" section:
 
 ## Prerequisites
 
-- Python 3.9+ (serverless uses python39 runtime)
+- Python 3.9+ (or 3.12 when using `deploy.sh` script)
 - GCP Account with billing enabled
-- Serverless Framework (`npm install -g serverless`)
+- Serverless Framework (`npm install -g serverless`) OR `gcloud` CLI
 - Google Cloud SDK (`gcloud`)
+
+## Deployment Options
+
+| Method | Runtime | Best For |
+|--------|---------|----------|
+| **Serverless Framework** | Python 3.9 | Quick deployment, familiar to AWS users |
+| **deploy.sh script** | Python 3.12 | Latest runtime, Gen2 Cloud Functions |
 
 ## Step 1: GCP Project Setup
 
@@ -167,6 +176,8 @@ Default seeded users (password: `ChangeMe123!`):
 
 ## Step 5: Deploy to GCP
 
+### Option A: Using Serverless Framework (Python 3.9)
+
 ```bash
 # Install Serverless Google plugin
 npm install -g serverless
@@ -178,6 +189,29 @@ serverless deploy
 # Or deploy a single function
 serverless deploy function -f login
 ```
+
+### Option B: Using deploy.sh Script (Python 3.12 - Recommended)
+
+```bash
+cd backend
+
+# Deploy all functions
+./deploy.sh
+
+# Deploy to a specific stage
+./deploy.sh --stage prod
+
+# Deploy a single function
+./deploy.sh --function login
+
+# List deployed functions
+./deploy.sh --list
+
+# Delete all functions (use with caution!)
+./deploy.sh --delete
+```
+
+The `deploy.sh` script deploys Gen2 Cloud Functions with Python 3.12 runtime directly using `gcloud` CLI, bypassing the Serverless Framework's runtime limitations.
 
 ---
 
@@ -455,7 +489,7 @@ Include the activity tracker script on any demo page to automatically track:
 <!-- Add to any demo page -->
 <script 
   src="/js/activity-tracker.js" 
-  data-api-url="https://your-api-url"
+  data-api-base-url="https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev"
   data-demo-id="manhattan-smiles"
 ></script>
 ```
@@ -465,7 +499,7 @@ Include the activity tracker script on any demo page to automatically track:
 ```javascript
 // After user logs in
 ActivityTracker.init({
-  apiUrl: 'https://us-central1-backend-471615.cloudfunctions.net',
+  apiBaseUrl: 'https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev',
   demoId: 'manhattan-smiles',
   debug: true  // Enable console logging
 });
@@ -473,6 +507,8 @@ ActivityTracker.init({
 // Set auth token (from login response)
 ActivityTracker.setToken(loginResponse.data.token);
 ```
+
+> **Note:** The activity tracker uses Cloud Functions URL pattern: `{apiBaseUrl}-track_activity` and `{apiBaseUrl}-track_activity_batch`
 
 ### Tracking Custom Events
 
@@ -524,9 +560,12 @@ This section is for developers familiar with AWS who need to understand, maintai
 |---------|-------|
 | **GCP Project ID** | `backend-471615` |
 | **Region** | `us-central1` |
-| **Runtime** | Python 3.9 (serverless plugin limitation) |
+| **Service Name** | `automatia-demo` |
+| **Stage** | `dev` (default) |
+| **Runtime** | Python 3.9 (Serverless) or Python 3.12 (deploy.sh) |
 | **Database** | Firestore (Native mode) |
-| **Deployment Tool** | Serverless Framework |
+| **Secrets** | GCP Secret Manager |
+| **Deployment Tool** | Serverless Framework or `deploy.sh` script |
 
 ## GCP to AWS Service Mapping
 
@@ -773,15 +812,21 @@ frontend/
 
 # Developer Guide
 
-## Current User IDs
+## User Management
 
-| User ID | SHA-256 Hash | Access | Name Displayed |
-|---------|--------------|--------|----------------|
-| `admin-automatia` | `834f98eef8e411c3c8639447617f06be08b05b163feb190aefeec9e63722e8c6` | All demos | Admin |
-| `gbc-demos` | `1303a7ac100381762de7765e8b28dd0535387f59803fe9392a335d33d365e591` | Kate AI, GBC | GBC Team |
-| `ray-avila` | `1f9dcbc177af9f94768b94f5c021b39442eafc858e79c2e2068b90418654f94b` | Kate AI, Ray Avila | Ray Avila |
+Users are now managed via the **backend API** and stored in **Firestore**. No more client-side hashing required!
 
-### ID Format Rules
+### Default Seeded Users
+
+| User ID | Access | Name | Admin |
+|---------|--------|------|-------|
+| `admin-automatia` | All demos | Admin | Yes |
+| `gbc-demos` | Kate AI, GBC | GBC Team | No |
+| `ray-avila` | Kate AI, Ray Avila | Ray Avila | No |
+
+**Default password for all seeded users:** `ChangeMe123!` (change immediately after deployment!)
+
+### User ID Format Rules
 - All **lowercase**
 - Words separated by **hyphens** (`-`)
 - No spaces or special characters
@@ -791,49 +836,45 @@ frontend/
 
 ## Adding a New User
 
-### Step 1: Choose the User ID
+### Option 1: Using the Seed Script (Local Development)
 
-Pick an ID following the format rules:
-```
-new-seller-name
-```
-
-### Step 2: Generate the SHA-256 Hash
-
-**On Mac/Linux terminal:**
 ```bash
-echo -n "new-seller-name" | shasum -a 256
+cd backend
+export GCP_PROJECT_ID=backend-471615
+export USE_ENV_SECRETS=true
+
+# Edit scripts/seed_users.py to add your user, then run:
+python scripts/seed_users.py
 ```
 
-**Output example:**
-```
-a1b2c3d4e5f6...  -
-```
+### Option 2: Using the Admin API (Production)
 
-Copy the hash (everything before the spaces and dash).
+```bash
+# First, login as admin to get a token
+TOKEN=$(curl -s -X POST https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev-login \
+  -H "Content-Type: application/json" \
+  -d '{"user_id": "admin-automatia", "password": "your-admin-password"}' | jq -r '.data.token')
 
-### Step 3: Add to ACCESS_CONFIG
-
-Open `index.html` and find the `ACCESS_CONFIG` object (around line 929). Add your new user:
-
-```javascript
-const ACCESS_CONFIG = {
-  // Existing users...
-  
-  // New user - paste your hash as the key
-  'a1b2c3d4e5f6...your-full-hash-here...': {
-    name: 'Display Name',           // Shown in header after login
-    access: ['dr-michael-doe', 'manhattan-smiles'],  // Demo IDs they can access
-    quickAccess: true               // Show Quick Access section (voice demos, etc.)
-  }
-};
+# Create the new user
+curl -X POST https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev-create_user \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{
+    "user_id": "new-seller-name",
+    "name": "Display Name",
+    "password": "SecurePassword123!",
+    "access": ["dr-michael-doe", "manhattan-smiles"],
+    "is_admin": false,
+    "quick_access": true
+  }'
 ```
 
-### Step 4: Test the Login
+### Option 3: Using Firestore Console
 
-1. Open `http://localhost:8080` (or your server)
-2. Enter the new user ID (e.g., `new-seller-name`)
-3. Verify they only see their permitted demos
+1. Go to [Firestore Console](https://console.cloud.google.com/firestore/data?project=backend-471615)
+2. Navigate to `users` collection
+3. Add a new document with the user ID as the document ID
+4. Add required fields (see Firestore Schema section above)
 
 ---
 
@@ -912,18 +953,20 @@ const translations = {
 
 ### Step 6: Grant Access to Users
 
-Update `ACCESS_CONFIG` to include the new demo ID:
+Use the Admin API to update user access:
 
-```javascript
-const ACCESS_CONFIG = {
-  '834f98eef8e411c3c8639447617f06be08b05b163feb190aefeec9e63722e8c6': {
-    name: 'Admin',
-    access: ['manhattan-smiles', 'gbc', 'dr-michael-doe', 'ray-avila', 'new-client'], // Added!
-    quickAccess: true
-  },
-  // Add to other users who need access...
-};
+```bash
+# Update user access via API
+curl -X PUT https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev-update_user/USER_ID \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $ADMIN_TOKEN" \
+  -d '{"access": ["manhattan-smiles", "gbc", "dr-michael-doe", "ray-avila", "new-client"]}'
 ```
+
+Or update directly in Firestore Console:
+1. Go to [Firestore Console](https://console.cloud.google.com/firestore/data?project=backend-471615)
+2. Find the user in `users` collection
+3. Edit the `access` array to include the new demo ID
 
 ---
 
@@ -945,23 +988,42 @@ When creating a new demo page, ensure it has:
 
 ### Give a User Access to More Demos
 
-Find their entry in `ACCESS_CONFIG` and add demo IDs to the `access` array:
+Use the Admin API or Firestore Console:
 
-```javascript
-'1f9dcbc177af9f94768b94f5c021b39442eafc858e79c2e2068b90418654f94b': {
-  name: 'Ray Avila',
-  access: ['dr-michael-doe', 'ray-avila', 'new-client'],  // Added new-client
-  quickAccess: true
-}
+```bash
+# Via API
+curl -X PUT https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev-update_user/ray-avila \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $ADMIN_TOKEN" \
+  -d '{"access": ["dr-michael-doe", "ray-avila", "new-client"]}'
 ```
 
 ### Remove Access
 
-Simply remove the demo ID from the `access` array.
+Update the user's `access` array without the demo ID:
 
-### Delete a User
+```bash
+curl -X PUT https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev-update_user/ray-avila \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $ADMIN_TOKEN" \
+  -d '{"access": ["dr-michael-doe"]}'
+```
 
-Remove their entire entry from `ACCESS_CONFIG`.
+### Deactivate a User (Soft Delete)
+
+Users are soft-deleted (deactivated) to preserve activity history:
+
+```bash
+curl -X DELETE https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev-delete_user/user-id \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
+```
+
+### Reactivate a User
+
+```bash
+curl -X POST https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev-reactivate_user/user-id \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
+```
 
 ---
 
@@ -971,8 +1033,20 @@ Remove their entire entry from `ACCESS_CONFIG`.
 
 | Key | Purpose | Example Value |
 |-----|---------|---------------|
-| `automatia_user` | Hashed user ID for session | `834f98eef8e4...` |
+| `automatia_token` | JWT authentication token | `eyJhbGciOiJIUzI1...` |
 | `automatia_lang` | Language preference | `en` or `es` |
+
+### API Base URL
+
+All backend API calls use this base URL pattern:
+```
+https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev-{function_name}
+```
+
+Example endpoints:
+- Login: `...automatia-demo-dev-login`
+- Validate: `...automatia-demo-dev-validate`
+- Track Activity: `...automatia-demo-dev-track_activity`
 
 ### Demo Card Attributes
 
@@ -1014,25 +1088,40 @@ Open `index.html` directly in browser (some features may not work due to CORS).
 
 ## Troubleshooting
 
-### "Invalid ID" error when logging in
-- Check the ID is **lowercase** with **hyphens**
-- Verify the hash in `ACCESS_CONFIG` matches exactly
-- Try regenerating the hash
+### "Invalid credentials" error when logging in
+- Check the user ID is **lowercase** with **hyphens**
+- Verify the user exists in Firestore (`users` collection)
+- Check the password is correct
+- Verify the user's `is_active` field is `true`
+- Check browser console for API error details
+
+### "Connection error" when logging in
+- Verify the backend functions are deployed and running
+- Check CORS_ORIGINS includes your frontend domain
+- Look at Cloud Functions logs for errors:
+  ```bash
+  gcloud functions logs read automatia-demo-dev-login --limit=20
+  ```
 
 ### Demo card not showing
-- Check `data-demo-id` matches an entry in the user's `access` array
-- Verify the user has access to that demo
+- Check `data-demo-id` matches an entry in the user's `access` array in Firestore
+- Verify the user has access to that demo via the API:
+  ```bash
+  curl -X GET https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev-get_user_access \
+    -H "Authorization: Bearer $TOKEN"
+  ```
 - Check browser console for JavaScript errors
+
+### Activity tracking not working
+- Verify `ACTIVITY_API_BASE_URL` is set correctly in the HTML
+- Check that the user has a valid JWT token in localStorage
+- Verify the backend activity functions are deployed
+- Check browser console for API errors
 
 ### Translations not working
 - Ensure the `data-i18n` attribute matches a key in `translations`
 - Check both `en` and `es` sections have the key
 - Call `updateLanguage()` after adding dynamic content
-
-### Dashboard section not appearing
-- Clear browser cache or add `?t=123` to URL
-- Verify the HTML structure matches other demo pages
-- Check CSS for `.dashboard-section` class
 
 ---
 

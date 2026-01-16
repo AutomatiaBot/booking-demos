@@ -716,7 +716,8 @@
       <h2 data-i18n="login_title">Access Demo Portal</h2>
       <p data-i18n="login_subtitle">Enter your seller ID to access available demos</p>
       <div class="login-input-group">
-        <input type="text" class="login-input" id="userIdInput" placeholder="Seller ID" data-i18n-placeholder="login_placeholder" autocomplete="off">
+        <input type="text" class="login-input" id="userIdInput" placeholder="Seller ID" data-i18n-placeholder="login_placeholder" autocomplete="username">
+        <input type="password" class="login-input" id="passwordInput" placeholder="Password" data-i18n-placeholder="login_password_placeholder" autocomplete="current-password">
         <p class="login-error" id="loginError" data-i18n="login_error">Invalid ID. Please try again.</p>
         <button class="login-btn" onclick="handleLogin()" data-i18n="login_btn">Access Portal</button>
       </div>
@@ -927,40 +928,55 @@
     // ACCESS CONTROL CONFIGURATION
     // ===========================================
     // ===========================================
-    // ACCESS CONFIG (Hashed IDs for security)
-    // IDs are SHA-256 hashed - competitors can't see/guess them
-    // Format: lowercase, separated by hyphens
+    // API CONFIGURATION
+    // Backend Cloud Functions base URL
     // ===========================================
-    const ACCESS_CONFIG = {
-      // Hash of valid seller ID
-      '834f98eef8e411c3c8639447617f06be08b05b163feb190aefeec9e63722e8c6': {
-        name: 'Admin',
-        access: ['manhattan-smiles', 'gbc', 'dr-michael-doe', 'ray-avila'],
-        quickAccess: true
-      },
-      '1303a7ac100381762de7765e8b28dd0535387f59803fe9392a335d33d365e591': {
-        name: 'GBC Team',
-        access: ['dr-michael-doe', 'gbc'],
-        quickAccess: true
-      },
-      '1f9dcbc177af9f94768b94f5c021b39442eafc858e79c2e2068b90418654f94b': {
-        name: 'Ray Avila',
-        access: ['dr-michael-doe', 'ray-avila'],
-        quickAccess: true
-      }
+    const API_BASE_URL = 'https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev';
+    
+    // API Endpoints
+    const API_ENDPOINTS = {
+      login: `${API_BASE_URL}-login`,
+      validate: `${API_BASE_URL}-validate`,
+      logout: `${API_BASE_URL}-logout`,
+      getUserAccess: `${API_BASE_URL}-get_user_access`,
+      checkDemoAccess: `${API_BASE_URL}-check_demo_access`,
     };
 
     // ===========================================
-    // HASH FUNCTION (SHA-256)
+    // API HELPER FUNCTIONS
     // ===========================================
-    async function hashId(id) {
-      // Normalize: lowercase, trim whitespace
-      const normalized = id.toLowerCase().trim();
-      const encoder = new TextEncoder();
-      const data = encoder.encode(normalized);
-      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    function getAuthToken() {
+      return localStorage.getItem('automatia_token');
+    }
+
+    function setAuthToken(token) {
+      localStorage.setItem('automatia_token', token);
+    }
+
+    function clearAuthToken() {
+      localStorage.removeItem('automatia_token');
+    }
+
+    async function apiCall(endpoint, options = {}) {
+      const token = getAuthToken();
+      const headers = {
+        'Content-Type': 'application/json',
+        ...(token && { 'Authorization': `Bearer ${token}` }),
+        ...options.headers,
+      };
+
+      try {
+        const response = await fetch(endpoint, {
+          ...options,
+          headers,
+        });
+        
+        const data = await response.json();
+        return { ok: response.ok, status: response.status, data };
+      } catch (error) {
+        console.error('API call failed:', error);
+        return { ok: false, status: 0, data: { error: error.message } };
+      }
     }
 
     // ===========================================
@@ -972,6 +988,7 @@
         login_title: 'Access Demo Portal',
         login_subtitle: 'Enter your seller ID to access available demos',
         login_placeholder: 'Seller ID',
+        login_password_placeholder: 'Password',
         login_error: 'Invalid ID. Please try again.',
         login_btn: 'Access Portal',
         
@@ -1036,6 +1053,7 @@
         login_title: 'Acceder al Portal de Demos',
         login_subtitle: 'Ingresa tu ID de vendedor para acceder a los demos disponibles',
         login_placeholder: 'ID de Vendedor',
+        login_password_placeholder: 'Contraseña',
         login_error: 'ID inválido. Por favor intenta de nuevo.',
         login_btn: 'Acceder al Portal',
         
@@ -1101,7 +1119,9 @@
     // STATE
     // ===========================================
     let currentLang = localStorage.getItem('automatia_lang') || 'en';
-    let currentUser = localStorage.getItem('automatia_user') || null;
+    let currentUser = null;  // Will be set from API response
+    let userAccess = [];     // List of demos user can access
+    let userQuickAccess = true;
 
     // ===========================================
     // LANGUAGE FUNCTIONS
@@ -1149,8 +1169,12 @@
     // ===========================================
     async function handleLogin() {
       const input = document.getElementById('userIdInput');
+      const passwordInput = document.getElementById('passwordInput');
       const errorEl = document.getElementById('loginError');
+      const loginBtn = document.querySelector('.login-btn');
+      
       const userId = input.value.trim();
+      const password = passwordInput ? passwordInput.value : userId; // Use userId as password if no password field
       
       if (!userId) {
         input.classList.add('error');
@@ -1158,46 +1182,108 @@
         return;
       }
       
-      // Hash the input ID and check against stored hashes
-      const hashedId = await hashId(userId);
+      // Disable button during login
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Logging in...';
       
-      if (ACCESS_CONFIG[hashedId]) {
-        // Valid user - store the hash for session
-        localStorage.setItem('automatia_user', hashedId);
-        currentUser = hashedId;
-        showMainContent();
-        input.classList.remove('error');
-        errorEl.classList.remove('show');
-      } else {
-        // Invalid user
+      try {
+        // Call backend login API
+        const result = await apiCall(API_ENDPOINTS.login, {
+          method: 'POST',
+          body: JSON.stringify({ user_id: userId, password: password }),
+        });
+        
+        if (result.ok && result.data.success) {
+          // Login successful
+          const { token, user } = result.data.data;
+          
+          // Store token and user info
+          setAuthToken(token);
+          currentUser = user;
+          userAccess = user.access || [];
+          userQuickAccess = user.quick_access !== false;
+          
+          // Initialize activity tracking with the token
+          if (typeof initActivityTracking === 'function') {
+            initActivityTracking(token);
+          }
+          
+          showMainContent();
+          input.classList.remove('error');
+          errorEl.classList.remove('show');
+        } else {
+          // Login failed
+          input.classList.add('error');
+          errorEl.classList.add('show');
+          errorEl.textContent = result.data.error || 'Invalid credentials. Please try again.';
+          setTimeout(() => input.classList.remove('error'), 400);
+        }
+      } catch (error) {
+        console.error('Login error:', error);
         input.classList.add('error');
         errorEl.classList.add('show');
-        setTimeout(() => input.classList.remove('error'), 400);
+        errorEl.textContent = 'Connection error. Please try again.';
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = translations[currentLang].login_btn;
       }
     }
 
-    function handleLogout() {
-      localStorage.removeItem('automatia_user');
+    async function handleLogout() {
+      // Call backend logout API (for audit logging)
+      const token = getAuthToken();
+      if (token) {
+        await apiCall(API_ENDPOINTS.logout, { method: 'POST' });
+      }
+      
+      // Clear local state
+      clearAuthToken();
       currentUser = null;
+      userAccess = [];
+      
+      // Reset UI
       document.getElementById('loginOverlay').classList.remove('hidden');
       document.getElementById('mainContent').classList.remove('visible');
       document.getElementById('userIdInput').value = '';
+      const passwordInput = document.getElementById('passwordInput');
+      if (passwordInput) passwordInput.value = '';
+    }
+
+    async function validateSession() {
+      const token = getAuthToken();
+      if (!token) return false;
+      
+      try {
+        const result = await apiCall(API_ENDPOINTS.validate, { method: 'POST' });
+        
+        if (result.ok && result.data.success) {
+          const user = result.data.data.user;
+          currentUser = user;
+          userAccess = user.access || [];
+          userQuickAccess = user.quick_access !== false;
+          return true;
+        }
+      } catch (error) {
+        console.error('Session validation error:', error);
+      }
+      
+      // Invalid session - clear token
+      clearAuthToken();
+      return false;
     }
 
     function showMainContent() {
       document.getElementById('loginOverlay').classList.add('hidden');
       document.getElementById('mainContent').classList.add('visible');
-      // Display user name from config (not the hash)
-      const config = ACCESS_CONFIG[currentUser];
-      document.getElementById('userIdDisplay').textContent = config ? config.name : 'User';
+      // Display user name from API response
+      document.getElementById('userIdDisplay').textContent = currentUser ? currentUser.name : 'User';
       applyAccessControl();
     }
 
     function applyAccessControl() {
-      if (!currentUser || !ACCESS_CONFIG[currentUser]) return;
+      if (!currentUser) return;
       
-      const config = ACCESS_CONFIG[currentUser];
-      const allowedDemos = config.access;
+      const allowedDemos = userAccess;
       
       // Hide/show demo cards based on access
       const cards = document.querySelectorAll('.demo-card');
@@ -1221,9 +1307,9 @@
         noDemos.classList.remove('show');
       }
       
-      // Show/hide quick access based on config
+      // Show/hide quick access based on user config
       const quickAccess = document.getElementById('quickAccess');
-      if (config.quickAccess) {
+      if (userQuickAccess) {
         quickAccess.classList.remove('hidden');
       } else {
         quickAccess.classList.add('hidden');
@@ -1254,13 +1340,19 @@
     // ===========================================
     // INITIALIZATION
     // ===========================================
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', async function() {
       // Apply saved language
       updateLanguage();
       
-      // Check if user is already logged in
-      if (currentUser && ACCESS_CONFIG[currentUser]) {
+      // Validate existing session with backend
+      const hasValidSession = await validateSession();
+      if (hasValidSession) {
         showMainContent();
+        // Initialize activity tracking if we have a valid session
+        const token = getAuthToken();
+        if (token && typeof initActivityTracking === 'function') {
+          initActivityTracking(token);
+        }
       }
       
       // Allow Enter key to submit login
@@ -1269,6 +1361,16 @@
           handleLogin();
         }
       });
+      
+      // Also handle Enter key on password field if it exists
+      const passwordInput = document.getElementById('passwordInput');
+      if (passwordInput) {
+        passwordInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            handleLogin();
+          }
+        });
+      }
       
       // Keyboard shortcut: Cmd/Ctrl + K to focus search
       document.addEventListener('keydown', function(e) {
@@ -1285,17 +1387,17 @@
   <script>
     // Activity tracker configuration
     // Will be fully enabled once backend API is deployed
-    const ACTIVITY_API_URL = ''; // Set this after deploying: https://us-central1-backend-471615.cloudfunctions.net
-    
+    const ACTIVITY_API_BASE_URL = 'https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev';
+
     // Initialize activity tracker when user logs in
     function initActivityTracking(token) {
-      if (!ACTIVITY_API_URL) {
+      if (!ACTIVITY_API_BASE_URL) {
         console.log('[ActivityTracker] API URL not configured yet');
         return;
       }
-      
+
       ActivityTracker.init({
-        apiUrl: ACTIVITY_API_URL,
+        apiBaseUrl: ACTIVITY_API_BASE_URL,
         demoId: null, // Main portal, not a specific demo
         debug: true
       });
@@ -1311,7 +1413,7 @@
         const demoId = this.getAttribute('data-demo-id');
         const demoTitle = this.querySelector('h3')?.textContent;
         
-        if (typeof ActivityTracker !== 'undefined' && ACTIVITY_API_URL) {
+        if (typeof ActivityTracker !== 'undefined' && ACTIVITY_API_BASE_URL) {
           ActivityTracker.trackDemoLaunched(demoId);
           ActivityTracker.trackCustomEvent('demo_card_clicked', {
             demo_id: demoId,
