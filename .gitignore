@@ -1,1 +1,57 @@
+# macOS
 .DS_Store
+
+# ===========================================
+# Python Backend
+# ===========================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+backend/venv/
+backend/.venv/
+venv/
+.venv/
+ENV/
+
+# Environment variables (NEVER commit these!)
+.env
+.env.local
+.env.*.local
+backend/.env
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Serverless Framework
+.serverless/
+node_modules/
+
+# GCP
+.gcloudignore
+*.json
+!package.json
+!package-lock.json
+
+# Logs
+*.log
+logs/
+
+# Local development
+.python-version

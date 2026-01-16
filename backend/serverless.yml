@@ -1,0 +1,126 @@
+# Serverless Framework configuration for GCP Cloud Functions
+# Documentation: https://www.serverless.com/framework/docs/providers/google
+
+service: automatia-booking-api
+
+frameworkVersion: '3'
+
+provider:
+  name: google
+  runtime: python39
+  project: ${env:GCP_PROJECT_ID}
+  region: us-central1
+  
+  # Environment variables for all functions
+  environment:
+    JWT_SECRET: ${env:JWT_SECRET}
+    JWT_ALGORITHM: HS256
+    JWT_EXPIRATION_HOURS: "24"
+    CORS_ORIGINS: ${env:CORS_ORIGINS, "http://localhost:8080,https://www.automatia.bot/"}
+    GCP_PROJECT_ID: ${env:GCP_PROJECT_ID}
+
+plugins:
+  - serverless-google-cloudfunctions
+
+package:
+  patterns:
+    - '!.venv/**'
+    - '!venv/**'
+    - '!__pycache__/**'
+    - '!.pytest_cache/**'
+    - '!tests/**'
+    - '!*.md'
+    - '!.env*'
+    - '!node_modules/**'
+
+functions:
+  # ============================================
+  # Authentication Endpoints
+  # ============================================
+  
+  login:
+    handler: login
+    events:
+      - http: auth/login
+
+  validate:
+    handler: validate_session
+    events:
+      - http: auth/validate
+
+  logout:
+    handler: logout
+    events:
+      - http: auth/logout
+
+  # ============================================
+  # User Management Endpoints
+  # ============================================
+
+  get_user_access:
+    handler: get_user_access
+    events:
+      - http: users/access
+
+  check_demo_access:
+    handler: check_demo_access
+    events:
+      - http: users/check-access
+
+  # ============================================
+  # Admin Endpoints (protected)
+  # ============================================
+
+  create_user:
+    handler: create_user
+    events:
+      - http: admin/users
+
+  list_users:
+    handler: list_users
+    events:
+      - http: admin/users
+
+  update_user:
+    handler: update_user
+    events:
+      - http: admin/users
+
+  delete_user:
+    handler: delete_user
+    events:
+      - http: admin/users
+
+  reactivate_user:
+    handler: reactivate_user
+    events:
+      - http: admin/users/reactivate
+
+  # ============================================
+  # Activity Tracking Endpoints
+  # ============================================
+
+  track_activity:
+    handler: track_activity
+    events:
+      - http: activity/track
+
+  track_activity_batch:
+    handler: track_activity_batch
+    events:
+      - http: activity/track-batch
+
+  get_my_activity:
+    handler: get_my_activity
+    events:
+      - http: activity/me
+
+  get_activity_summary:
+    handler: get_activity_summary
+    events:
+      - http: admin/activity/summary
+
+  get_activity_events:
+    handler: get_activity_events
+    events:
+      - http: admin/activity/events

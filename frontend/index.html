@@ -1280,5 +1280,47 @@
     });
   </script>
 
+  <!-- Activity Tracker - Sends user activity to backend API -->
+  <script src="js/activity-tracker.js"></script>
+  <script>
+    // Activity tracker configuration
+    // Will be fully enabled once backend API is deployed
+    const ACTIVITY_API_URL = ''; // Set this after deploying: https://us-central1-backend-471615.cloudfunctions.net
+    
+    // Initialize activity tracker when user logs in
+    function initActivityTracking(token) {
+      if (!ACTIVITY_API_URL) {
+        console.log('[ActivityTracker] API URL not configured yet');
+        return;
+      }
+      
+      ActivityTracker.init({
+        apiUrl: ACTIVITY_API_URL,
+        demoId: null, // Main portal, not a specific demo
+        debug: true
+      });
+      
+      if (token) {
+        ActivityTracker.setToken(token);
+      }
+    }
+    
+    // Track demo card clicks
+    document.querySelectorAll('.demo-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        const demoId = this.getAttribute('data-demo-id');
+        const demoTitle = this.querySelector('h3')?.textContent;
+        
+        if (typeof ActivityTracker !== 'undefined' && ACTIVITY_API_URL) {
+          ActivityTracker.trackDemoLaunched(demoId);
+          ActivityTracker.trackCustomEvent('demo_card_clicked', {
+            demo_id: demoId,
+            demo_title: demoTitle
+          });
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>

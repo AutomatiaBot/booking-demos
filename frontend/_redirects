@@ -1,0 +1,7 @@
+# Cloudflare Pages Redirects
+# Clean URLs for demo pages
+
+/manhattan-smiles   /manhattan-smiles/manhattan-smiles.html     200
+/gbc                /gbc/gbc-booking.html                       200
+/dr-michael-doe     /dr-michael-doe/automatia-booking.html      200
+/ray-avila          /ray-avila/ray-avila.html                   200

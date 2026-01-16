@@ -1,0 +1,7 @@
+{
+  "name": "automatia-booking-api",
+  "main": "main.py",
+  "devDependencies": {
+    "serverless-google-cloudfunctions": "^4.6.0"
+  }
+}

@@ -616,5 +616,25 @@
       console.warn("Widget is still initializing...");
     }
   </script>
+
+  <!-- Activity Tracker -->
+  <script src="../js/activity-tracker.js"></script>
+  <script>
+    const ACTIVITY_API_URL = ''; // Set after deploying: https://us-central1-backend-471615.cloudfunctions.net
+    
+    if (ACTIVITY_API_URL) {
+      const token = localStorage.getItem('automatia_token');
+      
+      ActivityTracker.init({
+        apiUrl: ACTIVITY_API_URL,
+        demoId: 'gbc',
+        debug: true
+      });
+      
+      if (token) {
+        ActivityTracker.setToken(token);
+      }
+    }
+  </script>
 </body>
 </html>
