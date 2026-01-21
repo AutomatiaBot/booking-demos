@@ -4,6 +4,30 @@ A sales demo portal for Automatia Bot that allows sellers to present live client
 
 ---
 
+## Deployment (TL;DR)
+
+### First Time? Run This:
+```bash
+cd backend
+./full-setup.sh --stage prod --frontend-url "https://your-frontend.com"
+```
+
+### Already Setup? Just Redeploy:
+```bash
+cd backend
+./deploy.sh --stage prod
+```
+
+### Deploy Frontend:
+```bash
+cd frontend
+gcloud run deploy automatia-demo-portal --source=. --region=us-central1 --project=backend-471615
+```
+
+> For detailed instructions, see [backend/DEPLOY-QUICKSTART.md](backend/DEPLOY-QUICKSTART.md)
+
+---
+
 ## Architecture
 
 This is a **monorepo** containing:

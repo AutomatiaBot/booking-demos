@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel – Automatia Bot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Automatia Bot Admin Panel. Manage users and view activity." />
+  
+  <!-- Fonts: Matching automatia.bot exactly -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Automatia Brand Colors - Extracted from automatia.bot */
+      --automatia-blue: #4A5DFF;
+      --automatia-navy: #1E2E6D;
+      --automatia-navy-hover: #162254;
+      --bg: #F5F5F0;
+      --bg-card: #FFFFFF;
+      --text: #1D1E20;
+      --text-muted: #6B7280;
+      --border: #E5E7EB;
+      --success: #22C55E;
+      --error: #EF4444;
+      --warning: #F59E0B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 48px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--automatia-blue);
+    }
+
+    .user-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-badge {
+      background: rgba(74, 93, 255, 0.1);
+      color: var(--automatia-blue);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .admin-badge {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--error);
+    }
+
+    .logout-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .logout-btn:hover {
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    /* Page Title */
+    .page-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .page-title span {
+      color: var(--automatia-blue);
+    }
+
+    .page-subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0;
+    }
+
+    .tab {
+      background: transparent;
+      border: none;
+      padding: 1rem 1.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tab:hover {
+      color: var(--text);
+    }
+
+    .tab.active {
+      color: var(--automatia-blue);
+      border-bottom-color: var(--automatia-blue);
+    }
+
+    .tab svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Tab Panels */
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--automatia-navy);
+      color: #F6F7F4;
+    }
+
+    .btn-primary:hover {
+      background: var(--automatia-navy-hover);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--automatia-blue);
+      color: var(--automatia-blue);
+    }
+
+    .btn-danger {
+      background: var(--error);
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #DC2626;
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #16A34A;
+    }
+
+    .btn-sm {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Table */
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      font-weight: 600;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    tr:hover {
+      background: rgba(74, 93, 255, 0.02);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .status-active {
+      background: rgba(34, 197, 94, 0.1);
+      color: var(--success);
+    }
+
+    .status-inactive {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--error);
+    }
+
+    .status-admin {
+      background: rgba(74, 93, 255, 0.1);
+      color: var(--automatia-blue);
+    }
+
+    /* Forms */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--automatia-blue);
+      box-shadow: 0 0 0 3px rgba(74, 93, 255, 0.1);
+    }
+
+    .form-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+
+    .form-checkbox input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--automatia-blue);
+    }
+
+    .form-hint {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 9998;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: modalIn 0.2s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.25rem;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      color: var(--text);
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Activity Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0.5rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 1.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.65rem;
+      top: 0.25rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--automatia-blue);
+      border: 2px solid var(--bg-card);
+    }
+
+    .timeline-time {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-content {
+      font-size: 0.95rem;
+    }
+
+    .timeline-event {
+      font-weight: 600;
+      color: var(--automatia-navy);
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--automatia-navy);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-muted);
+    }
+
+    .empty-state svg {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    /* Loading */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      color: var(--text-muted);
+    }
+
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 3px solid var(--border);
+      border-top-color: var(--automatia-blue);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 0.75rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Access Tags */
+    .access-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .access-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      background: var(--bg);
+      color: var(--text-muted);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* Toast */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 9999;
+    }
+
+    .toast {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+      animation: toastIn 0.3s ease;
+    }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateX(100%); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .toast.success { border-left: 4px solid var(--success); }
+    .toast.error { border-left: 4px solid var(--error); }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    footer a {
+      color: var(--automatia-blue);
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .user-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .container {
+        padding: 0 1rem 2rem;
+      }
+
+      .tabs {
+        flex-wrap: wrap;
+      }
+
+      .tab {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .card {
+        padding: 1rem;
+      }
+
+      .modal {
+        padding: 1.5rem;
+        margin: 1rem;
+      }
+
+      th, td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.85rem;
+      }
+
+      .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    /* User select dropdown */
+    .user-select {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .user-select select {
+      flex: 1;
+      padding: 0.875rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg-card);
+      cursor: pointer;
+    }
+
+    .user-select select:focus {
+      outline: none;
+      border-color: var(--automatia-blue);
+    }
+
+    /* Actions dropdown */
+    .actions-menu {
+      position: relative;
+      display: inline-block;
+    }
+
+    .actions-btn {
+      background: var(--bg);
+      border: none;
+      padding: 0.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .actions-btn:hover {
+      background: var(--border);
+      color: var(--text);
+    }
+
+    .actions-dropdown {
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background: var(--bg-card);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      padding: 0.5rem;
+      min-width: 160px;
+      z-index: 100;
+      display: none;
+    }
+
+    .actions-dropdown.show {
+      display: block;
+    }
+
+    .actions-dropdown button {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: none;
+      background: none;
+      text-align: left;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .actions-dropdown button:hover {
+      background: var(--bg);
+    }
+
+    .actions-dropdown button.danger {
+      color: var(--error);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="logo">
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=328,fit=crop,q=95/mk3DGypyG0UyWqob/untitled-2-m7Vbk6JorgUJKn4r.png" alt="Automatia Bot">
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Demo Portal</a>
+      <a href="https://www.automatia.bot/" target="_blank">Website</a>
+    </nav>
+    <div class="user-controls">
+      <span class="user-badge admin-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        <span id="userIdDisplay">Admin</span>
+      </span>
+      <button class="logout-btn" onclick="handleLogout()">Logout</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Page Header -->
+    <h1 class="page-title">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+      Admin <span>Panel</span>
+    </h1>
+    <p class="page-subtitle">Manage users and monitor activity across the demo portal.</p>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" data-tab="users" onclick="switchTab('users')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Users
+      </button>
+      <button class="tab" data-tab="activity" onclick="switchTab('activity')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+        Activity
+      </button>
+    </div>
+
+    <!-- Users Tab -->
+    <div class="tab-panel active" id="usersPanel">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+            </svg>
+            User Management
+          </h2>
+          <button class="btn btn-primary" onclick="openCreateUserModal()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Create User
+          </button>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Role</th>
+                <th>Access</th>
+                <th>Last Login</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <tr>
+                <td colspan="6">
+                  <div class="loading">
+                    <div class="spinner"></div>
+                    Loading users...
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity Tab -->
+    <div class="tab-panel" id="activityPanel">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+            User Activity
+          </h2>
+        </div>
+
+        <div class="user-select">
+          <select id="activityUserSelect" onchange="loadUserActivity()">
+            <option value="">Select a user to view activity...</option>
+          </select>
+          <button class="btn btn-secondary" onclick="loadUserActivity()" id="refreshActivityBtn" disabled>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 4 23 10 17 10"/>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+            </svg>
+            Refresh
+          </button>
+        </div>
+
+        <div id="activityContent">
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <p>Select a user to view their activity</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create/Edit User Modal -->
+  <div class="modal-overlay" id="userModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="userModalTitle">Create User</h3>
+        <button class="modal-close" onclick="closeUserModal()">&times;</button>
+      </div>
+      <form id="userForm" onsubmit="handleUserSubmit(event)">
+        <input type="hidden" id="editUserId" value="">
+        
+        <div class="form-group">
+          <label class="form-label">User ID</label>
+          <input type="text" class="form-input" id="formUserId" placeholder="e.g., john-doe" required>
+          <p class="form-hint">Lowercase, no spaces. Used for login.</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Display Name</label>
+          <input type="text" class="form-input" id="formName" placeholder="e.g., John Doe" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" id="formPassword" placeholder="Minimum 8 characters">
+          <p class="form-hint" id="passwordHint">Required for new users. Leave blank to keep existing password.</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Demo Access</label>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
+            <label class="form-checkbox">
+              <input type="checkbox" name="access" value="manhattan-smiles"> Manhattan Smiles
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox" name="access" value="gbc"> Global Beauty Circle
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox" name="access" value="dr-michael-doe"> Kate AI Demo
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox" name="access" value="ray-avila"> Ray Avila Demo
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-checkbox">
+            <input type="checkbox" id="formQuickAccess" checked> Show Quick Access section
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-checkbox">
+            <input type="checkbox" id="formIsAdmin"> Administrator privileges
+          </label>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeUserModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="userSubmitBtn">Create User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <footer>
+    <p>
+      © 2026 <a href="https://www.automatia.bot/" target="_blank">Automatia Bot</a> · Admin Panel · Internal Use Only
+    </p>
+  </footer>
+
+  <script>
+    // ===========================================
+    // API CONFIGURATION
+    // ===========================================
+    const API_BASE_URL = 'https://us-central1-backend-471615.cloudfunctions.net/automatia-demo-dev';
+    
+    const API_ENDPOINTS = {
+      validate: `${API_BASE_URL}-validate`,
+      logout: `${API_BASE_URL}-logout`,
+      listUsers: `${API_BASE_URL}-list_users`,
+      createUser: `${API_BASE_URL}-create_user`,
+      updateUser: `${API_BASE_URL}-update_user`,
+      deleteUser: `${API_BASE_URL}-delete_user`,
+      reactivateUser: `${API_BASE_URL}-reactivate_user`,
+      getActivitySummary: `${API_BASE_URL}-get_activity_summary`,
+      getActivityEvents: `${API_BASE_URL}-get_activity_events`,
+    };
+
+    // ===========================================
+    // STATE
+    // ===========================================
+    let currentUser = null;
+    let users = [];
+
+    // ===========================================
+    // AUTH HELPERS
+    // ===========================================
+    function getAuthToken() {
+      return localStorage.getItem('automatia_token');
+    }
+
+    function clearAuthToken() {
+      localStorage.removeItem('automatia_token');
+    }
+
+    async function apiCall(endpoint, options = {}) {
+      const token = getAuthToken();
+      const headers = {
+        'Content-Type': 'application/json',
+        ...(token && { 'Authorization': `Bearer ${token}` }),
+        ...options.headers,
+      };
+
+      try {
+        const response = await fetch(endpoint, {
+          ...options,
+          headers,
+        });
+        
+        const data = await response.json();
+        return { ok: response.ok, status: response.status, data };
+      } catch (error) {
+        console.error('API call failed:', error);
+        return { ok: false, status: 0, data: { error: error.message } };
+      }
+    }
+
+    // ===========================================
+    // SESSION MANAGEMENT
+    // ===========================================
+    async function validateSession() {
+      const token = getAuthToken();
+      if (!token) {
+        redirectToLogin();
+        return false;
+      }
+
+      const result = await apiCall(API_ENDPOINTS.validate, { method: 'POST' });
+      
+      if (result.ok && result.data.success) {
+        currentUser = result.data.data.user;
+        
+        // Check if user is admin
+        if (!currentUser.is_admin) {
+          showToast('Access denied. Admin privileges required.', 'error');
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1500);
+          return false;
+        }
+        
+        document.getElementById('userIdDisplay').textContent = currentUser.name || 'Admin';
+        return true;
+      }
+
+      redirectToLogin();
+      return false;
+    }
+
+    function redirectToLogin() {
+      clearAuthToken();
+      window.location.href = 'index.html';
+    }
+
+    async function handleLogout() {
+      const token = getAuthToken();
+      if (token) {
+        await apiCall(API_ENDPOINTS.logout, { method: 'POST' });
+      }
+      clearAuthToken();
+      window.location.href = 'index.html';
+    }
+
+    // ===========================================
+    // TAB MANAGEMENT
+    // ===========================================
+    async function switchTab(tabId) {
+      // Update tab buttons
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.tab === tabId);
+      });
+
+      // Update tab panels
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.toggle('active', panel.id === `${tabId}Panel`);
+      });
+
+      // Load data for the tab
+      if (tabId === 'users') {
+        loadUsers();
+      } else if (tabId === 'activity') {
+        // Make sure users are loaded first
+        if (users.length === 0) {
+          await loadUsers();
+        }
+        populateActivityUserSelect();
+      }
+    }
+
+    // ===========================================
+    // USER MANAGEMENT
+    // ===========================================
+    async function loadUsers() {
+      const tbody = document.getElementById('usersTableBody');
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6">
+            <div class="loading">
+              <div class="spinner"></div>
+              Loading users...
+            </div>
+          </td>
+        </tr>
+      `;
+
+      const result = await apiCall(`${API_ENDPOINTS.listUsers}?include_inactive=true`, { method: 'GET' });
+
+      if (result.ok && result.data.success) {
+        users = result.data.data.users;
+        renderUsersTable(users);
+      } else {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6">
+              <div class="empty-state">
+                <p>Failed to load users: ${result.data.error || 'Unknown error'}</p>
+              </div>
+            </td>
+          </tr>
+        `;
+      }
+    }
+
+    function renderUsersTable(users) {
+      const tbody = document.getElementById('usersTableBody');
+
+      if (users.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6">
+              <div class="empty-state">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                </svg>
+                <p>No users found</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = users.map(user => {
+        const userId = user.id || user.user_id;
+        return `
+        <tr>
+          <td>
+            <strong>${user.name || userId}</strong>
+            <br><span style="color: var(--text-muted); font-size: 0.85rem;">${userId}</span>
+          </td>
+          <td>
+            ${user.is_admin ? '<span class="status-badge status-admin">Admin</span>' : '<span style="color: var(--text-muted);">User</span>'}
+          </td>
+          <td>
+            <div class="access-tags">
+              ${(user.access || []).map(a => `<span class="access-tag">${a}</span>`).join('')}
+              ${(!user.access || user.access.length === 0) ? '<span style="color: var(--text-muted); font-size: 0.85rem;">No access</span>' : ''}
+            </div>
+          </td>
+          <td style="font-size: 0.85rem; color: var(--text-muted);">
+            ${user.last_login ? formatDate(user.last_login) : 'Never'}
+          </td>
+          <td>
+            ${user.is_active !== false 
+              ? '<span class="status-badge status-active">Active</span>' 
+              : '<span class="status-badge status-inactive">Inactive</span>'}
+          </td>
+          <td>
+            <div class="actions-menu">
+              <button class="actions-btn" onclick="toggleActionsMenu(event, '${userId}')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="1"/>
+                  <circle cx="12" cy="5" r="1"/>
+                  <circle cx="12" cy="19" r="1"/>
+                </svg>
+              </button>
+              <div class="actions-dropdown" id="actions-${userId}">
+                <button onclick="openEditUserModal('${userId}')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                  Edit
+                </button>
+                <button onclick="viewUserActivity('${userId}')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                  </svg>
+                  View Activity
+                </button>
+                ${user.is_active !== false 
+                  ? `<button class="danger" onclick="deactivateUser('${userId}')">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="15" y1="9" x2="9" y2="15"/>
+                        <line x1="9" y1="9" x2="15" y2="15"/>
+                      </svg>
+                      Deactivate
+                    </button>`
+                  : `<button onclick="reactivateUser('${userId}')">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 4 23 10 17 10"/>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                      </svg>
+                      Reactivate
+                    </button>`}
+              </div>
+            </div>
+          </td>
+        </tr>
+      `}).join('');
+    }
+
+    function toggleActionsMenu(event, userId) {
+      event.stopPropagation();
+      
+      // Close all other menus
+      document.querySelectorAll('.actions-dropdown.show').forEach(menu => {
+        if (menu.id !== `actions-${userId}`) {
+          menu.classList.remove('show');
+        }
+      });
+
+      const menu = document.getElementById(`actions-${userId}`);
+      menu.classList.toggle('show');
+    }
+
+    // Close menus when clicking outside
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.actions-dropdown.show').forEach(menu => {
+        menu.classList.remove('show');
+      });
+    });
+
+    // ===========================================
+    // USER MODAL
+    // ===========================================
+    function openCreateUserModal() {
+      document.getElementById('userModalTitle').textContent = 'Create User';
+      document.getElementById('userSubmitBtn').textContent = 'Create User';
+      document.getElementById('editUserId').value = '';
+      document.getElementById('formUserId').value = '';
+      document.getElementById('formUserId').disabled = false;
+      document.getElementById('formName').value = '';
+      document.getElementById('formPassword').value = '';
+      document.getElementById('formPassword').required = true;
+      document.getElementById('passwordHint').textContent = 'Required. Minimum 8 characters.';
+      document.getElementById('formQuickAccess').checked = true;
+      document.getElementById('formIsAdmin').checked = false;
+      
+      // Uncheck all access checkboxes
+      document.querySelectorAll('input[name="access"]').forEach(cb => cb.checked = false);
+      
+      document.getElementById('userModal').classList.add('active');
+    }
+
+    function openEditUserModal(userId) {
+      const user = users.find(u => (u.id || u.user_id) === userId);
+      if (!user) return;
+
+      document.getElementById('userModalTitle').textContent = 'Edit User';
+      document.getElementById('userSubmitBtn').textContent = 'Save Changes';
+      document.getElementById('editUserId').value = userId;
+      document.getElementById('formUserId').value = userId;
+      document.getElementById('formUserId').disabled = true;
+      document.getElementById('formName').value = user.name || '';
+      document.getElementById('formPassword').value = '';
+      document.getElementById('formPassword').required = false;
+      document.getElementById('passwordHint').textContent = 'Leave blank to keep existing password.';
+      document.getElementById('formQuickAccess').checked = user.quick_access !== false;
+      document.getElementById('formIsAdmin').checked = user.is_admin === true;
+      
+      // Set access checkboxes
+      document.querySelectorAll('input[name="access"]').forEach(cb => {
+        cb.checked = (user.access || []).includes(cb.value);
+      });
+      
+      document.getElementById('userModal').classList.add('active');
+    }
+
+    function closeUserModal() {
+      document.getElementById('userModal').classList.remove('active');
+    }
+
+    async function handleUserSubmit(event) {
+      event.preventDefault();
+      
+      const editUserId = document.getElementById('editUserId').value;
+      const isEdit = !!editUserId;
+      
+      const userId = document.getElementById('formUserId').value.trim().toLowerCase().replace(/\s+/g, '-');
+      const name = document.getElementById('formName').value.trim();
+      const password = document.getElementById('formPassword').value;
+      const quickAccess = document.getElementById('formQuickAccess').checked;
+      const isAdmin = document.getElementById('formIsAdmin').checked;
+      
+      const access = [];
+      document.querySelectorAll('input[name="access"]:checked').forEach(cb => {
+        access.push(cb.value);
+      });
+
+      // Validation
+      if (!isEdit && (!password || password.length < 8)) {
+        showToast('Password must be at least 8 characters', 'error');
+        return;
+      }
+
+      const submitBtn = document.getElementById('userSubmitBtn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = isEdit ? 'Saving...' : 'Creating...';
+
+      try {
+        let result;
+        
+        if (isEdit) {
+          // Update user
+          const updateData = { name, access, quick_access: quickAccess, is_admin: isAdmin };
+          if (password) {
+            updateData.password = password;
+          }
+          
+          result = await apiCall(`${API_ENDPOINTS.updateUser}/${editUserId}`, {
+            method: 'PUT',
+            body: JSON.stringify(updateData),
+          });
+        } else {
+          // Create user
+          result = await apiCall(API_ENDPOINTS.createUser, {
+            method: 'POST',
+            body: JSON.stringify({
+              user_id: userId,
+              name,
+              password,
+              access,
+              quick_access: quickAccess,
+              is_admin: isAdmin,
+            }),
+          });
+        }
+
+        if (result.ok && result.data.success) {
+          showToast(isEdit ? 'User updated successfully' : 'User created successfully', 'success');
+          closeUserModal();
+          loadUsers();
+        } else {
+          showToast(result.data.error || 'Failed to save user', 'error');
+        }
+      } catch (error) {
+        showToast('An error occurred', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = isEdit ? 'Save Changes' : 'Create User';
+      }
+    }
+
+    // ===========================================
+    // USER ACTIONS
+    // ===========================================
+    async function deactivateUser(userId) {
+      if (!confirm(`Are you sure you want to deactivate "${userId}"? They will no longer be able to login.`)) {
+        return;
+      }
+
+      const result = await apiCall(`${API_ENDPOINTS.deleteUser}/${userId}`, {
+        method: 'DELETE',
+      });
+
+      if (result.ok && result.data.success) {
+        showToast('User deactivated successfully', 'success');
+        loadUsers();
+      } else {
+        showToast(result.data.error || 'Failed to deactivate user', 'error');
+      }
+    }
+
+    async function reactivateUser(userId) {
+      const result = await apiCall(`${API_ENDPOINTS.reactivateUser}/${userId}/reactivate`, {
+        method: 'POST',
+      });
+
+      if (result.ok && result.data.success) {
+        showToast('User reactivated successfully', 'success');
+        loadUsers();
+      } else {
+        showToast(result.data.error || 'Failed to reactivate user', 'error');
+      }
+    }
+
+    function viewUserActivity(userId) {
+      switchTab('activity');
+      document.getElementById('activityUserSelect').value = userId;
+      loadUserActivity();
+    }
+
+    // ===========================================
+    // ACTIVITY TAB
+    // ===========================================
+    function populateActivityUserSelect() {
+      const select = document.getElementById('activityUserSelect');
+      const currentValue = select.value;
+      
+      select.innerHTML = '<option value="">Select a user to view activity...</option>';
+      
+      users.forEach(user => {
+        const userId = user.id || user.user_id;
+        const option = document.createElement('option');
+        option.value = userId;
+        option.textContent = `${user.name || userId} (${userId})`;
+        select.appendChild(option);
+      });
+
+      if (currentValue) {
+        select.value = currentValue;
+      }
+
+      document.getElementById('refreshActivityBtn').disabled = !select.value;
+    }
+
+    async function loadUserActivity() {
+      const userId = document.getElementById('activityUserSelect').value;
+      const refreshBtn = document.getElementById('refreshActivityBtn');
+      const contentDiv = document.getElementById('activityContent');
+
+      refreshBtn.disabled = !userId;
+
+      if (!userId) {
+        contentDiv.innerHTML = `
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+            </svg>
+            <p>Select a user to view their activity</p>
+          </div>
+        `;
+        return;
+      }
+
+      contentDiv.innerHTML = `
+        <div class="loading">
+          <div class="spinner"></div>
+          Loading activity...
+        </div>
+      `;
+
+      // Load summary and events in parallel
+      const [summaryResult, eventsResult] = await Promise.all([
+        apiCall(`${API_ENDPOINTS.getActivitySummary}/${userId}/summary`, { method: 'GET' }),
+        apiCall(`${API_ENDPOINTS.getActivityEvents}/${userId}/events?limit=50`, { method: 'GET' }),
+      ]);
+
+      let html = '';
+
+      // Render summary stats
+      if (summaryResult.ok && summaryResult.data.success) {
+        const summary = summaryResult.data.data;
+        html += `
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value">${summary.total_sessions || 0}</div>
+              <div class="stat-label">Total Sessions</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">${summary.total_events || 0}</div>
+              <div class="stat-label">Total Events</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">${formatDuration(summary.total_time_seconds || 0)}</div>
+              <div class="stat-label">Total Time</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">${(summary.demos_visited || []).length}</div>
+              <div class="stat-label">Demos Visited</div>
+            </div>
+          </div>
+        `;
+
+        if (summary.demos_visited && summary.demos_visited.length > 0) {
+          html += `
+            <div style="margin-bottom: 1.5rem;">
+              <strong>Demos visited:</strong>
+              <div class="access-tags" style="margin-top: 0.5rem;">
+                ${summary.demos_visited.map(d => `<span class="access-tag">${d}</span>`).join('')}
+              </div>
+            </div>
+          `;
+        }
+      }
+
+      // Render events timeline
+      if (eventsResult.ok && eventsResult.data.success) {
+        const events = eventsResult.data.data.events || [];
+        
+        if (events.length > 0) {
+          html += `
+            <h3 style="font-family: 'Poppins', sans-serif; margin-bottom: 1rem;">Recent Activity</h3>
+            <div class="timeline">
+              ${events.map(event => `
+                <div class="timeline-item">
+                  <div class="timeline-time">${formatDateTime(event.timestamp)}</div>
+                  <div class="timeline-content">
+                    <span class="timeline-event">${formatEventType(event.event_type)}</span>
+                    ${event.demo_id ? ` · <span style="color: var(--text-muted);">${event.demo_id}</span>` : ''}
+                    ${event.page_url ? `<br><span style="font-size: 0.8rem; color: var(--text-muted);">${new URL(event.page_url).pathname}</span>` : ''}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        } else {
+          html += `
+            <div class="empty-state">
+              <p>No activity recorded for this user yet.</p>
+            </div>
+          `;
+        }
+      } else if (!summaryResult.ok) {
+        html = `
+          <div class="empty-state">
+            <p>Failed to load activity: ${summaryResult.data.error || eventsResult.data.error || 'Unknown error'}</p>
+          </div>
+        `;
+      }
+
+      contentDiv.innerHTML = html;
+    }
+
+    // ===========================================
+    // UTILITIES
+    // ===========================================
+    function formatDate(dateStr) {
+      if (!dateStr) return 'Never';
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('en-US', { 
+        month: 'short', 
+        day: 'numeric',
+        year: 'numeric'
+      });
+    }
+
+    function formatDateTime(dateStr) {
+      if (!dateStr) return '';
+      const date = new Date(dateStr);
+      return date.toLocaleString('en-US', { 
+        month: 'short', 
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
+    }
+
+    function formatDuration(seconds) {
+      if (!seconds || seconds === 0) return '0m';
+      
+      const hours = Math.floor(seconds / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      
+      if (hours > 0) {
+        return `${hours}h ${minutes}m`;
+      }
+      return `${minutes}m`;
+    }
+
+    function formatEventType(type) {
+      const eventLabels = {
+        'session_start': 'Session Started',
+        'session_end': 'Session Ended',
+        'page_view': 'Page View',
+        'page_exit': 'Page Exit',
+        'button_click': 'Button Click',
+        'link_click': 'Link Click',
+        'chat_opened': 'Chat Opened',
+        'chat_closed': 'Chat Closed',
+        'chat_message_sent': 'Message Sent',
+        'chat_message_received': 'Message Received',
+        'scroll_depth': 'Scroll',
+        'demo_launched': 'Demo Launched',
+        'error': 'Error',
+        'custom': 'Custom Event',
+      };
+      return eventLabels[type] || type;
+    }
+
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${type === 'success' ? 'var(--success)' : 'var(--error)'}" stroke-width="2">
+          ${type === 'success' 
+            ? '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>'
+            : '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>'}
+        </svg>
+        ${message}
+      `;
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(100%)';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // ===========================================
+    // INITIALIZATION
+    // ===========================================
+    document.addEventListener('DOMContentLoaded', async function() {
+      const isValid = await validateSession();
+      if (isValid) {
+        loadUsers();
+      }
+    });
+  </script>
+
+</body>
+</html>

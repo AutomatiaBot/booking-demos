@@ -76,6 +76,34 @@
       text-transform: lowercase;
     }
 
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .back-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .back-btn:hover {
+      border-color: var(--gbc-red);
+      color: var(--gbc-red);
+    }
+
     .lang-btn {
       background: white;
       border: 1px solid var(--border);
@@ -400,9 +428,17 @@
   <div class="container">
     <header>
       <div class="logo">global beauty circle</div>
-      <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">
-        🇪🇸 Español
-      </button>
+      <div class="header-controls">
+        <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">
+          🇪🇸 Español
+        </button>
+        <a href="../index.html" class="back-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          <span data-i18n="back_btn">Back to Portal</span>
+        </a>
+      </div>
     </header>
 
     <!-- HERO SECTION -->
@@ -513,7 +549,8 @@
         feat_2_desc: "Access to a vetted network of board-certified, internationally trained surgeons in DR and Colombia.",
         feat_3_title: "Full Support",
         feat_3_desc: "We handle all logistics: appointments, transfers, accommodation, and recovery suites.",
-        lang_btn: "🇪🇸 Español"
+        lang_btn: "🇪🇸 Español",
+        back_btn: "Back to Portal"
       },
       es: {
         hero_title: "Tu camino hacia la belleza comienza aquí",
@@ -534,7 +571,8 @@
         feat_2_desc: "Acceso a una red verificada de cirujanos certificados e internacionalmente capacitados en RD y Colombia.",
         feat_3_title: "Soporte Completo",
         feat_3_desc: "Manejamos toda la logística: citas, traslados, alojamiento y suites de recuperación.",
-        lang_btn: "🇺🇸 English"
+        lang_btn: "🇺🇸 English",
+        back_btn: "Volver al Portal"
       }
     };
 

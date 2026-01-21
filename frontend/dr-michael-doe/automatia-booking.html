@@ -66,6 +66,34 @@
       color: var(--text);
     }
 
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .back-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .back-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
     .lang-btn {
       background: white;
       border: 1px solid var(--border);
@@ -328,9 +356,17 @@
   <div class="container">
     <header>
       <div class="logo">Automatia <span style="color: var(--accent);">Kate</span></div>
-      <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">
-        🇪🇸 Español
-      </button>
+      <div class="header-controls">
+        <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">
+          🇪🇸 Español
+        </button>
+        <a href="../index.html" class="back-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          <span data-i18n="back_btn">Back to Portal</span>
+        </a>
+      </div>
     </header>
 
     <!-- HERO / DEMO AREA -->
@@ -454,7 +490,8 @@
         feat_2_desc: "Direct integration with Dentrix, OpenDental, and Dolphin to schedule appointments automatically.",
         feat_3_title: "Growth Engine",
         feat_3_desc: "From ads to booking. We qualify leads and filter noise so you only focus on confirmed patients.",
-        lang_btn: "🇪🇸 Español"
+        lang_btn: "🇪🇸 Español",
+        back_btn: "Back to Portal"
       },
       es: {
         chat_title: "Prueba el Chatbot",
@@ -476,7 +513,8 @@
         feat_2_desc: "Integración directa con Dentrix, OpenDental y Dolphin para agendar citas automáticamente.",
         feat_3_title: "Motor de Crecimiento",
         feat_3_desc: "De anuncios a reservas. Calificamos leads y filtramos el ruido para que solo te enfoques en pacientes confirmados.",
-        lang_btn: "🇺🇸 English"
+        lang_btn: "🇺🇸 English",
+        back_btn: "Volver al Portal"
       }
     };
 

@@ -57,7 +57,7 @@ def get_jwt_algorithm() -> str:
 
 def get_jwt_expiration_hours() -> int:
     """Get JWT expiration time in hours from GCP Secret Manager."""
-    return get_secret_int("JWT_EXPIRATION_HOURS", default=24)
+    return get_secret_int("JWT_EXPIRATION_HOURS", default=2)
 
 
 def create_access_token(

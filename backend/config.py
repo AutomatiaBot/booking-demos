@@ -38,7 +38,7 @@ class Config:
         return cls(
             jwt_secret=get_secret("JWT_SECRET"),
             jwt_algorithm=get_secret("JWT_ALGORITHM", default="HS256"),
-            jwt_expiration_hours=get_secret_int("JWT_EXPIRATION_HOURS", default=24),
+            jwt_expiration_hours=get_secret_int("JWT_EXPIRATION_HOURS", default=2),
             cors_origins=cors_origins,
             gcp_project_id=get_secret("GCP_PROJECT_ID"),
         )

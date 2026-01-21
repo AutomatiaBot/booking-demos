@@ -259,6 +259,37 @@
       color: var(--error);
     }
 
+    /* Admin Button */
+    .admin-btn {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: #EF4444;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: none;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+    }
+
+    .admin-btn:hover {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: #EF4444;
+    }
+
+    .admin-btn.visible {
+      display: inline-flex;
+    }
+
+    .admin-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
     /* Container */
     .container {
       max-width: 1200px;
@@ -747,6 +778,13 @@
           <span id="mainLangFlag">🇺🇸</span>
           <span id="mainLangText">English</span>
         </button>
+        <a href="admin.html" class="admin-btn" id="adminBtn" data-i18n="admin_panel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          Admin
+        </a>
         <span class="user-badge">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
@@ -995,6 +1033,7 @@
         // Navigation
         nav_products: 'Our products',
         logout_btn: 'Logout',
+        admin_panel: 'Admin',
         
         // Hero
         hero_title: 'Select a demo ',
@@ -1060,6 +1099,7 @@
         // Navigation
         nav_products: 'Nuestros productos',
         logout_btn: 'Cerrar sesión',
+        admin_panel: 'Admin',
         
         // Hero
         hero_title: 'Selecciona un demo ',
@@ -1313,6 +1353,14 @@
         quickAccess.classList.remove('hidden');
       } else {
         quickAccess.classList.add('hidden');
+      }
+      
+      // Show/hide admin button based on admin status
+      const adminBtn = document.getElementById('adminBtn');
+      if (currentUser.is_admin) {
+        adminBtn.classList.add('visible');
+      } else {
+        adminBtn.classList.remove('visible');
       }
     }
 

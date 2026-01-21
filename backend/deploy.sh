@@ -132,6 +132,9 @@ deploy_function() {
     --project="$PROJECT_ID" \
     --quiet
   
+  # Note: --allow-unauthenticated removed due to org policy restrictions.
+  # Set public access manually in GCP Console: Cloud Functions → [function] → Permissions → Add allUsers with Cloud Functions Invoker role
+  
   echo "✓ Deployed: $full_name"
   echo ""
 }
@@ -174,13 +177,11 @@ delete_functions() {
 # Main
 # =============================================================================
 
-# Create environment variables file (avoids escaping issues with special chars)
-# Secrets (JWT_SECRET) are read from GCP Secret Manager at runtime, not here
+# Create environment variables file
+# Only GCP_PROJECT_ID is needed here - all other config (JWT_ALGORITHM, 
+# JWT_EXPIRATION_HOURS, CORS_ORIGINS) is managed in GCP Secret Manager
 cat > "$ENV_VARS_FILE" << 'ENVEOF'
-JWT_ALGORITHM: HS256
-JWT_EXPIRATION_HOURS: "24"
 GCP_PROJECT_ID: backend-471615
-CORS_ORIGINS: "http://localhost:8080,https://www.automatia.bot/"
 ENVEOF
 
 # Cleanup env vars file on exit

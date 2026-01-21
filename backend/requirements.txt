@@ -3,6 +3,7 @@ functions-framework==3.*
 
 # Authentication
 PyJWT==2.8.*
+bcrypt==3.2.2  # Pin to 3.x - passlib 1.7.x is incompatible with bcrypt 4.x
 passlib[bcrypt]==1.7.*
 
 # Google Cloud
@@ -11,8 +12,3 @@ google-cloud-secret-manager==2.18.*
 
 # Utilities
 python-dotenv==1.0.*
-
-# Development dependencies (not deployed)
-# pytest==7.*
-# pytest-asyncio==0.21.*
-# httpx==0.25.*

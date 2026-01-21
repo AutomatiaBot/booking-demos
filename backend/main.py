@@ -25,13 +25,29 @@ from secret_manager import get_secret
 # CORS and Response Helpers
 # ============================================
 
-def get_cors_headers() -> dict:
-    """Get CORS headers for responses."""
+def get_cors_headers(request: Request = None) -> dict:
+    """Get CORS headers for responses.
+    
+    Dynamically sets Access-Control-Allow-Origin based on the request's
+    Origin header if it matches one of the allowed origins.
+    This is required when using credentials (cookies, auth headers).
+    """
     origins = get_secret("CORS_ORIGINS", default="http://localhost:8080")
     allowed_origins = [o.strip() for o in origins.split(",")]
     
+    # Determine which origin to allow based on the request
+    origin = None
+    if request:
+        request_origin = request.headers.get("Origin", "")
+        if request_origin in allowed_origins:
+            origin = request_origin
+    
+    # Fallback to first origin if request origin not in allowed list
+    if not origin:
+        origin = allowed_origins[0]
+    
     return {
-        "Access-Control-Allow-Origin": allowed_origins[0] if len(allowed_origins) == 1 else "*",
+        "Access-Control-Allow-Origin": origin,
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type, Authorization",
         "Access-Control-Allow-Credentials": "true",
@@ -39,26 +55,26 @@ def get_cors_headers() -> dict:
     }
 
 
-def cors_response(data: Any, status: int = 200) -> Tuple[str, int, dict]:
+def cors_response(data: Any, status: int = 200, request: Request = None) -> Tuple[str, int, dict]:
     """Create a response with CORS headers."""
     return (
         json.dumps(data, default=str),
         status,
-        {**get_cors_headers(), "Content-Type": "application/json"},
+        {**get_cors_headers(request), "Content-Type": "application/json"},
     )
 
 
-def error_response(message: str, status: int = 400) -> Tuple[str, int, dict]:
+def error_response(message: str, status: int = 400, request: Request = None) -> Tuple[str, int, dict]:
     """Create an error response."""
-    return cors_response({"error": message, "success": False}, status)
+    return cors_response({"error": message, "success": False}, status, request)
 
 
-def success_response(data: Any = None, message: str = "Success") -> Tuple[str, int, dict]:
+def success_response(data: Any = None, message: str = "Success", request: Request = None) -> Tuple[str, int, dict]:
     """Create a success response."""
     response = {"success": True, "message": message}
     if data is not None:
         response["data"] = data
-    return cors_response(response, 200)
+    return cors_response(response, 200, request)
 
 
 # ============================================
@@ -79,11 +95,11 @@ def require_auth(f: Callable) -> Callable:
     def decorated(request: Request, *args, **kwargs):
         token = get_token_from_request(request)
         if not token:
-            return error_response("Missing authorization token", 401)
+            return error_response("Missing authorization token", 401, request)
         
         payload = decode_token(token)
         if not payload:
-            return error_response("Invalid or expired token", 401)
+            return error_response("Invalid or expired token", 401, request)
         
         # Add user info to request for handler use
         request.user = payload
@@ -98,7 +114,7 @@ def require_admin(f: Callable) -> Callable:
     @require_auth
     def decorated(request: Request, *args, **kwargs):
         if not request.user.is_admin:
-            return error_response("Admin privileges required", 403)
+            return error_response("Admin privileges required", 403, request)
         return f(request, *args, **kwargs)
     
     return decorated
@@ -120,21 +136,21 @@ def login(request: Request) -> Tuple[str, int, dict]:
     """
     # Handle CORS preflight
     if request.method == "OPTIONS":
-        return cors_response({}, 204)
+        return cors_response({}, 204, request)
     
     if request.method != "POST":
-        return error_response("Method not allowed", 405)
+        return error_response("Method not allowed", 405, request)
     
     try:
         body = request.get_json(silent=True) or {}
     except Exception:
-        return error_response("Invalid JSON body", 400)
+        return error_response("Invalid JSON body", 400, request)
     
     user_id = body.get("user_id", "").strip().lower()
     password = body.get("password", "")
     
     if not user_id or not password:
-        return error_response("user_id and password are required", 400)
+        return error_response("user_id and password are required", 400, request)
     
     # Normalize user_id (lowercase, replace spaces with hyphens)
     user_id = user_id.replace(" ", "-")
@@ -151,7 +167,7 @@ def login(request: Request) -> Tuple[str, int, dict]:
             details={"reason": "user_not_found"},
             ip_address=request.remote_addr,
         )
-        return error_response("Invalid credentials", 401)
+        return error_response("Invalid credentials", 401, request)
     
     if not user.get("is_active", True):
         db.log_action(
@@ -160,7 +176,7 @@ def login(request: Request) -> Tuple[str, int, dict]:
             details={"reason": "account_disabled"},
             ip_address=request.remote_addr,
         )
-        return error_response("Account is disabled", 401)
+        return error_response("Account is disabled", 401, request)
     
     # Verify password
     if not verify_password(password, user.get("password_hash", "")):
@@ -170,7 +186,7 @@ def login(request: Request) -> Tuple[str, int, dict]:
             details={"reason": "invalid_password"},
             ip_address=request.remote_addr,
         )
-        return error_response("Invalid credentials", 401)
+        return error_response("Invalid credentials", 401, request)
     
     # Create JWT token
     token = create_access_token(
@@ -202,6 +218,7 @@ def login(request: Request) -> Tuple[str, int, dict]:
             },
         },
         message="Login successful",
+        request=request,
     )
 
 
@@ -216,18 +233,18 @@ def validate_session(request: Request) -> Tuple[str, int, dict]:
     Returns: {"success": true, "data": {"user": {...}}}
     """
     if request.method == "OPTIONS":
-        return cors_response({}, 204)
+        return cors_response({}, 204, request)
     
     if request.method != "POST":
-        return error_response("Method not allowed", 405)
+        return error_response("Method not allowed", 405, request)
     
     token = get_token_from_request(request)
     if not token:
-        return error_response("Missing authorization token", 401)
+        return error_response("Missing authorization token", 401, request)
     
     payload = decode_token(token)
     if not payload:
-        return error_response("Invalid or expired token", 401)
+        return error_response("Invalid or expired token", 401, request)
     
     # Get fresh quick_access from database
     db = get_db()
@@ -246,6 +263,7 @@ def validate_session(request: Request) -> Tuple[str, int, dict]:
             "expires_at": payload.exp.isoformat(),
         },
         message="Token is valid",
+        request=request,
     )
 
 
@@ -258,10 +276,10 @@ def logout(request: Request) -> Tuple[str, int, dict]:
     Headers: Authorization: Bearer <token>
     """
     if request.method == "OPTIONS":
-        return cors_response({}, 204)
+        return cors_response({}, 204, request)
     
     if request.method != "POST":
-        return error_response("Method not allowed", 405)
+        return error_response("Method not allowed", 405, request)
     
     token = get_token_from_request(request)
     if token:
@@ -274,7 +292,7 @@ def logout(request: Request) -> Tuple[str, int, dict]:
                 ip_address=request.remote_addr,
             )
     
-    return success_response(message="Logged out successfully")
+    return success_response(message="Logged out successfully", request=request)
 
 
 # ============================================
@@ -290,31 +308,32 @@ def get_user_access(request: Request) -> Tuple[str, int, dict]:
     Headers: Authorization: Bearer <token>
     """
     if request.method == "OPTIONS":
-        return cors_response({}, 204)
+        return cors_response({}, 204, request)
     
     if request.method != "GET":
-        return error_response("Method not allowed", 405)
+        return error_response("Method not allowed", 405, request)
     
     token = get_token_from_request(request)
     if not token:
-        return error_response("Missing authorization token", 401)
+        return error_response("Missing authorization token", 401, request)
     
     payload = decode_token(token)
     if not payload:
-        return error_response("Invalid or expired token", 401)
+        return error_response("Invalid or expired token", 401, request)
     
     # Get fresh user data from database
     db = get_db()
     user = db.get_user_by_id(payload.user_id)
     
     if not user or not user.get("is_active", True):
-        return error_response("User not found or inactive", 401)
+        return error_response("User not found or inactive", 401, request)
     
     return success_response(
         data={
             "access": user.get("access", []),
             "quick_access": user.get("quick_access", True),
         },
+        request=request,
     )
 
 
@@ -330,34 +349,34 @@ def check_demo_access(request: Request) -> Tuple[str, int, dict]:
     Returns: {"success": true, "data": {"allowed": true/false}}
     """
     if request.method == "OPTIONS":
-        return cors_response({}, 204)
+        return cors_response({}, 204, request)
     
     if request.method != "POST":
-        return error_response("Method not allowed", 405)
+        return error_response("Method not allowed", 405, request)
     
     token = get_token_from_request(request)
     if not token:
-        return error_response("Missing authorization token", 401)
+        return error_response("Missing authorization token", 401, request)
     
     payload = decode_token(token)
     if not payload:
-        return error_response("Invalid or expired token", 401)
+        return error_response("Invalid or expired token", 401, request)
     
     try:
         body = request.get_json(silent=True) or {}
     except Exception:
-        return error_response("Invalid JSON body", 400)
+        return error_response("Invalid JSON body", 400, request)
     
     demo_id = body.get("demo_id", "").strip().lower()
     if not demo_id:
-        return error_response("demo_id is required", 400)
+        return error_response("demo_id is required", 400, request)
     
     # Get fresh user data from database to check current permissions
     db = get_db()
     user = db.get_user_by_id(payload.user_id)
     
     if not user or not user.get("is_active", True):
-        return error_response("User not found or inactive", 401)
+        return error_response("User not found or inactive", 401, request)
     
     user_access = user.get("access", [])
     allowed = demo_id in user_access
@@ -374,11 +393,13 @@ def check_demo_access(request: Request) -> Tuple[str, int, dict]:
         return success_response(
             data={"allowed": False, "demo_id": demo_id},
             message="Access denied to this demo",
+            request=request,
         )
     
     return success_response(
         data={"allowed": True, "demo_id": demo_id},
         message="Access granted",
+        request=request,
     )
 
 
@@ -402,27 +423,27 @@ def create_user(request: Request) -> Tuple[str, int, dict]:
     }
     """
     if request.method == "OPTIONS":
-        return cors_response({}, 204)
+        return cors_response({}, 204, request)
     
     if request.method != "POST":
-        return error_response("Method not allowed", 405)
+        return error_response("Method not allowed", 405, request)
     
     # Check admin auth
     token = get_token_from_request(request)
     if not token:
-        return error_response("Missing authorization token", 401)
+        return error_response("Missing authorization token", 401, request)
     
     payload = decode_token(token)
     if not payload:
-        return error_response("Invalid or expired token", 401)
+        return error_response("Invalid or expired token", 401, request)
     
     if not payload.is_admin:
-        return error_response("Admin privileges required", 403)
+        return error_response("Admin privileges required", 403, request)
     
     try:
         body = request.get_json(silent=True) or {}
     except Exception:
-        return error_response("Invalid JSON body", 400)
+        return error_response("Invalid JSON body", 400, request)
     
     user_id = body.get("user_id", "").strip().lower().replace(" ", "-")
     name = body.get("name", "").strip()
@@ -433,20 +454,20 @@ def create_user(request: Request) -> Tuple[str, int, dict]:
     
     # Validation
     if not user_id:
-        return error_response("user_id is required", 400)
+        return error_response("user_id is required", 400, request)
     if not name:
-        return error_response("name is required", 400)
+        return error_response("name is required", 400, request)
     if not password or len(password) < 8:
-        return error_response("password must be at least 8 characters", 400)
+        return error_response("password must be at least 8 characters", 400, request)
     if not isinstance(access, list):
-        return error_response("access must be a list of demo IDs", 400)
+        return error_response("access must be a list of demo IDs", 400, request)
     
     db = get_db()
     
     # Check if user already exists
     existing = db.get_user_by_id(user_id)
     if existing:
-        return error_response(f"User '{user_id}' already exists", 409)
+        return error_response(f"User '{user_id}' already exists", 409, request)
     
     # Create user
     password_hash = hash_password(password)
@@ -473,7 +494,7 @@ def create_user(request: Request) -> Tuple[str, int, dict]:
     # Remove password hash from response
     user.pop("password_hash", None)
     
-    return success_response(data=user, message=f"User '{user_id}' created successfully")
+    return success_response(data=user, message=f"User '{user_id}' created successfully", request=request)
 
 
 @functions_framework.http
@@ -485,29 +506,29 @@ def list_users(request: Request) -> Tuple[str, int, dict]:
     Query params: include_inactive=true (optional)
     """
     if request.method == "OPTIONS":
-        return cors_response({}, 204)
+        return cors_response({}, 204, request)
     
     if request.method != "GET":
-        return error_response("Method not allowed", 405)
+        return error_response("Method not allowed", 405, request)
     
     # Check admin auth
     token = get_token_from_request(request)
     if not token:
-        return error_response("Missing authorization token", 401)
+        return error_response("Missing authorization token", 401, request)
     
     payload = decode_token(token)
     if not payload:
-        return error_response("Invalid or expired token", 401)
+        return error_response("Invalid or expired token", 401, request)
     
     if not payload.is_admin:
-        return error_response("Admin privileges required", 403)
+        return error_response("Admin privileges required", 403, request)
     
     include_inactive = request.args.get("include_inactive", "false").lower() == "true"
     
     db = get_db()
     users = db.list_users(include_inactive=include_inactive)
     
-    return success_response(data={"users": users, "count": len(users)})
+    return success_response(data={"users": users, "count": len(users)}, request=request)
 
 
 @functions_framework.http
@@ -526,41 +547,41 @@ def update_user(request: Request) -> Tuple[str, int, dict]:
     }
     """
     if request.method == "OPTIONS":
-        return cors_response({}, 204)
+        return cors_response({}, 204, request)
     
     if request.method != "PUT":
-        return error_response("Method not allowed", 405)
+        return error_response("Method not allowed", 405, request)
     
     # Check admin auth
     token = get_token_from_request(request)
     if not token:
-        return error_response("Missing authorization token", 401)
+        return error_response("Missing authorization token", 401, request)
     
     payload = decode_token(token)
     if not payload:
-        return error_response("Invalid or expired token", 401)
+        return error_response("Invalid or expired token", 401, request)
     
     if not payload.is_admin:
-        return error_response("Admin privileges required", 403)
+        return error_response("Admin privileges required", 403, request)
     
     # Get user_id from path
     # In GCP Cloud Functions, path params need to be extracted from the path
     path_parts = request.path.rstrip("/").split("/")
     if len(path_parts) < 1:
-        return error_response("user_id is required in path", 400)
+        return error_response("user_id is required in path", 400, request)
     user_id = path_parts[-1]
     
     try:
         body = request.get_json(silent=True) or {}
     except Exception:
-        return error_response("Invalid JSON body", 400)
+        return error_response("Invalid JSON body", 400, request)
     
     db = get_db()
     
     # Check if user exists
     existing = db.get_user_by_id(user_id)
     if not existing:
-        return error_response(f"User '{user_id}' not found", 404)
+        return error_response(f"User '{user_id}' not found", 404, request)
     
     # Build updates
     updates = {}
@@ -568,11 +589,11 @@ def update_user(request: Request) -> Tuple[str, int, dict]:
         updates["name"] = body["name"].strip()
     if "password" in body:
         if len(body["password"]) < 8:
-            return error_response("password must be at least 8 characters", 400)
+            return error_response("password must be at least 8 characters", 400, request)
         updates["password_hash"] = hash_password(body["password"])
     if "access" in body:
         if not isinstance(body["access"], list):
-            return error_response("access must be a list", 400)
+            return error_response("access must be a list", 400, request)
         updates["access"] = body["access"]
     if "is_admin" in body:
         updates["is_admin"] = bool(body["is_admin"])
@@ -582,7 +603,7 @@ def update_user(request: Request) -> Tuple[str, int, dict]:
         updates["is_active"] = bool(body["is_active"])
     
     if not updates:
-        return error_response("No valid fields to update", 400)
+        return error_response("No valid fields to update", 400, request)
     
     # Update user
     updated_user = db.update_user(user_id, updates)
@@ -598,7 +619,7 @@ def update_user(request: Request) -> Tuple[str, int, dict]:
     # Remove sensitive data
     updated_user.pop("password_hash", None)
     
-    return success_response(data=updated_user, message=f"User '{user_id}' updated successfully")
+    return success_response(data=updated_user, message=f"User '{user_id}' updated successfully", request=request)
 
 
 @functions_framework.http
@@ -610,42 +631,42 @@ def delete_user(request: Request) -> Tuple[str, int, dict]:
     DELETE /admin/users/{user_id}
     """
     if request.method == "OPTIONS":
-        return cors_response({}, 204)
+        return cors_response({}, 204, request)
     
     if request.method != "DELETE":
-        return error_response("Method not allowed", 405)
+        return error_response("Method not allowed", 405, request)
     
     # Check admin auth
     token = get_token_from_request(request)
     if not token:
-        return error_response("Missing authorization token", 401)
+        return error_response("Missing authorization token", 401, request)
     
     payload = decode_token(token)
     if not payload:
-        return error_response("Invalid or expired token", 401)
+        return error_response("Invalid or expired token", 401, request)
     
     if not payload.is_admin:
-        return error_response("Admin privileges required", 403)
+        return error_response("Admin privileges required", 403, request)
     
     # Get user_id from path
     path_parts = request.path.rstrip("/").split("/")
     if len(path_parts) < 1:
-        return error_response("user_id is required in path", 400)
+        return error_response("user_id is required in path", 400, request)
     user_id = path_parts[-1]
     
     # Prevent self-deactivation
     if user_id == payload.user_id:
-        return error_response("Cannot deactivate your own account", 400)
+        return error_response("Cannot deactivate your own account", 400, request)
     
     db = get_db()
     
     # Check if user exists
     user = db.get_user_by_id(user_id)
     if not user:
-        return error_response(f"User '{user_id}' not found", 404)
+        return error_response(f"User '{user_id}' not found", 404, request)
     
     if not user.get("is_active", True):
-        return error_response(f"User '{user_id}' is already deactivated", 400)
+        return error_response(f"User '{user_id}' is already deactivated", 400, request)
     
     # Soft delete: just deactivate the user (keep all data and logs)
     db.update_user(user_id, {"is_active": False})
@@ -658,7 +679,7 @@ def delete_user(request: Request) -> Tuple[str, int, dict]:
         ip_address=request.remote_addr,
     )
     
-    return success_response(message=f"User '{user_id}' deactivated successfully. All data and activity logs are preserved.")
+    return success_response(message=f"User '{user_id}' deactivated successfully. All data and activity logs are preserved.", request=request)
 
 
 @functions_framework.http
@@ -669,27 +690,27 @@ def reactivate_user(request: Request) -> Tuple[str, int, dict]:
     POST /admin/users/{user_id}/reactivate
     """
     if request.method == "OPTIONS":
-        return cors_response({}, 204)
+        return cors_response({}, 204, request)
     
     if request.method != "POST":
-        return error_response("Method not allowed", 405)
+        return error_response("Method not allowed", 405, request)
     
     # Check admin auth
     token = get_token_from_request(request)
     if not token:
-        return error_response("Missing authorization token", 401)
+        return error_response("Missing authorization token", 401, request)
     
     payload = decode_token(token)
     if not payload:
-        return error_response("Invalid or expired token", 401)
+        return error_response("Invalid or expired token", 401, request)
     
     if not payload.is_admin:
-        return error_response("Admin privileges required", 403)
+        return error_response("Admin privileges required", 403, request)
     
     # Get user_id from path
     path_parts = request.path.rstrip("/").split("/")
     if len(path_parts) < 2:
-        return error_response("user_id is required in path", 400)
+        return error_response("user_id is required in path", 400, request)
     user_id = path_parts[-2]  # /admin/users/{user_id}/reactivate
     
     db = get_db()
@@ -697,10 +718,10 @@ def reactivate_user(request: Request) -> Tuple[str, int, dict]:
     # Check if user exists
     user = db.get_user_by_id(user_id)
     if not user:
-        return error_response(f"User '{user_id}' not found", 404)
+        return error_response(f"User '{user_id}' not found", 404, request)
     
     if user.get("is_active", True):
-        return error_response(f"User '{user_id}' is already active", 400)
+        return error_response(f"User '{user_id}' is already active", 400, request)
     
     # Reactivate the user
     db.update_user(user_id, {"is_active": True})
@@ -713,7 +734,7 @@ def reactivate_user(request: Request) -> Tuple[str, int, dict]:
         ip_address=request.remote_addr,
     )
     
-    return success_response(message=f"User '{user_id}' reactivated successfully")
+    return success_response(message=f"User '{user_id}' reactivated successfully", request=request)
 
 
 # ============================================
@@ -752,27 +773,27 @@ def track_activity(request: Request) -> Tuple[str, int, dict]:
         - custom: Custom event {custom_type, ...}
     """
     if request.method == "OPTIONS":
-        return cors_response({}, 204)
+        return cors_response({}, 204, request)
     
     if request.method != "POST":
-        return error_response("Method not allowed", 405)
+        return error_response("Method not allowed", 405, request)
     
     token = get_token_from_request(request)
     if not token:
-        return error_response("Missing authorization token", 401)
+        return error_response("Missing authorization token", 401, request)
     
     payload = decode_token(token)
     if not payload:
-        return error_response("Invalid or expired token", 401)
+        return error_response("Invalid or expired token", 401, request)
     
     try:
         body = request.get_json(silent=True) or {}
     except Exception:
-        return error_response("Invalid JSON body", 400)
+        return error_response("Invalid JSON body", 400, request)
     
     event_type = body.get("event_type", "").strip()
     if not event_type:
-        return error_response("event_type is required", 400)
+        return error_response("event_type is required", 400, request)
     
     # Valid event types
     valid_events = [
@@ -786,7 +807,7 @@ def track_activity(request: Request) -> Tuple[str, int, dict]:
     ]
     
     if event_type not in valid_events:
-        return error_response(f"Invalid event_type. Must be one of: {', '.join(valid_events)}", 400)
+        return error_response(f"Invalid event_type. Must be one of: {', '.join(valid_events)}", 400, request)
     
     session_id = body.get("session_id")
     page_url = body.get("page_url")
@@ -810,6 +831,7 @@ def track_activity(request: Request) -> Tuple[str, int, dict]:
     return success_response(
         data={"event_id": event_id},
         message="Activity tracked successfully",
+        request=request,
     )
 
 
@@ -828,30 +850,30 @@ def track_activity_batch(request: Request) -> Tuple[str, int, dict]:
     }
     """
     if request.method == "OPTIONS":
-        return cors_response({}, 204)
+        return cors_response({}, 204, request)
     
     if request.method != "POST":
-        return error_response("Method not allowed", 405)
+        return error_response("Method not allowed", 405, request)
     
     token = get_token_from_request(request)
     if not token:
-        return error_response("Missing authorization token", 401)
+        return error_response("Missing authorization token", 401, request)
     
     payload = decode_token(token)
     if not payload:
-        return error_response("Invalid or expired token", 401)
+        return error_response("Invalid or expired token", 401, request)
     
     try:
         body = request.get_json(silent=True) or {}
     except Exception:
-        return error_response("Invalid JSON body", 400)
+        return error_response("Invalid JSON body", 400, request)
     
     events = body.get("events", [])
     if not isinstance(events, list) or len(events) == 0:
-        return error_response("events must be a non-empty array", 400)
+        return error_response("events must be a non-empty array", 400, request)
     
     if len(events) > 100:
-        return error_response("Maximum 100 events per batch", 400)
+        return error_response("Maximum 100 events per batch", 400, request)
     
     db = get_db()
     event_ids = []
@@ -885,6 +907,7 @@ def track_activity_batch(request: Request) -> Tuple[str, int, dict]:
             "errors": errors if errors else None,
         },
         message=f"Tracked {len(event_ids)} events",
+        request=request,
     )
 
 
@@ -897,27 +920,27 @@ def get_activity_summary(request: Request) -> Tuple[str, int, dict]:
     Headers: Authorization: Bearer <token>
     """
     if request.method == "OPTIONS":
-        return cors_response({}, 204)
+        return cors_response({}, 204, request)
     
     if request.method != "GET":
-        return error_response("Method not allowed", 405)
+        return error_response("Method not allowed", 405, request)
     
     # Check admin auth
     token = get_token_from_request(request)
     if not token:
-        return error_response("Missing authorization token", 401)
+        return error_response("Missing authorization token", 401, request)
     
     payload = decode_token(token)
     if not payload:
-        return error_response("Invalid or expired token", 401)
+        return error_response("Invalid or expired token", 401, request)
     
     if not payload.is_admin:
-        return error_response("Admin privileges required", 403)
+        return error_response("Admin privileges required", 403, request)
     
     # Get user_id from path
     path_parts = request.path.rstrip("/").split("/")
     if len(path_parts) < 2:
-        return error_response("user_id is required in path", 400)
+        return error_response("user_id is required in path", 400, request)
     user_id = path_parts[-2]  # /admin/activity/{user_id}/summary
     
     db = get_db()
@@ -925,7 +948,7 @@ def get_activity_summary(request: Request) -> Tuple[str, int, dict]:
     # Check if user exists
     user = db.get_user_by_id(user_id)
     if not user:
-        return error_response(f"User '{user_id}' not found", 404)
+        return error_response(f"User '{user_id}' not found", 404, request)
     
     # Get activity summary
     summary = db.get_user_activity_summary(user_id)
@@ -940,9 +963,10 @@ def get_activity_summary(request: Request) -> Tuple[str, int, dict]:
                 "demos_visited": [],
                 "message": "No activity recorded yet",
             },
+            request=request,
         )
     
-    return success_response(data=summary)
+    return success_response(data=summary, request=request)
 
 
 @functions_framework.http
@@ -959,27 +983,27 @@ def get_activity_events(request: Request) -> Tuple[str, int, dict]:
         - session_id: Filter by session ID
     """
     if request.method == "OPTIONS":
-        return cors_response({}, 204)
+        return cors_response({}, 204, request)
     
     if request.method != "GET":
-        return error_response("Method not allowed", 405)
+        return error_response("Method not allowed", 405, request)
     
     # Check admin auth
     token = get_token_from_request(request)
     if not token:
-        return error_response("Missing authorization token", 401)
+        return error_response("Missing authorization token", 401, request)
     
     payload = decode_token(token)
     if not payload:
-        return error_response("Invalid or expired token", 401)
+        return error_response("Invalid or expired token", 401, request)
     
     if not payload.is_admin:
-        return error_response("Admin privileges required", 403)
+        return error_response("Admin privileges required", 403, request)
     
     # Get user_id from path
     path_parts = request.path.rstrip("/").split("/")
     if len(path_parts) < 2:
-        return error_response("user_id is required in path", 400)
+        return error_response("user_id is required in path", 400, request)
     user_id = path_parts[-2]  # /admin/activity/{user_id}/events
     
     # Parse query params
@@ -993,7 +1017,7 @@ def get_activity_events(request: Request) -> Tuple[str, int, dict]:
     # Check if user exists
     user = db.get_user_by_id(user_id)
     if not user:
-        return error_response(f"User '{user_id}' not found", 404)
+        return error_response(f"User '{user_id}' not found", 404, request)
     
     # Get events
     events = db.get_user_events(
@@ -1010,6 +1034,7 @@ def get_activity_events(request: Request) -> Tuple[str, int, dict]:
             "events": events,
             "count": len(events),
         },
+        request=request,
     )
 
 
@@ -1022,18 +1047,18 @@ def get_my_activity(request: Request) -> Tuple[str, int, dict]:
     Headers: Authorization: Bearer <token>
     """
     if request.method == "OPTIONS":
-        return cors_response({}, 204)
+        return cors_response({}, 204, request)
     
     if request.method != "GET":
-        return error_response("Method not allowed", 405)
+        return error_response("Method not allowed", 405, request)
     
     token = get_token_from_request(request)
     if not token:
-        return error_response("Missing authorization token", 401)
+        return error_response("Missing authorization token", 401, request)
     
     payload = decode_token(token)
     if not payload:
-        return error_response("Invalid or expired token", 401)
+        return error_response("Invalid or expired token", 401, request)
     
     db = get_db()
     summary = db.get_user_activity_summary(payload.user_id)
@@ -1047,9 +1072,10 @@ def get_my_activity(request: Request) -> Tuple[str, int, dict]:
                 "total_time_seconds": 0,
                 "demos_visited": [],
             },
+            request=request,
         )
     
     # Remove internal fields
     summary.pop("is_tracking_active", None)
     
-    return success_response(data=summary)
+    return success_response(data=summary, request=request)
