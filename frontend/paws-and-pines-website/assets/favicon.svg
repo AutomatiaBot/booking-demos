@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Paws & Pines icon">
+  <defs>
+    <linearGradient id="g" x1="8" y1="6" x2="52" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2D6A4F"/>
+      <stop offset="1" stop-color="#1B4332"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#g)"/>
+  <path d="M32 16 L24 28 H28 L21 38 H26 L18 48 H46 L38 38 H43 L36 28 H40 L32 16Z" fill="#D8F3DC" opacity=".95"/>
+  <circle cx="40" cy="41" r="5.4" fill="#F7F3E9"/>
+  <circle cx="34" cy="34.5" r="2.7" fill="#F7F3E9"/>
+  <circle cx="40" cy="32.5" r="2.7" fill="#F7F3E9"/>
+  <circle cx="46" cy="34.5" r="2.7" fill="#F7F3E9"/>
+</svg>

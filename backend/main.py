@@ -1079,3 +1079,379 @@ def get_my_activity(request: Request) -> Tuple[str, int, dict]:
     summary.pop("is_tracking_active", None)
     
     return success_response(data=summary, request=request)
+
+
+# ============================================
+# Demo Management Endpoints
+# ============================================
+
+@functions_framework.http
+def list_demos(request: Request) -> Tuple[str, int, dict]:
+    """
+    List all active demos for the portal.
+    This is a public endpoint used by the frontend to render demo cards.
+    
+    GET /demos
+    Query params: include_inactive=true (requires admin auth)
+    
+    Returns: {"success": true, "data": {"demos": [...], "count": N}}
+    """
+    if request.method == "OPTIONS":
+        return cors_response({}, 204, request)
+    
+    if request.method != "GET":
+        return error_response("Method not allowed", 405, request)
+    
+    include_inactive = request.args.get("include_inactive", "false").lower() == "true"
+    
+    # If requesting inactive demos, require admin auth
+    if include_inactive:
+        token = get_token_from_request(request)
+        if not token:
+            return error_response("Admin authentication required for inactive demos", 401, request)
+        
+        payload = decode_token(token)
+        if not payload or not payload.is_admin:
+            return error_response("Admin privileges required", 403, request)
+    
+    db = get_db()
+    demos = db.list_demos(include_inactive=include_inactive)
+    
+    return success_response(
+        data={"demos": demos, "count": len(demos)},
+        request=request,
+    )
+
+
+@functions_framework.http
+def create_demo(request: Request) -> Tuple[str, int, dict]:
+    """
+    Create a new demo (admin only).
+    
+    POST /admin/demos
+    Headers: Authorization: Bearer <token>
+    Body: {
+        "demo_id": "string",
+        "title": "string",
+        "description": "string",
+        "icon": "emoji",
+        "industry": "string",
+        "path": "folder/file.html",
+        "tags": ["tag1", "tag2"],
+        "keywords": "search keywords" (optional),
+        "title_es": "Spanish title" (optional),
+        "description_es": "Spanish description" (optional),
+        "tags_es": ["Spanish tags"] (optional),
+        "sort_order": 0 (optional),
+        "is_active": true (optional)
+    }
+    """
+    if request.method == "OPTIONS":
+        return cors_response({}, 204, request)
+    
+    if request.method != "POST":
+        return error_response("Method not allowed", 405, request)
+    
+    # Check admin auth
+    token = get_token_from_request(request)
+    if not token:
+        return error_response("Missing authorization token", 401, request)
+    
+    payload = decode_token(token)
+    if not payload:
+        return error_response("Invalid or expired token", 401, request)
+    
+    if not payload.is_admin:
+        return error_response("Admin privileges required", 403, request)
+    
+    try:
+        body = request.get_json(silent=True) or {}
+    except Exception:
+        return error_response("Invalid JSON body", 400, request)
+    
+    # Required fields
+    demo_id = body.get("demo_id", "").strip().lower().replace(" ", "-")
+    title = body.get("title", "").strip()
+    description = body.get("description", "").strip()
+    icon = body.get("icon", "").strip()
+    industry = body.get("industry", "").strip()
+    path = body.get("path", "").strip()
+    tags = body.get("tags", [])
+    
+    # Optional fields
+    keywords = body.get("keywords", "").strip()
+    title_es = body.get("title_es", "").strip()
+    description_es = body.get("description_es", "").strip()
+    tags_es = body.get("tags_es", [])
+    sort_order = body.get("sort_order", 0)
+    is_active = body.get("is_active", True)
+    is_external = body.get("is_external", False)
+    
+    # Validation
+    if not demo_id:
+        return error_response("demo_id is required", 400, request)
+    if not title:
+        return error_response("title is required", 400, request)
+    if not description:
+        return error_response("description is required", 400, request)
+    if not icon:
+        return error_response("icon is required", 400, request)
+    if not industry:
+        return error_response("industry is required", 400, request)
+    if not path:
+        return error_response("path is required", 400, request)
+    if not isinstance(tags, list) or len(tags) == 0:
+        return error_response("tags must be a non-empty list", 400, request)
+    
+    db = get_db()
+    
+    # Check if demo already exists
+    existing = db.get_demo_by_id(demo_id)
+    if existing:
+        return error_response(f"Demo '{demo_id}' already exists", 409, request)
+    
+    # Create demo
+    demo = db.create_demo(
+        demo_id=demo_id,
+        title=title,
+        description=description,
+        icon=icon,
+        industry=industry,
+        path=path,
+        tags=tags,
+        keywords=keywords,
+        title_es=title_es,
+        description_es=description_es,
+        tags_es=tags_es if tags_es else None,
+        sort_order=sort_order,
+        is_active=is_active,
+        is_external=is_external,
+    )
+    
+    # Log action
+    db.log_action(
+        action="demo_created",
+        user_id=payload.user_id,
+        details={"demo_id": demo_id},
+        ip_address=request.remote_addr,
+    )
+    
+    return success_response(
+        data=demo,
+        message=f"Demo '{demo_id}' created successfully",
+        request=request,
+    )
+
+
+@functions_framework.http
+def update_demo(request: Request) -> Tuple[str, int, dict]:
+    """
+    Update a demo (admin only).
+    
+    PUT /admin/demos/{demo_id}
+    Headers: Authorization: Bearer <token>
+    Body: {
+        "title": "string" (optional),
+        "description": "string" (optional),
+        "icon": "emoji" (optional),
+        "industry": "string" (optional),
+        "path": "folder/file.html" (optional),
+        "tags": ["tag1", "tag2"] (optional),
+        "keywords": "search keywords" (optional),
+        "title_es": "Spanish title" (optional),
+        "description_es": "Spanish description" (optional),
+        "tags_es": ["Spanish tags"] (optional),
+        "sort_order": 0 (optional),
+        "is_active": true (optional)
+    }
+    """
+    if request.method == "OPTIONS":
+        return cors_response({}, 204, request)
+    
+    if request.method != "PUT":
+        return error_response("Method not allowed", 405, request)
+    
+    # Check admin auth
+    token = get_token_from_request(request)
+    if not token:
+        return error_response("Missing authorization token", 401, request)
+    
+    payload = decode_token(token)
+    if not payload:
+        return error_response("Invalid or expired token", 401, request)
+    
+    if not payload.is_admin:
+        return error_response("Admin privileges required", 403, request)
+    
+    # Get demo_id from path
+    path_parts = request.path.rstrip("/").split("/")
+    if len(path_parts) < 1:
+        return error_response("demo_id is required in path", 400, request)
+    demo_id = path_parts[-1]
+    
+    try:
+        body = request.get_json(silent=True) or {}
+    except Exception:
+        return error_response("Invalid JSON body", 400, request)
+    
+    db = get_db()
+    
+    # Check if demo exists
+    existing = db.get_demo_by_id(demo_id)
+    if not existing:
+        return error_response(f"Demo '{demo_id}' not found", 404, request)
+    
+    # Build updates - only include fields that are provided
+    updates = {}
+    allowed_fields = [
+        "title", "description", "icon", "industry", "path",
+        "tags", "keywords", "title_es", "description_es", "tags_es",
+        "sort_order", "is_active", "is_external"
+    ]
+    
+    for field in allowed_fields:
+        if field in body:
+            value = body[field]
+            # String fields should be trimmed
+            if isinstance(value, str):
+                value = value.strip()
+            updates[field] = value
+    
+    if not updates:
+        return error_response("No valid fields to update", 400, request)
+    
+    # Update demo
+    updated_demo = db.update_demo(demo_id, updates)
+    
+    # Log action
+    db.log_action(
+        action="demo_updated",
+        user_id=payload.user_id,
+        details={"demo_id": demo_id, "fields": list(updates.keys())},
+        ip_address=request.remote_addr,
+    )
+    
+    return success_response(
+        data=updated_demo,
+        message=f"Demo '{demo_id}' updated successfully",
+        request=request,
+    )
+
+
+@functions_framework.http
+def delete_demo(request: Request) -> Tuple[str, int, dict]:
+    """
+    Deactivate a demo (soft delete - admin only).
+    Demo data is preserved for historical records.
+    
+    DELETE /admin/demos/{demo_id}
+    Headers: Authorization: Bearer <token>
+    """
+    if request.method == "OPTIONS":
+        return cors_response({}, 204, request)
+    
+    if request.method != "DELETE":
+        return error_response("Method not allowed", 405, request)
+    
+    # Check admin auth
+    token = get_token_from_request(request)
+    if not token:
+        return error_response("Missing authorization token", 401, request)
+    
+    payload = decode_token(token)
+    if not payload:
+        return error_response("Invalid or expired token", 401, request)
+    
+    if not payload.is_admin:
+        return error_response("Admin privileges required", 403, request)
+    
+    # Get demo_id from path
+    path_parts = request.path.rstrip("/").split("/")
+    if len(path_parts) < 1:
+        return error_response("demo_id is required in path", 400, request)
+    demo_id = path_parts[-1]
+    
+    db = get_db()
+    
+    # Check if demo exists
+    demo = db.get_demo_by_id(demo_id)
+    if not demo:
+        return error_response(f"Demo '{demo_id}' not found", 404, request)
+    
+    if not demo.get("is_active", True):
+        return error_response(f"Demo '{demo_id}' is already deactivated", 400, request)
+    
+    # Soft delete
+    db.delete_demo(demo_id)
+    
+    # Log action
+    db.log_action(
+        action="demo_deactivated",
+        user_id=payload.user_id,
+        details={"demo_id": demo_id},
+        ip_address=request.remote_addr,
+    )
+    
+    return success_response(
+        message=f"Demo '{demo_id}' deactivated successfully",
+        request=request,
+    )
+
+
+@functions_framework.http
+def reactivate_demo(request: Request) -> Tuple[str, int, dict]:
+    """
+    Reactivate a deactivated demo (admin only).
+    
+    POST /admin/demos/{demo_id}/reactivate
+    Headers: Authorization: Bearer <token>
+    """
+    if request.method == "OPTIONS":
+        return cors_response({}, 204, request)
+    
+    if request.method != "POST":
+        return error_response("Method not allowed", 405, request)
+    
+    # Check admin auth
+    token = get_token_from_request(request)
+    if not token:
+        return error_response("Missing authorization token", 401, request)
+    
+    payload = decode_token(token)
+    if not payload:
+        return error_response("Invalid or expired token", 401, request)
+    
+    if not payload.is_admin:
+        return error_response("Admin privileges required", 403, request)
+    
+    # Get demo_id from path (path is /admin/demos/{demo_id}/reactivate)
+    path_parts = request.path.rstrip("/").split("/")
+    if len(path_parts) < 2:
+        return error_response("demo_id is required in path", 400, request)
+    demo_id = path_parts[-2]
+    
+    db = get_db()
+    
+    # Check if demo exists
+    demo = db.get_demo_by_id(demo_id)
+    if not demo:
+        return error_response(f"Demo '{demo_id}' not found", 404, request)
+    
+    if demo.get("is_active", True):
+        return error_response(f"Demo '{demo_id}' is already active", 400, request)
+    
+    # Reactivate
+    db.reactivate_demo(demo_id)
+    
+    # Log action
+    db.log_action(
+        action="demo_reactivated",
+        user_id=payload.user_id,
+        details={"demo_id": demo_id},
+        ip_address=request.remote_addr,
+    )
+    
+    return success_response(
+        message=f"Demo '{demo_id}' reactivated successfully",
+        request=request,
+    )

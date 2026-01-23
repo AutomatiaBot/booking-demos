@@ -42,12 +42,18 @@ FUNCTIONS=(
   # User Management
   "get_user_access:get_user_access"
   "check_demo_access:check_demo_access"
-  # Admin
+  # Admin - Users
   "create_user:create_user"
   "list_users:list_users"
   "update_user:update_user"
   "delete_user:delete_user"
   "reactivate_user:reactivate_user"
+  # Admin - Demos
+  "list_demos:list_demos"
+  "create_demo:create_demo"
+  "update_demo:update_demo"
+  "delete_demo:delete_demo"
+  "reactivate_demo:reactivate_demo"
   # Activity Tracking
   "track_activity:track_activity"
   "track_activity_batch:track_activity_batch"

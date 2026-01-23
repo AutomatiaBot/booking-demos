@@ -17,6 +17,7 @@ class FirestoreDB:
     USERS_COLLECTION = "users"
     SESSIONS_COLLECTION = "sessions"
     AUDIT_LOGS_COLLECTION = "audit_logs"
+    DEMOS_COLLECTION = "demos"
     
     def __init__(self, project_id: Optional[str] = None):
         """
@@ -207,6 +208,195 @@ class FirestoreDB:
         doc_ref.update({
             "last_login": datetime.now(timezone.utc),
         })
+    
+    # ============================================
+    # Demo Operations
+    # ============================================
+    
+    def get_demo_by_id(self, demo_id: str) -> Optional[Dict[str, Any]]:
+        """
+        Get a demo by its ID.
+        
+        Args:
+            demo_id: Demo's unique identifier (e.g., 'manhattan-smiles')
+            
+        Returns:
+            Demo document data or None if not found
+        """
+        doc_ref = self.client.collection(self.DEMOS_COLLECTION).document(demo_id)
+        doc = doc_ref.get()
+        
+        if doc.exists:
+            data = doc.to_dict()
+            data["id"] = doc.id
+            return data
+        return None
+    
+    def create_demo(
+        self,
+        demo_id: str,
+        title: str,
+        description: str,
+        icon: str,
+        industry: str,
+        path: str,
+        tags: List[str],
+        keywords: str = "",
+        title_es: str = "",
+        description_es: str = "",
+        tags_es: Optional[List[str]] = None,
+        sort_order: int = 0,
+        is_active: bool = True,
+        is_external: bool = False,
+    ) -> Dict[str, Any]:
+        """
+        Create a new demo entry.
+        
+        Args:
+            demo_id: Unique identifier (lowercase, hyphens only)
+            title: Display title (English)
+            description: Description (English)
+            icon: Emoji icon for the demo
+            industry: Industry category (e.g., "HealthTech", "MedTourism")
+            path: Relative path to the demo HTML file, or full URL if is_external=True
+            tags: List of feature tags (English)
+            keywords: Search keywords for filtering
+            title_es: Title in Spanish (optional)
+            description_es: Description in Spanish (optional)
+            tags_es: Tags in Spanish (optional)
+            sort_order: Order for display (lower = first)
+            is_active: Whether demo is visible
+            is_external: Whether this is an external URL (opens in new tab)
+            
+        Returns:
+            Created demo document data
+        """
+        now = datetime.now(timezone.utc)
+        
+        demo_data = {
+            "title": title,
+            "description": description,
+            "icon": icon,
+            "industry": industry,
+            "path": path,
+            "tags": tags,
+            "keywords": keywords,
+            "title_es": title_es or title,
+            "description_es": description_es or description,
+            "tags_es": tags_es or tags,
+            "sort_order": sort_order,
+            "is_active": is_active,
+            "is_external": is_external,
+            "created_at": now,
+            "updated_at": now,
+        }
+        
+        doc_ref = self.client.collection(self.DEMOS_COLLECTION).document(demo_id)
+        doc_ref.set(demo_data)
+        
+        demo_data["id"] = demo_id
+        return demo_data
+    
+    def update_demo(
+        self,
+        demo_id: str,
+        updates: Dict[str, Any],
+    ) -> Optional[Dict[str, Any]]:
+        """
+        Update a demo's data.
+        
+        Args:
+            demo_id: Demo's unique identifier
+            updates: Dictionary of fields to update
+            
+        Returns:
+            Updated demo data or None if not found
+        """
+        doc_ref = self.client.collection(self.DEMOS_COLLECTION).document(demo_id)
+        doc = doc_ref.get()
+        
+        if not doc.exists:
+            return None
+        
+        updates["updated_at"] = datetime.now(timezone.utc)
+        doc_ref.update(updates)
+        
+        return self.get_demo_by_id(demo_id)
+    
+    def delete_demo(self, demo_id: str) -> bool:
+        """
+        Soft delete a demo (deactivate it).
+        Demo data is preserved for historical records.
+        
+        Args:
+            demo_id: Demo's unique identifier
+            
+        Returns:
+            True if deactivated, False if not found
+        """
+        doc_ref = self.client.collection(self.DEMOS_COLLECTION).document(demo_id)
+        doc = doc_ref.get()
+        
+        if not doc.exists:
+            return False
+        
+        doc_ref.update({
+            "is_active": False,
+            "deactivated_at": datetime.now(timezone.utc),
+            "updated_at": datetime.now(timezone.utc),
+        })
+        return True
+    
+    def reactivate_demo(self, demo_id: str) -> bool:
+        """
+        Reactivate a deactivated demo.
+        
+        Args:
+            demo_id: Demo's unique identifier
+            
+        Returns:
+            True if reactivated, False if not found
+        """
+        doc_ref = self.client.collection(self.DEMOS_COLLECTION).document(demo_id)
+        doc = doc_ref.get()
+        
+        if not doc.exists:
+            return False
+        
+        doc_ref.update({
+            "is_active": True,
+            "reactivated_at": datetime.now(timezone.utc),
+            "updated_at": datetime.now(timezone.utc),
+        })
+        return True
+    
+    def list_demos(self, include_inactive: bool = False) -> List[Dict[str, Any]]:
+        """
+        List all demos, ordered by sort_order.
+        
+        Args:
+            include_inactive: Whether to include inactive demos
+            
+        Returns:
+            List of demo documents
+        """
+        collection_ref = self.client.collection(self.DEMOS_COLLECTION)
+        
+        if not include_inactive:
+            query = collection_ref.where(filter=FieldFilter("is_active", "==", True))
+        else:
+            query = collection_ref
+        
+        # Order by sort_order, then by title
+        query = query.order_by("sort_order").order_by("title")
+        
+        demos = []
+        for doc in query.stream():
+            data = doc.to_dict()
+            data["id"] = doc.id
+            demos.append(data)
+        
+        return demos
     
     # ============================================
     # Audit Log Operations (System-level)

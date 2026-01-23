@@ -25,7 +25,22 @@ INITIAL_USERS = [
         "user_id": "admin-automatia",
         "name": "Admin",
         "password": "ChangeMe123!",  # CHANGE THIS!
-        "access": ["manhattan-smiles", "gbc", "dr-michael-doe", "ray-avila"],
+        "access": [
+            # External site
+            "dr-michael-doe-website",
+            # Internal demo sites
+            "calder-rowe-legal-website",
+            "harborlight-website",
+            "paws-and-pines-website",
+            "peakpoint-ortho-website",
+            "restoremotion-website",
+            "stonebridge-realty-website",
+            # Legacy demos (deactivated but access kept for reference)
+            "manhattan-smiles",
+            "gbc",
+            "dr-michael-doe",
+            "ray-avila",
+        ],
         "is_admin": True,
         "quick_access": True,
     },
@@ -33,15 +48,32 @@ INITIAL_USERS = [
         "user_id": "gbc-demos",
         "name": "GBC Team",
         "password": "ChangeMe123!",  # CHANGE THIS!
-        "access": ["dr-michael-doe", "gbc"],
+        "access": [
+            "dr-michael-doe-website",
+            "calder-rowe-legal-website",
+            "harborlight-website",
+            "paws-and-pines-website",
+            "peakpoint-ortho-website",
+            "restoremotion-website",
+            "stonebridge-realty-website",
+        ],
         "is_admin": False,
         "quick_access": True,
+        "is_active": False,  # Deactivated
     },
     {
         "user_id": "ray-avila",
         "name": "Ray Avila",
         "password": "ChangeMe123!",  # CHANGE THIS!
-        "access": ["dr-michael-doe", "ray-avila"],
+        "access": [
+            "dr-michael-doe-website",
+            "calder-rowe-legal-website",
+            "harborlight-website",
+            "paws-and-pines-website",
+            "peakpoint-ortho-website",
+            "restoremotion-website",
+            "stonebridge-realty-website",
+        ],
         "is_admin": False,
         "quick_access": True,
     },
@@ -65,6 +97,8 @@ def seed_users():
         
         # Create user
         password_hash = hash_password(user_data["password"])
+        is_active = user_data.get("is_active", True)
+        
         db.create_user(
             user_id=user_id,
             name=user_data["name"],
@@ -73,7 +107,13 @@ def seed_users():
             is_admin=user_data["is_admin"],
             quick_access=user_data["quick_access"],
         )
-        print(f"  ✅ Created user: {user_id}")
+        
+        # If user should be deactivated, update them
+        if not is_active:
+            db.update_user(user_id, {"is_active": False})
+            print(f"  ✅ Created user: {user_id} [DEACTIVATED]")
+        else:
+            print(f"  ✅ Created user: {user_id}")
         
         # Initialize activity tracking for this user
         db.initialize_user_activity(user_id=user_id, name=user_data["name"])

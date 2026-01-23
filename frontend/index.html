@@ -661,6 +661,32 @@
       display: block;
     }
 
+    /* Loading demos spinner */
+    .demo-loading {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-muted);
+    }
+
+    .demo-loading.hidden {
+      display: none;
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid var(--border);
+      border-top-color: var(--automatia-blue);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       header {
@@ -834,93 +860,13 @@
         <p data-i18n="no_demos">No demos available for your account. Contact your administrator.</p>
       </div>
 
-      <!-- Demo Cards -->
+      <!-- Demo Cards (loaded dynamically from API) -->
       <div class="demo-grid" id="demoGrid">
-        
-        <!-- Manhattan Smiles -->
-        <a href="manhattan-smiles/manhattan-smiles.html" class="demo-card" data-demo-id="manhattan-smiles" data-keywords="dental dentist healthcare teeth smile manhattan new york appointment booking healthtech">
-          <div class="card-header">
-            <div class="card-icon">🦷</div>
-            <span class="card-industry">HealthTech</span>
-          </div>
-          <h3 data-i18n="demo_manhattan_title">Manhattan Smiles</h3>
-          <p data-i18n="demo_manhattan_desc">Premium dental studio in NYC. Showcases AI appointment booking, patient inquiries, and 24/7 support for a high-end dental practice.</p>
-          <div class="card-features">
-            <span class="feature-tag" data-i18n="tag_chatbot">Chatbot</span>
-            <span class="feature-tag" data-i18n="tag_booking">Appointment Booking</span>
-            <span class="feature-tag" data-i18n="tag_support">Patient Support</span>
-          </div>
-          <div class="card-action">
-            <span data-i18n="launch_demo">Launch Demo</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
-        </a>
-
-        <!-- Global Beauty Circle -->
-        <a href="gbc/gbc-booking.html" class="demo-card" data-demo-id="gbc" data-keywords="beauty medical tourism aesthetic surgery cosmetic plastic dominican colombia gbc global medtourism">
-          <div class="card-header">
-            <div class="card-icon">✨</div>
-            <span class="card-industry">MedTourism</span>
-          </div>
-          <h3 data-i18n="demo_gbc_title">Global Beauty Circle</h3>
-          <p data-i18n="demo_gbc_desc">Medical tourism platform for aesthetic procedures. AI concierge helps clients explore surgeries, get quotes, and plan trips to DR & Colombia.</p>
-          <div class="card-features">
-            <span class="feature-tag" data-i18n="tag_chatbot">Chatbot</span>
-            <span class="feature-tag" data-i18n="tag_lead">Lead Qualification</span>
-            <span class="feature-tag" data-i18n="tag_bilingual">Bilingual</span>
-          </div>
-          <div class="card-action">
-            <span data-i18n="launch_demo">Launch Demo</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
-        </a>
-
-        <!-- Kate General Demo -->
-        <a href="dr-michael-doe/automatia-booking.html" class="demo-card" data-demo-id="dr-michael-doe" data-keywords="kate automatia general voice call phone demo test agent assistant receptionist flagship">
-          <div class="card-header">
-            <div class="card-icon">🤖</div>
-            <span class="card-industry">General</span>
-          </div>
-          <h3 data-i18n="demo_kate_title">Kate AI Demo</h3>
-          <p data-i18n="demo_kate_desc">Our flagship demo showcasing Kate's full capabilities: chatbot interaction and voice agent testing with live phone numbers.</p>
-          <div class="card-features">
-            <span class="feature-tag" data-i18n="tag_chatbot">Chatbot</span>
-            <span class="feature-tag" data-i18n="tag_voice">Voice Agent</span>
-            <span class="feature-tag" data-i18n="tag_phone">Phone Demo</span>
-          </div>
-          <div class="card-action">
-            <span data-i18n="launch_demo">Launch Demo</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
-        </a>
-
-        <!-- Ray Avila Demo -->
-        <a href="ray-avila/ray-avila.html" class="demo-card" data-demo-id="ray-avila" data-keywords="ray avila custom personalized sales">
-          <div class="card-header">
-            <div class="card-icon">🎯</div>
-            <span class="card-industry">Custom</span>
-          </div>
-          <h3 data-i18n="demo_ray_title">Ray Avila Demo</h3>
-          <p data-i18n="demo_ray_desc">Custom demo page for Ray Avila's sales presentations. Tailored content and configuration for specific client needs.</p>
-          <div class="card-features">
-            <span class="feature-tag" data-i18n="tag_custom">Custom</span>
-            <span class="feature-tag" data-i18n="tag_sales">Sales</span>
-            <span class="feature-tag" data-i18n="tag_personalized">Personalized</span>
-          </div>
-          <div class="card-action">
-            <span data-i18n="launch_demo">Launch Demo</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
-        </a>
-
+        <!-- Loading state -->
+        <div class="demo-loading" id="demosLoading">
+          <div class="loading-spinner"></div>
+          <p data-i18n="loading_demos">Loading demos...</p>
+        </div>
       </div>
 
       <!-- Quick Access -->
@@ -978,6 +924,7 @@
       logout: `${API_BASE_URL}-logout`,
       getUserAccess: `${API_BASE_URL}-get_user_access`,
       checkDemoAccess: `${API_BASE_URL}-check_demo_access`,
+      listDemos: `${API_BASE_URL}-list_demos`,
     };
 
     // ===========================================
@@ -1050,28 +997,10 @@
         section_demos: 'Available ',
         section_demos_accent: 'Demos',
         no_demos: 'No demos available for your account. Contact your administrator.',
+        no_search_results: 'No demos match your search.',
+        loading_demos: 'Loading demos...',
         
-        // Demo Cards
-        demo_manhattan_title: 'Manhattan Smiles',
-        demo_manhattan_desc: 'Premium dental studio in NYC. Showcases AI appointment booking, patient inquiries, and 24/7 support for a high-end dental practice.',
-        demo_gbc_title: 'Global Beauty Circle',
-        demo_gbc_desc: 'Medical tourism platform for aesthetic procedures. AI concierge helps clients explore surgeries, get quotes, and plan trips to DR & Colombia.',
-        demo_kate_title: 'Kate AI Demo',
-        demo_kate_desc: "Our flagship demo showcasing Kate's full capabilities: chatbot interaction and voice agent testing with live phone numbers.",
-        demo_ray_title: 'Ray Avila Demo',
-        demo_ray_desc: "Custom demo page for Ray Avila's sales presentations. Tailored content and configuration for specific client needs.",
-        
-        // Tags
-        tag_chatbot: 'Chatbot',
-        tag_booking: 'Appointment Booking',
-        tag_support: 'Patient Support',
-        tag_lead: 'Lead Qualification',
-        tag_bilingual: 'Bilingual',
-        tag_voice: 'Voice Agent',
-        tag_phone: 'Phone Demo',
-        tag_custom: 'Custom',
-        tag_sales: 'Sales',
-        tag_personalized: 'Personalized',
+        // Demo (loaded dynamically from API)
         launch_demo: 'Launch Demo',
         
         // Quick Access
@@ -1116,28 +1045,10 @@
         section_demos: 'Demos ',
         section_demos_accent: 'Disponibles',
         no_demos: 'No hay demos disponibles para tu cuenta. Contacta a tu administrador.',
+        no_search_results: 'No hay demos que coincidan con tu búsqueda.',
+        loading_demos: 'Cargando demos...',
         
-        // Demo Cards
-        demo_manhattan_title: 'Manhattan Smiles',
-        demo_manhattan_desc: 'Estudio dental premium en NYC. Muestra reserva de citas con IA, consultas de pacientes y soporte 24/7 para una práctica dental de alto nivel.',
-        demo_gbc_title: 'Global Beauty Circle',
-        demo_gbc_desc: 'Plataforma de turismo médico para procedimientos estéticos. El asistente de IA ayuda a clientes a explorar cirugías, obtener cotizaciones y planear viajes a RD y Colombia.',
-        demo_kate_title: 'Demo Kate AI',
-        demo_kate_desc: 'Nuestro demo principal mostrando las capacidades completas de Kate: interacción por chat y prueba de agente de voz con números telefónicos reales.',
-        demo_ray_title: 'Demo Ray Avila',
-        demo_ray_desc: 'Página de demo personalizada para las presentaciones de ventas de Ray Avila. Contenido y configuración adaptados a necesidades específicas del cliente.',
-        
-        // Tags
-        tag_chatbot: 'Chatbot',
-        tag_booking: 'Reserva de Citas',
-        tag_support: 'Soporte al Paciente',
-        tag_lead: 'Calificación de Leads',
-        tag_bilingual: 'Bilingüe',
-        tag_voice: 'Agente de Voz',
-        tag_phone: 'Demo Telefónico',
-        tag_custom: 'Personalizado',
-        tag_sales: 'Ventas',
-        tag_personalized: 'A Medida',
+        // Demo (loaded dynamically from API)
         launch_demo: 'Iniciar Demo',
         
         // Quick Access
@@ -1162,6 +1073,7 @@
     let currentUser = null;  // Will be set from API response
     let userAccess = [];     // List of demos user can access
     let userQuickAccess = true;
+    let allDemos = [];       // All demos loaded from API
 
     // ===========================================
     // LANGUAGE FUNCTIONS
@@ -1202,6 +1114,11 @@
       
       // Update HTML lang attribute
       document.documentElement.lang = currentLang;
+      
+      // Re-render demo cards if demos are loaded (to update translations)
+      if (allDemos.length > 0 && currentUser) {
+        renderDemoCards();
+      }
     }
 
     // ===========================================
@@ -1312,40 +1229,18 @@
       return false;
     }
 
-    function showMainContent() {
+    async function showMainContent() {
       document.getElementById('loginOverlay').classList.add('hidden');
       document.getElementById('mainContent').classList.add('visible');
       // Display user name from API response
       document.getElementById('userIdDisplay').textContent = currentUser ? currentUser.name : 'User';
       applyAccessControl();
+      // Load demos from API
+      await loadDemos();
     }
 
     function applyAccessControl() {
       if (!currentUser) return;
-      
-      const allowedDemos = userAccess;
-      
-      // Hide/show demo cards based on access
-      const cards = document.querySelectorAll('.demo-card');
-      let visibleCount = 0;
-      
-      cards.forEach(card => {
-        const demoId = card.getAttribute('data-demo-id');
-        if (allowedDemos.includes(demoId)) {
-          card.classList.remove('hidden');
-          visibleCount++;
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-      
-      // Show/hide "no demos" message
-      const noDemos = document.getElementById('noDemos');
-      if (visibleCount === 0) {
-        noDemos.classList.add('show');
-      } else {
-        noDemos.classList.remove('show');
-      }
       
       // Show/hide quick access based on user config
       const quickAccess = document.getElementById('quickAccess');
@@ -1365,24 +1260,165 @@
     }
 
     // ===========================================
+    // DEMO LOADING FUNCTIONS
+    // ===========================================
+    async function loadDemos() {
+      const loadingEl = document.getElementById('demosLoading');
+      const noDemos = document.getElementById('noDemos');
+      const grid = document.getElementById('demoGrid');
+      
+      // Show loading state
+      if (loadingEl) loadingEl.classList.remove('hidden');
+      noDemos.classList.remove('show');
+      
+      try {
+        const result = await apiCall(API_ENDPOINTS.listDemos, { method: 'GET' });
+        
+        if (result.ok && result.data.success) {
+          allDemos = result.data.data.demos || [];
+          renderDemoCards();
+        } else {
+          console.error('Failed to load demos:', result.data.error);
+          // Show error state
+          grid.innerHTML = `
+            <div class="no-demos show">
+              <p>Failed to load demos. Please refresh the page.</p>
+            </div>
+          `;
+        }
+      } catch (error) {
+        console.error('Error loading demos:', error);
+        grid.innerHTML = `
+          <div class="no-demos show">
+            <p>Failed to load demos. Please refresh the page.</p>
+          </div>
+        `;
+      }
+    }
+
+    function renderDemoCards() {
+      const grid = document.getElementById('demoGrid');
+      const noDemos = document.getElementById('noDemos');
+      const t = translations[currentLang];
+      
+      // Filter demos by user access
+      const allowedDemos = allDemos.filter(demo => userAccess.includes(demo.id));
+      
+      if (allowedDemos.length === 0) {
+        grid.innerHTML = '';
+        noDemos.classList.add('show');
+        return;
+      }
+      
+      noDemos.classList.remove('show');
+      
+      // Render demo cards
+      grid.innerHTML = allowedDemos.map((demo, index) => {
+        const title = currentLang === 'es' && demo.title_es ? demo.title_es : demo.title;
+        const description = currentLang === 'es' && demo.description_es ? demo.description_es : demo.description;
+        const tags = currentLang === 'es' && demo.tags_es && demo.tags_es.length > 0 ? demo.tags_es : demo.tags;
+        const launchText = t.launch_demo || 'Launch Demo';
+        
+        // Check if this is an external URL (explicit flag or starts with http)
+        const isExternal = demo.is_external || demo.path.startsWith('http');
+        const targetAttr = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
+        
+        return `
+          <a href="${demo.path}" class="demo-card" ${targetAttr} data-demo-id="${demo.id}" data-keywords="${demo.keywords || ''}" data-external="${isExternal}" style="animation-delay: ${index * 0.1}s;">
+            <div class="card-header">
+              <div class="card-icon">${demo.icon}</div>
+              <span class="card-industry">${demo.industry}</span>
+            </div>
+            <h3>${title}${isExternal ? ' <svg style="display:inline;width:14px;height:14px;vertical-align:middle;opacity:0.5;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>' : ''}</h3>
+            <p>${description}</p>
+            <div class="card-features">
+              ${tags.map(tag => `<span class="feature-tag">${tag}</span>`).join('')}
+            </div>
+            <div class="card-action">
+              <span>${launchText}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </a>
+        `;
+      }).join('');
+      
+      // Re-attach click tracking to new cards
+      attachDemoCardTracking();
+    }
+
+    function attachDemoCardTracking() {
+      document.querySelectorAll('.demo-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+          const demoId = this.getAttribute('data-demo-id');
+          const demoTitle = this.querySelector('h3')?.textContent;
+          
+          if (typeof ActivityTracker !== 'undefined' && ACTIVITY_API_BASE_URL) {
+            ActivityTracker.trackDemoLaunched(demoId);
+            ActivityTracker.trackCustomEvent('demo_card_clicked', {
+              demo_id: demoId,
+              demo_title: demoTitle
+            });
+          }
+        });
+      });
+    }
+
+    // ===========================================
     // SEARCH FUNCTION
     // ===========================================
     function filterDemos() {
-      const input = document.getElementById('searchInput').value.toLowerCase();
-      const cards = document.querySelectorAll('.demo-card:not(.hidden)');
+      const input = document.getElementById('searchInput').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.demo-card');
+      const noDemos = document.getElementById('noDemos');
+      
+      if (!input) {
+        // Show all cards that user has access to
+        cards.forEach(card => {
+          const demoId = card.getAttribute('data-demo-id');
+          if (userAccess.includes(demoId)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        noDemos.classList.remove('show');
+        return;
+      }
+      
+      let visibleCount = 0;
       
       cards.forEach(card => {
+        const demoId = card.getAttribute('data-demo-id');
+        
+        // Only search within demos user has access to
+        if (!userAccess.includes(demoId)) {
+          card.style.display = 'none';
+          return;
+        }
+        
         const keywords = card.getAttribute('data-keywords') || '';
         const title = card.querySelector('h3').textContent.toLowerCase();
         const desc = card.querySelector('p').textContent.toLowerCase();
-        const searchText = `${keywords} ${title} ${desc}`;
+        const industry = card.querySelector('.card-industry')?.textContent.toLowerCase() || '';
+        const searchText = `${keywords} ${title} ${desc} ${industry}`;
         
         if (searchText.includes(input)) {
           card.style.display = '';
+          visibleCount++;
         } else {
           card.style.display = 'none';
         }
       });
+      
+      // Show "no results" message if search yields no results
+      if (visibleCount === 0 && userAccess.length > 0) {
+        noDemos.innerHTML = `<p data-i18n="no_search_results">No demos match your search.</p>`;
+        noDemos.classList.add('show');
+      } else {
+        noDemos.classList.remove('show');
+      }
     }
 
     // ===========================================
@@ -1455,21 +1491,8 @@
       }
     }
     
-    // Track demo card clicks
-    document.querySelectorAll('.demo-card').forEach(card => {
-      card.addEventListener('click', function(e) {
-        const demoId = this.getAttribute('data-demo-id');
-        const demoTitle = this.querySelector('h3')?.textContent;
-        
-        if (typeof ActivityTracker !== 'undefined' && ACTIVITY_API_BASE_URL) {
-          ActivityTracker.trackDemoLaunched(demoId);
-          ActivityTracker.trackCustomEvent('demo_card_clicked', {
-            demo_id: demoId,
-            demo_title: demoTitle
-          });
-        }
-      });
-    });
+    // Note: Demo card click tracking is now handled by attachDemoCardTracking()
+    // which is called after demos are rendered dynamically
   </script>
 
 </body>

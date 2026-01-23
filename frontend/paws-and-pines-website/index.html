@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Paws & Pines Veterinary Care | Cedar Glen, CO</title>
+  <meta name="description" content="Fictional demo website for a veterinary clinic: wellness, sick visits, spay/neuter, dental, and microchipping." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="header">
+  <div class="container header__inner">
+    <a class="brand" href="index.html" aria-label="Paws & Pines Veterinary Care home">
+      <img class="brand__logo" src="assets/logo.svg" alt="Paws & Pines Veterinary Care logo" />
+    </a>
+
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="site-nav" class="nav" aria-label="Primary">
+      <a class="nav__link" href="services.html">Services</a>
+      <a class="nav__link" href="new-patients.html">New Patients</a>
+      <a class="nav__link" href="about.html">About</a>
+      <a class="nav__link" href="contact.html">Contact</a>
+      <a class="btn btn--small btn--primary nav__cta" href="contact.html#request">Request a Call</a>
+    </nav>
+  </div>
+
+  <div class="header__bar">
+    <div class="container header__bar-inner">
+      <div class="bar__left">
+        <span class="pill">Open today: 8:00 AM – 6:00 PM</span>
+        <span class="bar__sep" aria-hidden="true">•</span>
+        <a class="bar__link" href="tel:+15553329056">(555) 332-9056</a>
+      </div>
+      <div class="bar__right">
+        <a class="bar__link" href="contact.html#emergency">Emergency Guidance</a>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<div class="container">
+  <section class="hero" aria-label="Hero">
+    <div>
+      <div class="hero__kicker"><span class="dot" aria-hidden="true"></span> Calm care for dogs &amp; cats in Cedar Glen, CO</div>
+      <h1>Veterinary care that feels steady—<br/>for you and your pet.</h1>
+      <p class="lead">
+        Paws & Pines Veterinary Care offers wellness exams, vaccines, sick visits, spay/neuter, dental cleanings, and microchipping—
+        with clear next steps and compassionate communication.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="tel:+15553329056">Call (555) 332-9056</a>
+        <a class="btn btn--ghost" href="contact.html#request">Request a Call</a>
+        <a class="btn btn--amber" href="services.html">Explore Services</a>
+      </div>
+
+      <div class="hero__mini" aria-label="Quick highlights">
+        <div class="mini"><strong>Same-day help</strong><span>When available</span></div>
+        <div class="mini"><strong>Pets we see</strong><span>Dogs &amp; cats</span></div>
+      </div>
+    </div>
+
+    <div class="hero__card">
+      <img class="hero__img" src="assets/hero.svg" alt="Illustration of a calm veterinary visit" />
+      <div class="kpis" style="margin-top:14px;">
+        <div class="kpi"><strong>Wellness visits</strong><span>All ages</span></div>
+        <div class="kpi"><strong>Sick visits</strong><span>Non‑emergency</span></div>
+        <div class="kpi"><strong>Dental care</strong><span>Cleanings</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section__title">How we help</h2>
+    <p class="section__desc">Quick, clear categories so pet parents can find the right next step.</p>
+
+    <div class="grid">
+      <article class="card">
+        <div class="badge">Wellness</div>
+        <h3>Checkups &amp; vaccines</h3>
+        <p>Routine exams, puppy/kitten plans, adult &amp; senior care, and vaccine guidance.</p>
+      </article>
+      <article class="card">
+        <div class="badge">Sick visits</div>
+        <h3>When something feels “off”</h3>
+        <p>Vomiting/diarrhea, itchy skin, ear issues, coughing, minor limping, and urinary concerns—triaged safely.</p>
+      </article>
+      <article class="card">
+        <div class="badge">Procedures</div>
+        <h3>Spay/neuter &amp; dental</h3>
+        <p>Clear pre-visit steps and follow-up support. Clinical recommendations are handled by your veterinarian.</p>
+      </article>
+    </div>
+
+    <div class="callout" id="emergency">
+      <strong>Emergency guidance</strong>
+      If your pet has trouble breathing, collapses, has uncontrolled bleeding, or may have ingested a toxin,
+      please call <a href="tel:+15553329056">(555) 332-9056</a> now. If you can’t reach us quickly, go to the nearest emergency veterinary hospital.
+    </div>
+  </section>
+
+  <section class="section banner">
+    <div class="split">
+      <div>
+        <h2 class="section__title">New here?</h2>
+        <p class="section__desc">We keep intake simple: your contact info, your pet’s basics, and what you’re noticing. Then we’ll guide you to the right visit type.</p>
+        <a class="btn btn--primary" href="new-patients.html">New Patient Guide</a>
+      </div>
+      <div>
+        <h2 class="section__title">Our promise</h2>
+        <ul class="list">
+          <li>We do not diagnose online—your pet’s exam comes first.</li>
+          <li>We give clear next steps and handle urgent routing fast.</li>
+          <li>We respect your time with straightforward communication.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section__title">What clients say</h2>
+    <p class="section__desc">Fictional testimonials for demo purposes.</p>
+    <div class="grid">
+      <article class="card">
+        <h3>“Calm and clear.”</h3>
+        <p class="muted">“They explained next steps in plain language and got us seen quickly.” — Jordan P.</p>
+      </article>
+      <article class="card">
+        <h3>“So gentle with our cat.”</h3>
+        <p class="muted">“The staff was patient and thorough—zero stress.” — Melissa R.</p>
+      </article>
+      <article class="card">
+        <h3>“Easy to reach.”</h3>
+        <p class="muted">“Calling was straightforward and we knew what to expect.” — Andre L.</p>
+      </article>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div>
+      <img class="footer__logo" src="assets/logo.svg" alt="Paws & Pines Veterinary Care logo" />
+      <p class="muted">Calm, modern care for dogs and cats.</p>
+      <div class="footer__cta">
+        <a class="btn btn--primary" href="tel:+15553329056">Call (555) 332-9056</a>
+        <a class="btn btn--ghost" href="contact.html#request">Request a Call</a>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="footer__title">Clinic</h3>
+      <ul class="footer__list">
+        <li><strong>Address:</strong> 1670 Pine Hollow Dr, Cedar Glen, CO 80433</li>
+        <li><strong>Phone:</strong> <a href="tel:+15553329056">(555) 332-9056</a></li>
+        <li><strong>Email:</strong> <a href="mailto:frontdesk@pawsandpinesvet.example">frontdesk@pawsandpinesvet.example</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="footer__title">Hours</h3>
+      <ul class="footer__list">
+        <li><strong>Mon–Fri:</strong> 8:00 AM – 6:00 PM</li><li><strong>Sat:</strong> 9:00 AM – 2:00 PM</li><li><strong>Sun:</strong> Closed</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="footer__title">Quick Links</h3>
+      <ul class="footer__list">
+        <li><a href="services.html">Services</a></li>
+        <li><a href="new-patients.html">New Patients</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p class="small">© 2026 Paws & Pines Veterinary Care. All content is fictional for demo purposes.</p>
+    <p class="small">
+      Accessibility-first design and clear calls-to-action are recommended best practices for veterinary websites.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

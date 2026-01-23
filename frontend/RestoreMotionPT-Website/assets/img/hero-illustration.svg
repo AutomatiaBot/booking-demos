@@ -1,0 +1,27 @@
+<svg width="720" height="520" viewBox="0 0 720 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Abstract motion illustration">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="60" x2="640" y2="460" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#74C7B8" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#1F5E6B" stop-opacity="0.35"/>
+    </linearGradient>
+    <linearGradient id="line" x1="140" y1="120" x2="610" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1B2A"/>
+      <stop offset="1" stop-color="#1F5E6B"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="28" y="28" width="664" height="464" rx="28" fill="rgba(255,255,255,0.70)" stroke="rgba(11,27,42,0.10)"/>
+  <path d="M120 360c40-110 90-160 160-150 60 9 84 72 132 92 70 30 128-20 206-142"
+        stroke="url(#line)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M118 362c50 60 112 92 186 98 100 8 168-28 254-108"
+        stroke="#74C7B8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+
+  <circle cx="280" cy="224" r="10" fill="#E7C39B"/>
+  <circle cx="412" cy="318" r="10" fill="#E7C39B"/>
+  <circle cx="566" cy="160" r="10" fill="#E7C39B"/>
+
+  <path d="M150 155c40-40 95-66 154-70 84-6 165 27 240 110"
+        stroke="url(#bg)" stroke-width="22" stroke-linecap="round" opacity="0.9"/>
+  <path d="M160 155c36-32 82-52 130-55 74-5 145 23 214 94"
+        stroke="rgba(255,255,255,0.75)" stroke-width="12" stroke-linecap="round" opacity="0.9"/>
+</svg>

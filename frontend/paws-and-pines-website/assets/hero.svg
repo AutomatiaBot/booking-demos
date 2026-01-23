@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="640" viewBox="0 0 900 640" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Calm veterinary care illustration">
+  <defs>
+    <radialGradient id="bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(520 240) rotate(120) scale(520 520)">
+      <stop stop-color="#D8F3DC"/>
+      <stop offset="1" stop-color="#F7F3E9"/>
+    </radialGradient>
+  </defs>
+  <rect x="0" y="0" width="900" height="640" rx="36" fill="url(#bg)"/>
+  <path d="M88 420c90-156 248-254 432-254 146 0 260 64 332 176 42 66 40 144-6 214-42 64-114 90-206 90H300c-138 0-224-54-250-128-10-28-8-63 38-98Z" fill="#95D5B2" opacity=".35"/>
+  <path d="M230 468c28-94 104-162 210-162 94 0 166 54 200 134 10 24 12 52-6 78-22 32-66 52-124 52H332c-70 0-118-22-134-54-10-18-8-32 32-48Z" fill="#2D6A4F" opacity=".18"/>
+  <!-- Abstract pet -->
+  <path d="M470 250c-62 0-110 48-110 110 0 46 26 86 66 102v60c0 18 14 32 32 32h54c18 0 32-14 32-32v-52c52-18 88-66 88-124 0-56-44-96-98-96h-64Z" fill="#1B4332" opacity=".92"/>
+  <path d="M444 316c10-18 34-34 58-34s46 14 56 32c10 18-6 42-34 44-18 2-26-10-44-10s-28 14-46 10c-26-6-38-26-30-42Z" fill="#F7F3E9" opacity=".95"/>
+  <circle cx="506" cy="356" r="8" fill="#0F172A" opacity=".75"/>
+  <circle cx="560" cy="356" r="8" fill="#0F172A" opacity=".75"/>
+  <path d="M536 390c-18 16-44 16-62 0" stroke="#0F172A" stroke-width="6" stroke-linecap="round" opacity=".55"/>
+  <!-- Abstract clinician -->
+  <path d="M244 444c0-64 52-116 116-116s116 52 116 116v88c0 24-20 44-44 44H288c-24 0-44-20-44-44v-88Z" fill="#F7F3E9"/>
+  <path d="M286 424c0-40 32-72 72-72s72 32 72 72v24c0 14-12 26-26 26h-92c-14 0-26-12-26-26v-24Z" fill="#D8F3DC"/>
+  <path d="M312 520c8-20 24-32 46-32s38 12 46 32" stroke="#2D6A4F" stroke-width="10" stroke-linecap="round" opacity=".55"/>
+  <path d="M360 468v-30" stroke="#2D6A4F" stroke-width="10" stroke-linecap="round" opacity=".55"/>
+  <path d="M345 446h30" stroke="#2D6A4F" stroke-width="10" stroke-linecap="round" opacity=".55"/>
+</svg>

@@ -124,3 +124,32 @@ functions:
     handler: get_activity_events
     events:
       - http: admin/activity/events
+
+  # ============================================
+  # Demo Management Endpoints
+  # ============================================
+
+  list_demos:
+    handler: list_demos
+    events:
+      - http: demos
+
+  create_demo:
+    handler: create_demo
+    events:
+      - http: admin/demos
+
+  update_demo:
+    handler: update_demo
+    events:
+      - http: admin/demos
+
+  delete_demo:
+    handler: delete_demo
+    events:
+      - http: admin/demos
+
+  reactivate_demo:
+    handler: reactivate_demo
+    events:
+      - http: admin/demos/reactivate
