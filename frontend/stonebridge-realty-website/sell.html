@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sell | Stonebridge Realty</title>
-  <meta name="description" content="We’ll help you request a CMA, build a simple prep checklist, and outline a marketing plan—then route you to an agent for a listing consult.">
+  <meta name="description" content="We'll help you request a CMA, build a simple prep checklist, and outline a marketing plan—then route you to an agent for a listing consult.">
   <meta name="theme-color" content="#0B1F2A">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,17 +31,25 @@
       </button>
 
       <div class="nav-links" id="navLinks" data-nav-links>
-        <a href="buy.html">Buy</a>
-        <a href="sell.html">Sell</a>
-        <a href="rent.html">Rent</a>
-        <a href="agents.html">Agents</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+        <a href="https://demo.automatia.bot" class="nav-portal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span data-i18n="nav_back_portal">Back to Portal</span>
+        </a>
+        <a href="buy.html" data-i18n="nav_buy">Buy</a>
+        <a href="sell.html" data-i18n="nav_sell">Sell</a>
+        <a href="rent.html" data-i18n="nav_rent">Rent</a>
+        <a href="agents.html" data-i18n="nav_agents">Agents</a>
+        <a href="about.html" data-i18n="nav_about">About</a>
+        <a href="contact.html" data-i18n="nav_contact">Contact</a>
+        <button class="lang-toggle" type="button" aria-label="Toggle language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="lang-text">ES</span>
+        </button>
       </div>
 
       <div class="nav-cta">
-        <span class="badge">Call: <a href="tel:+15557750193">(555) 775-0193</a></span>
-        <a class="btn primary" href="contact.html">Get matched</a>
+        <span class="badge"><span data-i18n="nav_call">Call:</span> <a href="tel:+15557750193">(555) 775-0193</a></span>
+        <a class="btn primary small" href="contact.html" data-i18n="nav_get_matched">Get matched</a>
       </div>
     </div>
   </div>
@@ -53,49 +61,69 @@
   <div class="container">
     <div class="hero-grid">
       <div class="hero-card">
-        <div class="kicker"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z" stroke="#0B1F2A" stroke-width="1.8" stroke-linejoin="round"/>
-</svg> Sell services</div>
-        <h1>Pricing and prep guidance that reduces surprises.</h1>
-        <p class="lede">We’ll help you request a CMA, build a simple prep checklist, and outline a marketing plan—then route you to an agent for a listing consult.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="contact.html">Request listing consult</a>
-          <a class="btn ghost" href="contact.html">Talk to the team</a>
+        <div class="kicker">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z" stroke="#0B1F2A" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+          <span data-i18n="sell_kicker">Sell services</span>
         </div>
-        <div class="note" style="margin-top: 16px;">
-          <strong>Quick note</strong>
-          We can outline the process and route you to an agent, but we don’t provide legal advice or guarantee outcomes online.
+        <h1 data-i18n="sell_h1">Pricing and prep guidance that reduces surprises.</h1>
+        <p class="lede" data-i18n="sell_lede">We'll help you request a CMA, build a simple prep checklist, and outline a marketing plan—then route you to an agent for a listing consult.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="contact.html" data-i18n="sell_cta_primary">Request listing consult</a>
+          <a class="btn ghost" href="contact.html" data-i18n="buy_cta_secondary">Talk to the team</a>
+        </div>
+        <div class="note" style="margin-top: 20px;">
+          <strong data-i18n="buy_note">Quick note</strong>
+          <span data-i18n="buy_note_desc">We can outline the process and route you to an agent, but we don't provide legal advice or guarantee outcomes online.</span>
         </div>
       </div>
 
       <aside class="panel">
-        <h2>What to expect</h2>
-        <p>Here’s what we typically cover in an initial conversation:</p>
+        <h2 data-i18n="sell_expect_title">What to expect</h2>
+        <p data-i18n="sell_expect_desc">Here's what we typically cover in an initial conversation:</p>
         <ul>
-          <li><strong>Property basics:</strong> address or closest cross-streets</li>
-<li><strong>Timing:</strong> when you hope to list</li>
-<li><strong>Occupancy:</strong> owner-occupied, tenant-occupied, or vacant</li>
-<li><strong>Condition:</strong> major upgrades or repairs</li>
-<li><strong>Next move:</strong> whether you’re buying after you sell</li>
+          <li><strong data-i18n="sell_property">Property basics:</strong> <span data-i18n="sell_property_desc">address or closest cross-streets</span></li>
+          <li><strong data-i18n="sell_timing">Timing:</strong> <span data-i18n="sell_timing_desc">when you hope to list</span></li>
+          <li><strong data-i18n="sell_occupancy">Occupancy:</strong> <span data-i18n="sell_occupancy_desc">owner-occupied, tenant-occupied, or vacant</span></li>
+          <li><strong data-i18n="sell_condition">Condition:</strong> <span data-i18n="sell_condition_desc">major upgrades or repairs</span></li>
+          <li><strong data-i18n="sell_next_move">Next move:</strong> <span data-i18n="sell_next_move_desc">whether you're buying after you sell</span></li>
         </ul>
       </aside>
     </div>
   </div>
 </section>
 
+<!-- Selling Benefits Section -->
+<section class="section section-mist">
+  <div class="container">
+    <div class="split-image reverse">
+      <div class="content">
+        <h2>Maximize Your Home's Value</h2>
+        <p>Our comprehensive CMA analysis ensures you price your property competitively. We'll walk you through recent comparable sales, market trends, and strategic pricing approaches.</p>
+        <p>From staging tips to curb appeal improvements, we provide a detailed prep checklist tailored to your timeline and budget.</p>
+        <a class="btn primary" href="contact.html">Get Your Free CMA</a>
+      </div>
+      <div class="image">
+        <img src="assets/img/agent-and-homeowner.png" alt="Agent consulting with homeowner">
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
-    <h2>Next steps</h2>
-    <p class="sub">If you’re ready to move, the fastest way is a quick call. If you’re exploring, the contact form works too.</p>
+    <h2 data-i18n="next_steps_title">Next steps</h2>
+    <p class="sub" data-i18n="next_steps_desc">If you're ready to move, the fastest way is a quick call. If you're exploring, the contact form works too.</p>
     <div class="split">
       <div class="panel">
-        <h2>Call for priority routing</h2>
-        <p>Time-sensitive timeline (offer deadlines, lease ending, relocation)? Call us and we’ll prioritize your request.</p>
+        <h2 data-i18n="next_steps_call_title">Call for priority routing</h2>
+        <p data-i18n="next_steps_call_desc">Time-sensitive timeline (offer deadlines, lease ending, relocation)? Call us and we'll prioritize your request.</p>
         <a class="btn primary" href="tel:+15557750193">Call (555) 775-0193</a>
       </div>
       <div class="panel">
-        <h2>Prefer email?</h2>
-        <p>Send a short note with your timeline and criteria, and we’ll follow up.</p>
+        <h2 data-i18n="next_steps_email_title">Prefer email?</h2>
+        <p data-i18n="next_steps_email_desc">Send a short note with your timeline and criteria, and we'll follow up.</p>
         <a class="btn" href="mailto:team@stonebridgerealty.example">Email team@stonebridgerealty.example</a>
       </div>
     </div>
@@ -108,68 +136,45 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <img src="assets/img/logo.svg" alt="Stonebridge Realty Group" style="width: 260px; height: auto; background: rgba(255,255,255,0.06); padding: 10px 12px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.10);">
-        <p style="margin: 12px 0 0;">Buying, selling, and relocating—without the chaos.</p>
-        <p style="margin: 10px 0 0; font-size: 13px; color: rgba(255,255,255,0.78);">Service area: Easton Harbor & surrounding communities</p>
+        <img src="assets/img/logo.svg" alt="Stonebridge Realty Group" style="width: 260px; height: auto; background: rgba(255,255,255,0.95); padding: 12px 14px; border-radius: 16px;">
+        <p style="margin: 16px 0 0;" data-i18n="footer_tagline">Buying, selling, and relocating—without the chaos.</p>
+        <p style="margin: 10px 0 0; font-size: 13px; color: rgba(255,255,255,0.70);" data-i18n="footer_service_area">Service area: Easton Harbor & surrounding communities</p>
       </div>
 
       <div>
-        <h3 style="margin: 0 0 8px; font-size: 14px; letter-spacing: 0.2px;">Office</h3>
-        <p style="margin: 0 0 8px;">2950 Marketway Plaza, Suite 110, Easton Harbor, WA 98118</p>
-        <p style="margin: 0 0 8px;">Phone: <a href="tel:+15557750193">(555) 775-0193</a><br>Email: <a href="mailto:team@stonebridgerealty.example">team@stonebridgerealty.example</a></p>
-        <ul><li><strong>Monday–Friday:</strong> 9:00 AM – 6:00 PM</li>
-<li><strong>Saturday:</strong> 10:00 AM – 3:00 PM</li>
-<li><strong>Sunday:</strong> By appointment</li></ul>
-      </div>
-
-      <div>
-        <h3 style="margin: 0 0 8px; font-size: 14px; letter-spacing: 0.2px;">Important</h3>
+        <h3 data-i18n="footer_office">Office</h3>
+        <p style="margin: 0 0 10px;">2950 Marketway Plaza, Suite 110, Easton Harbor, WA 98118</p>
+        <p style="margin: 0 0 10px;">Phone: <a href="tel:+15557750193">(555) 775-0193</a><br>Email: <a href="mailto:team@stonebridgerealty.example">team@stonebridgerealty.example</a></p>
         <ul>
-          <li><a href="disclosures.html">Wire fraud & safety</a></li>
-          <li><a href="disclosures.html#fair-housing">Fair housing commitment</a></li>
-          <li><a href="privacy.html">Privacy policy (demo)</a></li>
+          <li><strong>Monday–Friday:</strong> 9:00 AM – 6:00 PM</li>
+          <li><strong>Saturday:</strong> 10:00 AM – 3:00 PM</li>
+          <li><strong>Sunday:</strong> By appointment</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 data-i18n="footer_important">Important</h3>
+        <ul>
+          <li><a href="disclosures.html" data-i18n="footer_wire_fraud">Wire fraud & safety</a></li>
+          <li><a href="disclosures.html#fair-housing" data-i18n="footer_fair_housing">Fair housing commitment</a></li>
+          <li><a href="privacy.html" data-i18n="footer_privacy">Privacy policy (demo)</a></li>
         </ul>
 
-        <div class="footer-badges" style="margin-top: 12px;">
-          <div class="footer-badge">Equal Housing Opportunity</div>
-          <div class="footer-badge">Secure callbacks for wires</div>
+        <div class="footer-badges">
+          <div class="footer-badge" data-i18n="footer_equal_housing">Equal Housing Opportunity</div>
+          <div class="footer-badge" data-i18n="footer_secure">Secure callbacks for wires</div>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <div>© 2026 Stonebridge Realty Group — Demo site content only.</div>
-      <div>Built for chatbot + lead capture demos.</div>
+      <div data-i18n="footer_copyright">© 2026 Stonebridge Realty Group — Demo site content only.</div>
+      <div data-i18n="footer_demo">Built for chatbot + lead capture demos.</div>
     </div>
   </div>
 </footer>
 
-<button class="btn primary chat-fab" data-chat-open type="button" aria-haspopup="dialog" aria-controls="chatModal">
-  Chat with Mia
-</button>
-
-<div class="modal" id="chatModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Chat demo">
-  <div class="modal-card">
-    <div class="modal-head">
-      <h3>Chat demo placeholder</h3>
-      <button class="btn" type="button" data-chat-close>Close</button>
-    </div>
-    <div class="modal-body">
-      <p style="margin: 0 0 10px;">
-        This site is wired for an embedded chatbot. Replace this modal with your widget script (or iframe) when deploying.
-      </p>
-      <div class="note">
-        <strong>Recommended behavior</strong>
-        Capture: name + phone (required), email (optional). Ask whether they’re buying/selling/renting, timeline, and key criteria. Route scheduling to (555) 775-0193 / team@stonebridgerealty.example.
-      </div>
-    </div>
-    <div class="modal-actions">
-      <a class="btn primary" href="contact.html">Contact the team</a>
-      <button class="btn ghost" type="button" data-chat-close>Done</button>
-    </div>
-  </div>
-</div>
-
+<script src="assets/js/translations.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

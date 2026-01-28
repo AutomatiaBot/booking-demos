@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,10 +15,10 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- LocalBusiness Schema (replace identifiers as needed) -->
+  <!-- LocalBusiness Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -50,33 +50,62 @@
     <div class="container">
       <div class="header-inner">
         <a class="brand" href="#top" aria-label="ClearView home">
-          <img src="assets/logo.svg" alt="ClearView Vision & Eye Care" />
+          <svg class="logo" width="160" height="36" viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ClearView">
+            <defs>
+              <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0EA5A8"/>
+                <stop offset="100%" stop-color="#1D4ED8"/>
+              </linearGradient>
+            </defs>
+            <path d="M4 18C10 8 16 4 22 4C28 4 34 8 40 18C34 28 28 32 22 32C16 32 10 28 4 18Z" fill="url(#logoGrad)"/>
+            <circle cx="22" cy="18" r="7" fill="white"/>
+            <circle cx="22" cy="18" r="4" fill="#0B1220"/>
+            <ellipse cx="24" cy="16" rx="1.5" ry="1.5" fill="white" fill-opacity="0.7"/>
+            <text x="50" y="24" font-family="Poppins, system-ui, sans-serif" font-size="18" font-weight="700" fill="#0B1220">Clear</text>
+            <text x="97" y="24" font-family="Poppins, system-ui, sans-serif" font-size="18" font-weight="700" fill="url(#logoGrad)">View</text>
+          </svg>
         </a>
 
         <nav class="nav" aria-label="Primary">
-          <a href="#services">Services</a>
-          <a href="#why">Why ClearView</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contact">Contact</a>
-          <a class="cta" href="tel:+15552037811" aria-label="Call ClearView">
-            <span>Call</span>
-            <span style="opacity:.92">(555) 203-7811</span>
+          <a href="#services" data-i18n="nav.services">Services</a>
+          <a href="#why" data-i18n="nav.why">Why ClearView</a>
+          <a href="#faq" data-i18n="nav.faq">FAQ</a>
+          <a href="#contact" data-i18n="nav.contact">Contact</a>
+          <button class="lang-toggle" type="button" aria-label="Change language" data-lang-toggle>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="lang-code" data-lang-label>ES</span>
+          </button>
+          <a class="btn-demo" href="https://demo.automatia.bot/">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12l6 6M5 12l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="nav.demo">Demo Portal</span>
+          </a>
+          <a class="cta" href="tel:+15552037811" data-i18n="nav.call">
+            Call (555) 203-7811
           </a>
         </nav>
 
-        <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" data-burger>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 7h16M4 12h16M4 17h16" stroke="rgba(11,18,32,.85)" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </button>
+        <div class="header-actions">
+          <button class="lang-toggle mobile-lang" type="button" aria-label="Change language" data-lang-toggle>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="lang-code" data-lang-label>ES</span>
+          </button>
+          <a class="btn-demo mobile-demo" href="https://demo.automatia.bot/">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12l6 6M5 12l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" data-burger>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
       </div>
 
       <div class="mobile-nav" data-mobile-nav>
-        <a href="#services">Services</a>
-        <a href="#why">Why ClearView</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
-        <a class="cta" href="tel:+15552037811">Call (555) 203-7811</a>
+        <a href="#services" data-i18n="nav.services">Services</a>
+        <a href="#why" data-i18n="nav.why">Why ClearView</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+        <a class="cta" href="tel:+15552037811" data-i18n="nav.call">Call (555) 203-7811</a>
       </div>
     </div>
   </header>
@@ -86,62 +115,31 @@
     <section class="hero" id="top">
       <div class="container">
         <div class="hero-grid">
-          <div>
-            <div class="kicker">
-              <span class="dot" aria-hidden="true"></span>
-              <span>Modern eye care • Clear, friendly, efficient</span>
-            </div>
-
-            <h1>Eye exams, contacts, and dry eye help—without the runaround.</h1>
-            <p class="lede">From comprehensive exams to contact lens fittings and pediatric visits, ClearView helps you see comfortably and confidently. For scheduling, call us—our team will take it from there.</p>
+          <div class="hero-content fade-in">
+            <span class="kicker" data-i18n="hero.kicker">Modern eye care in Mesa Ridge</span>
+            <h1 data-i18n="hero.title">Eye exams, contacts, and dry eye help—without the runaround.</h1>
+            <p class="lede" data-i18n="hero.subtitle">From comprehensive exams to contact lens fittings and pediatric visits, ClearView helps you see comfortably and confidently.</p>
 
             <div class="hero-actions">
-              <a class="btn primary" href="tel:+15552037811">Call to Schedule</a>
-              <a class="btn" href="#contact">Request a Call Back</a>
-              <a class="btn" href="#chatbot">Chat With Ava</a>
+              <a class="btn primary" href="tel:+15552037811" data-i18n="hero.cta1">Call to Schedule</a>
+              <a class="btn secondary" href="#contact" data-i18n="hero.cta2">Request a Call Back</a>
             </div>
 
-            <p class="small-note">Urgent symptoms (injury, sudden vision changes, flashes/floaters)? Call immediately. If severe, seek urgent care/ER.</p>
+            <div class="hero-info">
+              <div class="info-item">
+                <span class="info-label" data-i18n="hero.locationLabel">Location</span>
+                <span class="info-value" data-i18n="hero.locationValue">2147 Willow Park Blvd, Suite 210</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label" data-i18n="hero.hoursLabel">Hours</span>
+                <span class="info-value" data-i18n="hero.hoursValue">Mon–Fri 9–6 · Sat 9–2</span>
+              </div>
+            </div>
           </div>
 
-          <aside class="hero-card" aria-label="Quick info">
-            <div class="card-top">
-              <div>
-                <div class="badge">
-                  <span aria-hidden="true">●</span>
-                  <span>Same-week visits when available</span>
-                </div>
-                <div style="margin-top:10px; font-weight:900; font-size:16px;">Mesa Ridge, CA</div>
-                <div style="color:rgba(11,18,32,.70); font-weight:700; font-size:13px;">2147 Willow Park Blvd, Suite 210</div>
-              </div>
-              <div style="text-align:right;">
-                <div style="font-weight:900;">Hours</div>
-                <div style="color:rgba(11,18,32,.70); font-weight:700; font-size:13px;">Mon–Fri 9–6</div>
-                <div style="color:rgba(11,18,32,.70); font-weight:700; font-size:13px;">Sat 9–2</div>
-              </div>
-            </div>
-
-            <ul>
-              <li>
-                <span class="icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none"><path d="M4 12c2.5-4.5 6-7 8-7s5.5 2.5 8 7c-2.5 4.5-6 7-8 7s-5.5-2.5-8-7Z" stroke="rgba(11,18,32,.85)" stroke-width="2"/><circle cx="12" cy="12" r="2.5" fill="rgba(11,18,32,.85)"/></svg>
-                </span>
-                <span><b>Comprehensive eye exams</b><br><span style="font-weight:600; color:rgba(11,18,32,.68)">Adults, seniors, and kids</span></span>
-              </li>
-              <li>
-                <span class="icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none"><path d="M7 8h10M7 12h10M7 16h6" stroke="rgba(11,18,32,.85)" stroke-width="2" stroke-linecap="round"/></svg>
-                </span>
-                <span><b>Contacts & fittings</b><br><span style="font-weight:600; color:rgba(11,18,32,.68)">Daily, monthly, toric, multifocal</span></span>
-              </li>
-              <li>
-                <span class="icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 3s6 5 6 10a6 6 0 1 1-12 0c0-5 6-10 6-10Z" stroke="rgba(11,18,32,.85)" stroke-width="2"/><path d="M9.5 14.5c1 1.2 2.2 1.8 3.6 1.8" stroke="rgba(11,18,32,.85)" stroke-width="2" stroke-linecap="round"/></svg>
-                </span>
-                <span><b>Dry eye support</b><br><span style="font-weight:600; color:rgba(11,18,32,.68)">Evaluation + in-office options</span></span>
-              </li>
-            </ul>
-          </aside>
+          <div class="hero-image fade-in delay-1">
+            <img src="assets/optometrist.png" alt="Optometrist providing eye care" data-i18n-alt="hero.imgAlt" />
+          </div>
         </div>
       </div>
     </section>
@@ -150,303 +148,560 @@
     <section class="section" id="services">
       <div class="container">
         <div class="section-head">
-          <h2>Services built around your day-to-day vision needs</h2>
-          <p>ClearView focuses on high-clarity exams, practical recommendations, and smooth follow-up. For final clinical decisions, our providers will guide you during your visit.</p>
+          <span class="section-label" data-i18n="services.label">Our Services</span>
+          <h2 data-i18n="services.title">Care built around your vision needs</h2>
+          <p data-i18n="services.subtitle">High-clarity exams, practical recommendations, and smooth follow-up.</p>
         </div>
 
-        <div class="grid-3" role="list">
-          <article class="card" role="listitem">
-            <div class="pill">Comprehensive Exams</div>
-            <h3>Adult & senior eye exams</h3>
-            <p>Routine checkups, prescription updates, and screenings to support long-term eye health.</p>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 12c2.5-4.5 6-7 8-7s5.5 2.5 8 7c-2.5 4.5-6 7-8 7s-5.5-2.5-8-7Z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/></svg>
+            </div>
+            <h3 data-i18n="services.exam.title">Comprehensive Exams</h3>
+            <p data-i18n="services.exam.desc">Routine checkups, prescription updates, and screenings for adults and seniors.</p>
           </article>
 
-          <article class="card" role="listitem">
-            <div class="pill">Contact Lenses</div>
-            <h3>Fittings & comfort checks</h3>
-            <p>We fit daily, monthly, toric, and multifocal lenses and help troubleshoot comfort and clarity.</p>
+          <article class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <h3 data-i18n="services.contacts.title">Contact Lenses</h3>
+            <p data-i18n="services.contacts.desc">Fittings for daily, monthly, toric, and multifocal lenses with comfort checks.</p>
           </article>
 
-          <article class="card" role="listitem">
-            <div class="pill">Dry Eye</div>
-            <h3>Evaluation & in-office options</h3>
-            <p>For burning, gritty sensation, tearing, or redness—get a plan tailored to your needs.</p>
+          <article class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3s6 5 6 10a6 6 0 1 1-12 0c0-5 6-10 6-10Z" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <h3 data-i18n="services.dryeye.title">Dry Eye Support</h3>
+            <p data-i18n="services.dryeye.desc">Evaluation and in-office treatment options for burning, gritty, or teary eyes.</p>
           </article>
 
-          <article class="card" role="listitem">
-            <div class="pill">Pediatrics</div>
-            <h3>Kids’ vision exams</h3>
-            <p>Age-appropriate testing and guidance for school focus, squinting, headaches, and more.</p>
+          <article class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 4a5 5 0 0 1 5 5v2a5 5 0 0 1-10 0V9a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="1.5"/><path d="M8 20h8M12 16v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <h3 data-i18n="services.pediatric.title">Pediatric Exams</h3>
+            <p data-i18n="services.pediatric.desc">Age-appropriate testing for kids—addressing squinting, headaches, and focus.</p>
           </article>
 
-          <article class="card" role="listitem">
-            <div class="pill">Screenings</div>
-            <h3>Diabetic eye screenings</h3>
-            <p>Non-emergency screening support and referral guidance when additional care is needed.</p>
+          <article class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <h3 data-i18n="services.diabetic.title">Diabetic Screenings</h3>
+            <p data-i18n="services.diabetic.desc">Non-emergency screening support and referral guidance when needed.</p>
           </article>
 
-          <article class="card" role="listitem">
-            <div class="pill">Glasses Guidance</div>
-            <h3>Frames & lens options</h3>
-            <p>Practical recommendations based on work, driving, screen time, and lifestyle needs.</p>
+          <article class="service-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <h3 data-i18n="services.glasses.title">Glasses Guidance</h3>
+            <p data-i18n="services.glasses.desc">Practical frame and lens recommendations for your lifestyle.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- WHY -->
-    <section class="section alt" id="why">
+    <!-- WHY CLEARVIEW -->
+    <section class="section section-alt" id="why">
       <div class="container">
-        <div class="section-head">
-          <h2>Why patients choose ClearView</h2>
-          <p>We prioritize clarity, comfort, and communication. You’ll get straightforward next steps and a team that respects your time.</p>
-        </div>
-
-        <div class="split">
-          <div class="card">
-            <h3>What you can expect</h3>
-            <ul class="list">
-              <li><b>Clear explanations:</b> what we’re checking, and why it matters.</li>
-              <li><b>Comfort-first approach:</b> especially for contact lens wearers and dry eye concerns.</li>
-              <li><b>Efficient visits:</b> streamlined intake and thoughtful follow-up.</li>
-              <li><b>Practical recommendations:</b> aligned with your day-to-day work and activities.</li>
+        <div class="why-grid">
+          <div class="why-content">
+            <span class="section-label" data-i18n="why.label">Why ClearView</span>
+            <h2 data-i18n="why.title">Clarity, comfort, and communication</h2>
+            <p class="why-intro" data-i18n="why.intro">We prioritize straightforward explanations, comfort-first care, and efficient visits that respect your time.</p>
+            
+            <ul class="why-list">
+              <li>
+                <span class="check-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span data-i18n="why.item1">Clear explanations of what we're checking and why</span>
+              </li>
+              <li>
+                <span class="check-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span data-i18n="why.item2">Comfort-first approach for contacts and dry eye</span>
+              </li>
+              <li>
+                <span class="check-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span data-i18n="why.item3">Efficient visits with streamlined intake</span>
+              </li>
+              <li>
+                <span class="check-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span data-i18n="why.item4">Recommendations aligned with your daily activities</span>
+              </li>
             </ul>
           </div>
 
-          <div class="card">
-            <h3>When to call urgently</h3>
-            <p style="margin:0 0 10px; color:rgba(11,18,32,.72)">If you have any of these symptoms, call us right away:</p>
-            <ul class="list">
-              <li>Sudden vision loss or major sudden vision changes</li>
-              <li>Eye injury/trauma or chemical exposure</li>
-              <li>Severe eye pain or severe redness</li>
-              <li>Flashes, sudden floaters, or a curtain/shadow over vision</li>
-            </ul>
-            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-              <a class="btn primary" href="tel:+15552037811">Call (555) 203-7811</a>
-              <a class="btn" href="#contact">Request a Call Back</a>
-            </div>
+          <div class="why-image">
+            <img src="assets/couple.png" alt="Happy couple with clear vision" data-i18n-alt="why.imgAlt" />
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CHATBOT -->
-    <section class="section" id="chatbot">
+    <!-- FAMILY CARE -->
+    <section class="section">
       <div class="container">
-        <div class="section-head">
-          <h2>Meet Ava, our virtual assistant</h2>
-          <p>Ava can answer common service questions, help you choose the right visit type, and capture your contact info so our team can follow up. Ava does not provide medical advice or diagnosis.</p>
+        <div class="family-grid">
+          <div class="family-image">
+            <img src="assets/family.png" alt="Family enjoying clear vision together" data-i18n-alt="family.imgAlt" />
+          </div>
+
+          <div class="family-content">
+            <span class="section-label" data-i18n="family.label">Family Care</span>
+            <h2 data-i18n="family.title">Eye care for every age</h2>
+            <p data-i18n="family.desc">From your child's first eye exam to senior care, ClearView provides comprehensive vision services for your whole family.</p>
+            
+            <div class="family-features">
+              <div class="feature">
+                <strong data-i18n="family.pediatric.title">Pediatric</strong>
+                <span data-i18n="family.pediatric.desc">School-ready vision testing</span>
+              </div>
+              <div class="feature">
+                <strong data-i18n="family.adults.title">Adults</strong>
+                <span data-i18n="family.adults.desc">Routine exams & contacts</span>
+              </div>
+              <div class="feature">
+                <strong data-i18n="family.seniors.title">Seniors</strong>
+                <span data-i18n="family.seniors.desc">Age-related screenings</span>
+              </div>
+            </div>
+
+            <a class="btn primary" href="tel:+15552037811" data-i18n="family.cta">Schedule a Family Visit</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section section-alt" id="testimonials">
+      <div class="container">
+        <div class="section-head centered">
+          <span class="section-label" data-i18n="testimonials.label">Patient Reviews</span>
+          <h2 data-i18n="testimonials.title">What our patients say</h2>
+          <p data-i18n="testimonials.subtitle">Real experiences from real patients who trust ClearView with their vision care.</p>
         </div>
 
-        <div class="split">
-          <div class="card">
-            <h3>What Ava can do</h3>
-            <ul class="list">
-              <li>Help you choose: exam, contacts, dry eye, or pediatric visit</li>
-              <li>Ask quick routing questions (urgent vs routine)</li>
-              <li>Collect name + phone (email optional)</li>
-              <li>Direct scheduling to our office phone/email</li>
-              <li>Block spam, phishing, and suspicious messages</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>Chat embed area</h3>
-            <p style="margin:0 0 10px; color:rgba(11,18,32,.72)">Replace this placeholder with your chatbot widget script or iframe.</p>
-            <div style="border:1px dashed rgba(11,18,32,.18); border-radius:16px; padding:16px;">
-              <code style="display:block; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size:12px; color:rgba(11,18,32,.78);">
-&lt;!-- Paste chatbot embed here --&gt;<br/>
-&lt;script src="YOUR_WIDGET.js"&gt;&lt;/script&gt;
-              </code>
+        <div class="testimonials-grid">
+          <article class="testimonial-card" data-aos="fade-up">
+            <div class="testimonial-stars">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
             </div>
-          </div>
+            <p class="testimonial-text" data-i18n="testimonials.r1.text">"Dr. Chen took the time to explain every step of my exam. My new contacts are more comfortable than any I've worn before. Highly recommend!"</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">MR</div>
+              <div class="testimonial-info">
+                <strong data-i18n="testimonials.r1.name">Maria Rodriguez</strong>
+                <span data-i18n="testimonials.r1.service">Contact Lens Fitting</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="testimonial-stars">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            </div>
+            <p class="testimonial-text" data-i18n="testimonials.r2.text">"Finally found relief for my dry eyes! The team was thorough and caring. Three months into treatment and I can work on my computer without constant discomfort."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">JT</div>
+              <div class="testimonial-info">
+                <strong data-i18n="testimonials.r2.name">James Thompson</strong>
+                <span data-i18n="testimonials.r2.service">Dry Eye Treatment</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="testimonial-stars">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            </div>
+            <p class="testimonial-text" data-i18n="testimonials.r3.text">"Brought my 7-year-old for her first eye exam. The staff was so patient and made her feel comfortable. Now she's excited to wear her new glasses to school!"</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">SL</div>
+              <div class="testimonial-info">
+                <strong data-i18n="testimonials.r3.name">Sarah Lin</strong>
+                <span data-i18n="testimonials.r3.service">Pediatric Eye Exam</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="testimonial-stars">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            </div>
+            <p class="testimonial-text" data-i18n="testimonials.r4.text">"As a diabetic, regular eye exams are crucial. ClearView caught early signs of retinopathy and coordinated with my doctor immediately. They may have saved my vision."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">RP</div>
+              <div class="testimonial-info">
+                <strong data-i18n="testimonials.r4.name">Robert Patel</strong>
+                <span data-i18n="testimonials.r4.service">Diabetic Eye Screening</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="testimonial-stars">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            </div>
+            <p class="testimonial-text" data-i18n="testimonials.r5.text">"Quick, professional, and no unnecessary upselling. Got my annual exam done in under an hour and the new prescription is perfect. Will definitely be back."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">EW</div>
+              <div class="testimonial-info">
+                <strong data-i18n="testimonials.r5.name">Emily Watson</strong>
+                <span data-i18n="testimonials.r5.service">Comprehensive Exam</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="testimonial-stars">
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+            </div>
+            <p class="testimonial-text" data-i18n="testimonials.r6.text">"The whole family comes here now—from my 10-year-old to my 75-year-old mother. They handle all our different needs with the same level of care and expertise."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">DM</div>
+              <div class="testimonial-info">
+                <strong data-i18n="testimonials.r6.name">David Martinez</strong>
+                <span data-i18n="testimonials.r6.service">Family Eye Care</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="testimonials-cta">
+          <a class="btn primary" href="#contact" data-i18n="testimonials.cta">Join Our Happy Patients</a>
         </div>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="section alt" id="faq">
+    <section class="section faq-section" id="faq">
       <div class="container">
-        <div class="section-head">
-          <h2>Frequently asked questions</h2>
-          <p>If you don’t see your question here, call us and we’ll help you pick the right next step.</p>
-        </div>
+        <div class="faq-layout">
+          <div class="faq-header">
+            <span class="section-label" data-i18n="faq.label">FAQ</span>
+            <h2 data-i18n="faq.title">Frequently Asked Questions</h2>
+            <p data-i18n="faq.subtitle">Everything you need to know about our eye care services. Can't find what you're looking for? Give us a call.</p>
+            <a class="btn primary" href="tel:+15552037811" data-i18n="faq.cta">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 4 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/></svg>
+              Call (555) 203-7811
+            </a>
+          </div>
 
-        <div class="faq">
-          <details>
-            <summary>Do I need an exam to get contact lenses?</summary>
-            <p>Yes—contact lenses require a current contact lens exam and fitting. Please call (555) 203-7811 and we’ll guide you.</p>
-          </details>
+          <div class="faq-content">
+            <div class="faq-item" data-faq>
+              <button class="faq-question" type="button" aria-expanded="false">
+                <div class="faq-icon">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <span data-i18n="faq.q1.question">Do I need an exam to get contact lenses?</span>
+                <div class="faq-toggle">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.q1.answer">Yes—contact lenses require a current contact lens exam and fitting. This ensures proper fit, comfort, and eye health. The exam includes measuring your cornea, evaluating tear film quality, and determining the best lens type for your lifestyle. Call (555) 203-7811 and we'll guide you through the process.</p>
+              </div>
+            </div>
 
-          <details>
-            <summary>I have dry, burning, or gritty eyes—what should I do?</summary>
-            <p>Dry eye symptoms vary by person. We recommend an evaluation so we can understand what’s driving your symptoms and discuss in-office options.</p>
-          </details>
+            <div class="faq-item" data-faq>
+              <button class="faq-question" type="button" aria-expanded="false">
+                <div class="faq-icon">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 3s6 5 6 10a6 6 0 1 1-12 0c0-5 6-10 6-10Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <span data-i18n="faq.q2.question">I have dry, burning, or gritty eyes—what should I do?</span>
+                <div class="faq-toggle">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.q2.answer">Dry eye symptoms vary by person and can have multiple causes including screen time, medications, environmental factors, or underlying conditions. We recommend a comprehensive dry eye evaluation so we can understand what's driving your specific symptoms and create a personalized treatment plan. Options may include prescription drops, lifestyle changes, or in-office treatments.</p>
+              </div>
+            </div>
 
-          <details>
-            <summary>Do you see children?</summary>
-            <p>Yes. We offer pediatric eye exams and age-appropriate testing. Call us and we’ll help determine the best visit type.</p>
-          </details>
+            <div class="faq-item" data-faq>
+              <button class="faq-question" type="button" aria-expanded="false">
+                <div class="faq-icon">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 4a5 5 0 0 1 5 5v2a5 5 0 0 1-10 0V9a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="1.5"/><path d="M8 20h8M12 16v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <span data-i18n="faq.q3.question">Do you see children? At what age should kids get their first eye exam?</span>
+                <div class="faq-toggle">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.q3.answer">Yes! We offer pediatric eye exams with age-appropriate testing techniques. The American Optometric Association recommends children have their first comprehensive eye exam at 6 months, again at age 3, and before starting school. Regular exams help catch vision problems early—important since 80% of learning is visual. Call us to schedule an appointment for your child.</p>
+              </div>
+            </div>
 
-          <details>
-            <summary>Is this an emergency?</summary>
-            <p>If you have sudden vision changes, injury/chemical exposure, severe pain, or flashes/floaters, call us immediately. If severe and you can’t reach us, seek urgent care/ER.</p>
-          </details>
+            <div class="faq-item" data-faq>
+              <button class="faq-question" type="button" aria-expanded="false">
+                <div class="faq-icon">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 17h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <span data-i18n="faq.q4.question">Is this an emergency? When should I seek urgent care?</span>
+                <div class="faq-toggle">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.q4.answer">Seek immediate care for: sudden vision loss or changes, eye injuries or chemical exposure, severe eye pain, sudden onset of flashes, floaters, or a "curtain" over your vision, or red eye with pain and vision changes. Call us immediately at (555) 203-7811. If symptoms are severe and you can't reach us, go to the nearest emergency room. For non-urgent concerns, schedule a regular appointment.</p>
+              </div>
+            </div>
 
-          <details>
-            <summary>How much does an eye exam cost?</summary>
-            <p>Costs depend on the exam type and your needs. For a personalized estimate, please call (555) 203-7811 or email hello@clearviewvision.example.</p>
-          </details>
+            <div class="faq-item" data-faq>
+              <button class="faq-question" type="button" aria-expanded="false">
+                <div class="faq-icon">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <span data-i18n="faq.q5.question">How much does an eye exam cost? Do you accept insurance?</span>
+                <div class="faq-toggle">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.q5.answer">Exam costs depend on the type of exam and your specific needs. We accept most major vision insurance plans and can verify your benefits before your appointment. For patients without insurance, we offer competitive self-pay rates and can discuss payment options. Call (555) 203-7811 for a personalized estimate based on your needs and insurance coverage.</p>
+              </div>
+            </div>
+
+            <div class="faq-item" data-faq>
+              <button class="faq-question" type="button" aria-expanded="false">
+                <div class="faq-icon">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <span data-i18n="faq.q6.question">How often should I get an eye exam?</span>
+                <div class="faq-toggle">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+              </button>
+              <div class="faq-answer">
+                <p data-i18n="faq.q6.answer">For healthy adults ages 18-64, we recommend a comprehensive eye exam every 1-2 years. Adults 65+ should have annual exams due to higher risk of age-related conditions. If you have diabetes, high blood pressure, a family history of eye disease, or wear contacts, more frequent exams may be recommended. Children should be examined annually during school years.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section class="section" id="contact">
+    <section class="section section-alt" id="contact">
       <div class="container">
-        <div class="section-head">
-          <h2>Contact & location</h2>
-          <p>We don’t schedule online in this demo. Call us for appointments, or request a call back below and our team will follow up.</p>
+        <div class="section-head centered">
+          <span class="section-label" data-i18n="contact.label">Get in Touch</span>
+          <h2 data-i18n="contact.title">Contact & location</h2>
+          <p data-i18n="contact.subtitle">Call us for appointments, or request a call back below.</p>
         </div>
 
         <div class="contact-grid">
-          <div class="card">
+          <div class="contact-form-card">
+            <h3 data-i18n="contact.form.title">Request a call back</h3>
             <form class="form" data-lead-form>
-              <div class="notice">
-                <b>Privacy notice:</b> Before we proceed, please note that by providing your information, you agree to our Privacy Policy in accordance with regulations. https://www.clearviewvision.example/privacy
+              <div class="form-notice" data-i18n="contact.form.notice">
+                By submitting, you agree to our <a href="privacy.html">Privacy Policy</a>.
               </div>
 
-              <div>
-                <label for="name">Your name</label>
-                <input id="name" name="name" autocomplete="name" placeholder="e.g., Jordan Rivera" required />
+              <div class="form-group">
+                <label for="name" data-i18n="contact.form.name">Your name</label>
+                <input id="name" name="name" autocomplete="name" placeholder="Jordan Rivera" data-i18n-placeholder="contact.form.namePlaceholder" required />
               </div>
 
-              <div>
-                <label for="phone">Phone number</label>
-                <input id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="e.g., (555) 123-4567" required />
-                <div class="help">Please enter at least 10 digits.</div>
+              <div class="form-group">
+                <label for="phone" data-i18n="contact.form.phone">Phone number</label>
+                <input id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="(555) 123-4567" required />
               </div>
 
-              <div>
-                <label for="email">Email (optional)</label>
-                <input id="email" name="email" autocomplete="email" placeholder="e.g., jordan@email.com" />
+              <div class="form-group">
+                <label for="email" data-i18n="contact.form.email">Email (optional)</label>
+                <input id="email" name="email" autocomplete="email" placeholder="jordan@email.com" />
               </div>
 
-              <div>
-                <label for="reason">What do you need help with?</label>
+              <div class="form-group">
+                <label for="reason" data-i18n="contact.form.reason">What do you need help with?</label>
                 <select id="reason" name="reason" required>
-                  <option value="" selected disabled>Select one</option>
-                  <option>Comprehensive eye exam</option>
-                  <option>Contact lens exam & fitting</option>
-                  <option>Dry eye evaluation</option>
-                  <option>Pediatric eye exam</option>
-                  <option>Diabetic eye screening (non-emergency)</option>
-                  <option>General question</option>
+                  <option value="" selected disabled data-i18n="contact.form.selectOne">Select one</option>
+                  <option value="comprehensive" data-i18n="contact.form.opt1">Comprehensive eye exam</option>
+                  <option value="contacts" data-i18n="contact.form.opt2">Contact lens exam & fitting</option>
+                  <option value="dryeye" data-i18n="contact.form.opt3">Dry eye evaluation</option>
+                  <option value="pediatric" data-i18n="contact.form.opt4">Pediatric eye exam</option>
+                  <option value="diabetic" data-i18n="contact.form.opt5">Diabetic eye screening</option>
+                  <option value="general" data-i18n="contact.form.opt6">General question</option>
                 </select>
               </div>
 
-              <div>
-                <label for="message">Notes (optional)</label>
-                <textarea id="message" name="message" placeholder="Share any context (avoid sensitive medical details)."></textarea>
-                <div class="help">If you have urgent symptoms, call the office or seek immediate care.</div>
+              <div class="form-group">
+                <label for="message" data-i18n="contact.form.notes">Notes (optional)</label>
+                <textarea id="message" name="message" placeholder="Any additional context..." data-i18n-placeholder="contact.form.notesPlaceholder"></textarea>
               </div>
 
-              <button class="btn primary" type="submit">Submit Request</button>
-              <div class="help">For scheduling, call <a href="tel:+15552037811" style="font-weight:900;">(555) 203-7811</a> or email <a href="mailto:hello@clearviewvision.example" style="font-weight:900;">hello@clearviewvision.example</a>.</div>
+              <button class="btn primary full-width" type="submit" data-i18n="contact.form.submit">Submit Request</button>
             </form>
           </div>
 
-          <div class="card">
-            <div class="kv" aria-label="Office information">
-              <div class="row">
-                <span class="icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5 7-11a7 7 0 1 0-14 0c0 6 7 11 7 11Z" stroke="rgba(11,18,32,.85)" stroke-width="2"/><circle cx="12" cy="10" r="2.5" fill="rgba(11,18,32,.85)"/></svg>
+          <div class="contact-info-card">
+            <h3 data-i18n="contact.info.title">Visit us</h3>
+            
+            <div class="info-block">
+              <div class="info-row">
+                <span class="info-icon">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5 7-11a7 7 0 1 0-14 0c0 6 7 11 7 11Z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="10" r="2" fill="currentColor"/></svg>
                 </span>
                 <div>
-                  <b>Address</b>
-                  <span>2147 Willow Park Blvd, Suite 210, Mesa Ridge, CA 91740</span>
+                  <strong data-i18n="contact.info.address">Address</strong>
+                  <span data-i18n="contact.info.addressValue">2147 Willow Park Blvd, Suite 210<br/>Mesa Ridge, CA 91740</span>
                 </div>
               </div>
 
-              <div class="row">
-                <span class="icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none"><path d="M7 4h10v16H7z" stroke="rgba(11,18,32,.85)" stroke-width="2"/><path d="M9 8h6M9 12h6M9 16h4" stroke="rgba(11,18,32,.85)" stroke-width="2" stroke-linecap="round"/></svg>
+              <div class="info-row">
+                <span class="info-icon">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
                 </span>
                 <div>
-                  <b>Hours</b>
-                  <span>Mon–Fri 9:00 AM – 6:00 PM • Sat 9:00 AM – 2:00 PM • Sun Closed</span>
+                  <strong data-i18n="contact.info.hours">Hours</strong>
+                  <span data-i18n="contact.info.hoursValue">Mon–Fri: 9am – 6pm<br/>Saturday: 9am – 2pm<br/>Sunday: Closed</span>
                 </div>
               </div>
 
-              <div class="row">
-                <span class="icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none"><path d="M6.5 3.5h3l1 5-2 1.5c1.3 2.6 3.4 4.7 6 6L16 14l5 1v3c0 1.1-.9 2-2 2C10.7 20 4 13.3 4 5c0-1.1.9-2 2-2Z" stroke="rgba(11,18,32,.85)" stroke-width="2" stroke-linejoin="round"/></svg>
+              <div class="info-row">
+                <span class="info-icon">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M6 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 4 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5"/></svg>
                 </span>
                 <div>
-                  <b>Phone</b>
-                  <span><a href="tel:+15552037811" style="font-weight:900; text-decoration:none;">(555) 203-7811</a></span>
+                  <strong data-i18n="contact.info.phone">Phone</strong>
+                  <a href="tel:+15552037811">(555) 203-7811</a>
                 </div>
               </div>
 
-              <div class="row">
-                <span class="icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4z" stroke="rgba(11,18,32,.85)" stroke-width="2"/><path d="m4 7 8 6 8-6" stroke="rgba(11,18,32,.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="info-row">
+                <span class="info-icon">
+                  <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.5"/></svg>
                 </span>
                 <div>
-                  <b>Email</b>
-                  <span><a href="mailto:hello@clearviewvision.example" style="font-weight:900; text-decoration:none;">hello@clearviewvision.example</a></span>
+                  <strong data-i18n="contact.info.email">Email</strong>
+                  <a href="mailto:hello@clearviewvision.example">hello@clearviewvision.example</a>
                 </div>
               </div>
             </div>
 
-            <div style="margin-top:14px; border:1px solid rgba(11,18,32,.10); border-radius:16px; overflow:hidden;">
-              <div style="padding:12px; background:rgba(14,165,168,.08); font-weight:900;">Map placeholder</div>
-              <div style="padding:14px; color:rgba(11,18,32,.72);">
-                Embed Google Maps or your preferred map provider here.
-                <div style="margin-top:12px;">
-                  <code style="font-size:12px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">
-&lt;iframe src="YOUR_MAP_EMBED"&gt;&lt;/iframe&gt;
-                  </code>
-                </div>
-              </div>
-            </div>
-
-            <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-              <a class="btn primary" href="tel:+15552037811">Call to Schedule</a>
-              <a class="btn" href="privacy.html">Privacy Policy</a>
+            <div class="map-placeholder">
+              <span data-i18n="contact.info.map">Map embed area</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- URGENT NOTICE -->
+    <section class="urgent-section">
+      <div class="container">
+        <div class="urgent-card">
+          <div class="urgent-content">
+            <strong data-i18n="urgent.title">Urgent symptoms?</strong>
+            <span data-i18n="urgent.desc">Sudden vision changes, injury, severe pain, or flashes/floaters—call immediately or seek emergency care.</span>
+          </div>
+          <a class="btn" href="tel:+15552037811" data-i18n="urgent.cta">Call Now</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center;">
-      <span>© <span data-year></span> ClearView Vision & Eye Care. All rights reserved.</span>
-      <span style="display:flex; gap:12px; flex-wrap:wrap;">
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-        <a href="privacy.html">Privacy</a>
-      </span>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <svg class="logo" width="120" height="28" viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="logoGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0EA5A8"/>
+                <stop offset="100%" stop-color="#1D4ED8"/>
+              </linearGradient>
+            </defs>
+            <path d="M4 18C10 8 16 4 22 4C28 4 34 8 40 18C34 28 28 32 22 32C16 32 10 28 4 18Z" fill="url(#logoGrad2)"/>
+            <circle cx="22" cy="18" r="7" fill="white"/>
+            <circle cx="22" cy="18" r="4" fill="#0B1220"/>
+            <ellipse cx="24" cy="16" rx="1.5" ry="1.5" fill="white" fill-opacity="0.7"/>
+            <text x="50" y="24" font-family="Poppins, system-ui, sans-serif" font-size="18" font-weight="700" fill="#0B1220">Clear</text>
+            <text x="97" y="24" font-family="Poppins, system-ui, sans-serif" font-size="18" font-weight="700" fill="url(#logoGrad2)">View</text>
+          </svg>
+          <span>© <span data-year></span> ClearView Vision & Eye Care</span>
+        </div>
+        <nav class="footer-nav">
+          <a href="#services" data-i18n="footer.services">Services</a>
+          <a href="#contact" data-i18n="footer.contact">Contact</a>
+          <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
+        </nav>
+      </div>
     </div>
   </footer>
 
   <div class="toast" role="status" aria-live="polite" data-toast>
-    <div class="top">
+    <div class="toast-inner">
       <div>
         <h4 data-toast-title>Saved</h4>
-        <p data-toast-msg>We’ll follow up soon.</p>
+        <p data-toast-msg>We'll follow up soon.</p>
       </div>
-      <button class="x" type="button" aria-label="Close" data-toast-close>
+      <button class="toast-close" type="button" aria-label="Close" data-toast-close>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M6 6l12 12M18 6 6 18" stroke="rgba(11,18,32,.75)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </button>
     </div>
   </div>
 
   <script src="script.js"></script>
+  
+  <!-- Chatwoot Widget (Lazy Loaded) -->
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        (function(d, t) {
+          var BASE_URL = "https://inbox.automatia.bot";
+          var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+          g.src = BASE_URL + "/packs/js/sdk.js";
+          g.async = true;
+          s.parentNode.insertBefore(g, s);
+          g.onload = function() {
+            window.chatwootSDK.run({
+              websiteToken: 'r7QVPcH965VbAbFU7A9bm6Fa',
+              baseUrl: BASE_URL
+            });
+          };
+        })(document, "script");
+      }, 1500);
+    });
+  </script>
 </body>
 </html>

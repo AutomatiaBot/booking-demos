@@ -3,26 +3,37 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="Harborlight Counseling & Wellness — evidence-based therapy with a human approach (fictional demo)."/>
+  <meta name="description" content="Contact Harborlight Counseling & Wellness — call, email, or send a message to schedule your first session."/>
   <meta name="theme-color" content="#102A43"/>
   <title>Contact | Harborlight Counseling & Wellness</title>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css"/>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
+<!-- Floating decorative shapes -->
+<div class="floating-shapes" aria-hidden="true">
+  <div class="floating-shape shape-1"></div>
+  <div class="floating-shape shape-2"></div>
+  <div class="floating-shape shape-3"></div>
+</div>
+
+<a class="skip-link" href="#main" data-i18n="skip-link">Skip to content</a>
 
 <header>
   <div class="topbar">
     <div class="container">
       <div class="row">
-        <div>In-person in Brookhaven + virtual options • <a href="privacy.html">Privacy</a></div>
+        <div><span data-i18n="topbar-info">In-person in Brookhaven + virtual options</span> • <a href="privacy.html" data-i18n="privacy-link">Privacy</a></div>
         <div>
           <a href="tel:+1-555-641-2289">(555) 641-2289</a> •
           <a href="mailto:contact@harborlightcounseling.example">contact@harborlightcounseling.example</a>
+          <button class="lang-toggle" data-lang-toggle aria-label="Toggle language">
+            <svg class="lang-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+            <span class="lang-text">ES</span>
+          </button>
         </div>
       </div>
     </div>
@@ -33,34 +44,37 @@
       <a class="brand" href="index.html" aria-label="Go to home">
         <img src="assets/img/logo-mark.svg" alt="Harborlight mark"/>
         <div class="name">
-          <strong>Harborlight</strong>
-          <span>Counseling &amp; Wellness</span>
+          <strong data-i18n="brand-name">Harborlight</strong>
+          <span data-i18n="brand-tagline">Counseling &amp; Wellness</span>
         </div>
       </a>
 
       <nav aria-label="Primary">
         <button class="menu-btn" type="button" data-menu-btn aria-expanded="false" aria-controls="menu">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
-          Menu
+          <span data-i18n="menu">Menu</span>
         </button>
         <ul id="menu" data-menu>
-          <li><a href="index.html" class="">Home</a></li>
-<li><a href="services.html" class="">Services</a></li>
-<li><a href="about.html" class="">About</a></li>
-<li><a href="faqs.html" class="">FAQs</a></li>
-<li><a href="resources.html" class="">Resources</a></li>
-<li><a href="contact.html" class="active">Contact</a></li>
+          <li><a href="index.html" data-i18n="nav-home">Home</a></li>
+          <li><a href="services.html" data-i18n="nav-services">Services</a></li>
+          <li><a href="about.html" data-i18n="nav-about">About</a></li>
+          <li><a href="faqs.html" data-i18n="nav-faqs">FAQs</a></li>
+          <li><a href="contact.html" class="active" data-i18n="nav-contact">Contact</a></li>
         </ul>
       </nav>
 
       <div class="nav-cta">
+        <a class="btn demo-btn" href="https://demo.automatia.bot/" target="_blank">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+          <span data-i18n="back-to-demo">Back to Demo</span>
+        </a>
         <a class="btn ghost" href="contact.html#crisis">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm1 14h-2v-2h2v2Zm0-4h-2V6h2v6Z"/></svg>
-          Crisis info
+          <span data-i18n="crisis-info">Crisis info</span>
         </a>
         <a class="btn primary" href="tel:+1-555-641-2289">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C10.07 22 2 13.93 2 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.21 2.2Z"/></svg>
-          Call to schedule
+          <span data-i18n="call">Call</span>
         </a>
       </div>
     </div>
@@ -69,8 +83,8 @@
 
 <section class="page-hero">
   <div class="container">
-    <h1>Contact</h1>
-    <div class="breadcrumb"><a href="index.html">Home</a> / Contact</div>
+    <h1 data-i18n="contact-title"><span class="highlight-word">Contact</span></h1>
+    <div class="breadcrumb"><a href="index.html" data-i18n="contact-breadcrumb-home">Home</a> / <span data-i18n="contact-breadcrumb-current">Contact</span></div>
   </div>
 </section>
 
@@ -78,81 +92,83 @@
   <section class="section">
     <div class="container">
       <div class="banner" id="crisis">
-        <strong>Crisis notice</strong>
-        <div class="small">
-          We can’t provide crisis support through this website. If you’re in immediate danger, call 911.
-          In the U.S., you can call or text 988 (24/7). If you’re outside the U.S., contact your local emergency number.
-        </div>
+        <strong data-i18n="crisis-notice-title">Crisis notice</strong>
+        <p class="small" style="margin: 0" data-i18n="crisis-notice-text">
+          We can't provide crisis support through this website. If you're in immediate danger, call 911.
+          In the U.S., you can call or text 988 (24/7). If you're outside the U.S., contact your local emergency number.
+        </p>
       </div>
 
-      <div class="split">
-        <div class="panel">
-          <h3>Call or email</h3>
-          <p style="margin:0;"><b>Phone:</b> <a href="tel:+1-555-641-2289">(555) 641-2289</a></p>
-          <p style="margin:8px 0 0;"><b>Email:</b> <a href="mailto:contact@harborlightcounseling.example">contact@harborlightcounseling.example</a></p>
-          <p class="small" style="margin-top:12px;"><b>Address:</b> 730 Magnolia Terrace, Suite 402, Brookhaven, IL 60192</p>
+      <div class="split fade-in stagger-children">
+        <div class="panel card-lift">
+          <h3 data-i18n="call-or-email">Call or email</h3>
+          <p style="margin:0;"><strong data-i18n="phone-label">Phone:</strong> <a href="tel:+1-555-641-2289">(555) 641-2289</a></p>
+          <p style="margin:8px 0 0;"><strong data-i18n="email-label">Email:</strong> <a href="mailto:contact@harborlightcounseling.example">contact@harborlightcounseling.example</a></p>
+          <p class="small" style="margin-top:12px; color:rgba(36,59,83,.7)"><strong data-i18n="address-label">Address:</strong> 730 Magnolia Terrace, Suite 402, Brookhaven, IL 60192</p>
 
-          <div class="notice" style="margin-top:14px;">
-            <b>Scheduling:</b> Please call to schedule. We don’t book appointments through the website.
+          <div class="notice" style="margin-top:16px;">
+            <strong data-i18n="scheduling-label">Scheduling:</strong> <span data-i18n="scheduling-text">Please call to schedule. We typically respond to messages within 1-2 business days.</span>
           </div>
 
-          <h3 style="margin-top:16px;">Office hours</h3>
+          <h3 style="margin-top:20px;" data-i18n="office-hours">Office hours</h3>
           <ul class="list">
-            <li><b>Monday:</b> 10:00 AM – 7:00 PM</li><li><b>Tuesday:</b> 10:00 AM – 7:00 PM</li><li><b>Wednesday:</b> 10:00 AM – 7:00 PM</li><li><b>Thursday:</b> 10:00 AM – 7:00 PM</li><li><b>Friday:</b> 10:00 AM – 4:00 PM</li><li><b>Saturday:</b> Limited virtual sessions (call to confirm)</li><li><b>Sunday:</b> Closed</li>
+            <li><strong data-i18n="hours-mon-thu">Monday–Thursday:</strong> <span data-i18n="hours-mon-thu-time">10:00 AM – 7:00 PM</span></li>
+            <li><strong data-i18n="hours-fri">Friday:</strong> <span data-i18n="hours-fri-time">10:00 AM – 4:00 PM</span></li>
+            <li><strong data-i18n="hours-sat">Saturday:</strong> <span data-i18n="hours-sat-time">Limited virtual sessions (call to confirm)</span></li>
+            <li><strong data-i18n="hours-sun">Sunday:</strong> <span data-i18n="hours-sun-time">Closed</span></li>
           </ul>
         </div>
 
-        <div class="card">
-          <h3 style="margin:0 0 10px;">Send a message (demo)</h3>
-          <p class="small" style="margin:0 0 12px;">
-            This form is for demonstration only. For scheduling, please call the office.
+        <div class="card card-lift">
+          <h3 style="margin:0 0 8px;" data-i18n="send-a-message">Send a message</h3>
+          <p class="small" style="margin:0 0 14px; color:rgba(36,59,83,.7)" data-i18n="message-form-intro">
+            Use this form to reach us for general inquiries. For scheduling, please call the office.
           </p>
 
-          <div class="small" style="margin-bottom:10px;">
-            Before you share personal information, please note that by providing your information, you agree to our Privacy Policy in accordance with regulations.
-            <a href="privacy.html">View Privacy Policy</a>
-          </div>
+          <p class="small" style="margin-bottom:12px; color:rgba(36,59,83,.6)">
+            <span data-i18n="privacy-consent">By providing your information, you agree to our</span> <a href="privacy.html" data-i18n="privacy-policy">Privacy Policy</a>.
+          </p>
 
           <form class="form" data-contact-form>
             <div class="form-row">
               <div>
-                <label for="name">Name</label>
+                <label for="name" data-i18n="form-name">Name</label>
                 <input id="name" name="name" autocomplete="name" required/>
               </div>
               <div>
-                <label for="phone">Phone</label>
+                <label for="phone" data-i18n="form-phone">Phone</label>
                 <input id="phone" name="phone" autocomplete="tel" required/>
-                <div class="help">At least 10 digits.</div>
+                <div class="help" data-i18n="form-phone-help">At least 10 digits.</div>
               </div>
             </div>
 
             <div class="form-row">
               <div>
-                <label for="email">Email (optional)</label>
+                <label for="email" data-i18n="form-email">Email (optional)</label>
                 <input id="email" name="email" type="email" autocomplete="email"/>
               </div>
               <div>
-                <label for="interest">I’m interested in</label>
+                <label for="interest" data-i18n="form-interest">I'm interested in</label>
                 <select id="interest" name="interest">
-                  <option>Individual therapy</option>
-                  <option>Couples therapy</option>
-                  <option>Teen counseling (13+)</option>
-                  <option>Virtual sessions</option>
-                  <option>In-person sessions</option>
-                  <option>General question</option>
+                  <option data-i18n="form-interest-individual">Individual therapy</option>
+                  <option data-i18n="form-interest-couples">Couples therapy</option>
+                  <option data-i18n="form-interest-teen">Teen counseling (13+)</option>
+                  <option data-i18n="form-interest-virtual">Virtual sessions</option>
+                  <option data-i18n="form-interest-in-person">In-person sessions</option>
+                  <option data-i18n="form-interest-general">General question</option>
                 </select>
               </div>
             </div>
 
             <div>
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Briefly share what you’re looking for (no crisis details)."></textarea>
-              <div class="help">If you are in crisis or unsafe, do not use this form—call 911 or 988 (U.S.).</div>
+              <label for="message" data-i18n="form-message">Message</label>
+              <textarea id="message" name="message" data-i18n-placeholder="form-message-placeholder" placeholder="Briefly share what you're looking for (no crisis details)."></textarea>
+              <div class="help" data-i18n="form-message-help">If you are in crisis or unsafe, do not use this form—call 911 or 988 (U.S.).</div>
             </div>
 
             <div class="form-actions">
-              <button class="btn primary" type="submit">Send message</button>
-              <a class="btn" href="mailto:contact@harborlightcounseling.example">Email instead</a>
+              <button class="btn primary" type="submit" data-i18n="form-submit">Send message</button>
+              <a class="btn" href="mailto:contact@harborlightcounseling.example" data-i18n="email-instead">Email instead</a>
             </div>
           </form>
 
@@ -167,46 +183,67 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <img src="assets/img/logo.svg" alt="Harborlight logo" style="max-width:360px; width:100%;"/>
-        <p class="small" style="margin-top:10px; max-width:70ch;">
+        <div class="footer-brand">
+          <img src="assets/img/logo-mark.svg" alt="Harborlight mark"/>
+          <div class="footer-brand-text">
+            <strong data-i18n="brand-name">Harborlight</strong>
+            <span data-i18n="brand-tagline">Counseling &amp; Wellness</span>
+          </div>
+        </div>
+        <p class="small" data-i18n="footer-description">
           Evidence-based therapy with a human approach. We offer a supportive space for individuals, couples, and teens (13+).
-          This website is a fictional demo.
         </p>
       </div>
 
       <div>
-        <h3 style="margin:0 0 10px; font-size:14px; letter-spacing:.3px; text-transform:uppercase; opacity:.95;">Contact</h3>
+        <h3 style="margin:0 0 12px; font-size:13px; letter-spacing:.3px; text-transform:uppercase; opacity:.7; font-weight: 600;" data-i18n="footer-contact-title">Contact</h3>
         <p class="small" style="margin:0 0 8px;">
           <a href="tel:+1-555-641-2289">(555) 641-2289</a><br/>
           <a href="mailto:contact@harborlightcounseling.example">contact@harborlightcounseling.example</a><br/>
-          730 Magnolia Terrace, Suite 402, Brookhaven, IL 60192
+          730 Magnolia Terrace, Suite 402<br/>
+          Brookhaven, IL 60192
         </p>
-        <p class="small" style="margin:10px 0 0;"><a href="privacy.html">Privacy Policy</a></p>
+        <p class="small" style="margin:12px 0 0;"><a href="privacy.html" data-i18n="privacy-policy">Privacy Policy</a></p>
       </div>
 
       <div>
-        <h3 style="margin:0 0 10px; font-size:14px; letter-spacing:.3px; text-transform:uppercase; opacity:.95;">Hours</h3>
-        <ul class="small" style="margin:0; padding-left:18px;">
-          <li><b>Monday:</b> 10:00 AM – 7:00 PM</li>
-<li><b>Tuesday:</b> 10:00 AM – 7:00 PM</li>
-<li><b>Wednesday:</b> 10:00 AM – 7:00 PM</li>
-<li><b>Thursday:</b> 10:00 AM – 7:00 PM</li>
-<li><b>Friday:</b> 10:00 AM – 4:00 PM</li>
-<li><b>Saturday:</b> Limited virtual sessions (call to confirm)</li>
-<li><b>Sunday:</b> Closed</li>
-        </ul>
+        <h3 style="margin:0 0 12px; font-size:13px; letter-spacing:.3px; text-transform:uppercase; opacity:.7; font-weight: 600;" data-i18n="footer-hours-title">Hours</h3>
+        <p class="small" style="margin:0; line-height: 1.8">
+          <b data-i18n="footer-mon-thu">Mon–Thu:</b> <span data-i18n="footer-mon-thu-hours">10am – 7pm</span><br/>
+          <b data-i18n="footer-friday">Friday:</b> <span data-i18n="footer-friday-hours">10am – 4pm</span><br/>
+          <b data-i18n="footer-saturday">Saturday:</b> <span data-i18n="footer-saturday-hours">Limited virtual</span><br/>
+          <b data-i18n="footer-sunday">Sunday:</b> <span data-i18n="footer-sunday-hours">Closed</span>
+        </p>
       </div>
     </div>
 
     <hr class="sep"/>
 
     <div class="footer-bottom">
-      <div class="small">© 2026 Harborlight Counseling &amp; Wellness (fictional). All rights reserved.</div>
-      <div class="small">Not for emergencies. If you’re in immediate danger, call 911. In the U.S., call or text 988.</div>
+      <div class="small" data-i18n="footer-copyright">© 2026 Harborlight Counseling &amp; Wellness. All rights reserved.</div>
+      <div class="small" data-i18n="footer-emergency">Not for emergencies. Call 911 or text 988 (U.S.).</div>
     </div>
   </div>
 </footer>
 
+<script src="assets/js/translations.js"></script>
 <script src="assets/js/main.js"></script>
+
+<!-- Chatwoot Widget -->
+<script>
+  (function(d,t) {
+    var BASE_URL="https://inbox.automatia.bot";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    g.async = true;
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: 'nmriKc3ib7849TZZf78Y3VgQ',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");
+</script>
 </body>
 </html>

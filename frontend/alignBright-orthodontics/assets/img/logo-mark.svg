@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- AlignBright Logo Mark - Icon Only -->
+  <defs>
+    <linearGradient id="markGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0891B2"/>
+      <stop offset="100%" style="stop-color:#22D3EE"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer smile arc -->
+  <path d="M8 30C8 30 14 40 24 40C34 40 40 30 40 30" stroke="url(#markGradient)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  
+  <!-- Inner aligner curve -->
+  <path d="M12 26C12 26 16 33 24 33C32 33 36 26 36 26" stroke="url(#markGradient)" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+  
+  <!-- Top alignment arc -->
+  <path d="M12 18C12 18 17 12 24 12C31 12 36 18 36 18" stroke="url(#markGradient)" stroke-width="3" stroke-linecap="round" fill="none"/>
+  
+  <!-- Bracket dots -->
+  <circle cx="16" cy="22" r="2.5" fill="#0891B2"/>
+  <circle cx="24" cy="20" r="2.5" fill="#0891B2"/>
+  <circle cx="32" cy="22" r="2.5" fill="#0891B2"/>
+</svg>

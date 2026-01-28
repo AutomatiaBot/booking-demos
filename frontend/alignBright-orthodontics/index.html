@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AlignBright Orthodontics in Lakewood Hills, CA offers modern braces and clear aligners for patients of all ages. Call (562) 555-0117 for a consultation.">
+  <meta name="theme-color" content="#0891B2">
+  <title>AlignBright Orthodontics | Braces & Clear Aligners in Lakewood Hills, CA</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dentist",
+    "name": "AlignBright Orthodontics",
+    "description": "Modern braces and clear aligners for confident smiles",
+    "url": "https://alignbright.example",
+    "telephone": "+1-562-555-0117",
+    "email": "hello@alignbright.example",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "4120 Seabreeze Way, Suite 260",
+      "addressLocality": "Lakewood Hills",
+      "addressRegion": "CA",
+      "postalCode": "90814",
+      "addressCountry": "US"
+    },
+    "openingHoursSpecification": [
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"], "opens": "10:00", "closes": "18:30"},
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "09:00", "closes": "15:00"},
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "13:00"}
+    ],
+    "medicalSpecialty": "Orthodontics"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip-link">Skip to content</a>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <img src="assets/img/logo-mark.svg" alt="AlignBright" width="40" height="40">
+          <div class="logo-text">
+            <span class="logo-name" data-i18n="brand-name">AlignBright</span>
+            <span class="logo-tagline" data-i18n="brand-tagline">Orthodontics</span>
+          </div>
+        </a>
+
+        <!-- Main Navigation -->
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link active" data-i18n="nav-home">Home</a></li>
+            <li><a href="about.html" class="nav-link" data-i18n="nav-about">About</a></li>
+            <li class="dropdown">
+              <a href="services.html" class="nav-link dropdown-toggle" data-i18n="nav-services">
+                Services
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </a>
+              <div class="dropdown-menu">
+                <a href="services-aligners.html" class="dropdown-link" data-i18n="nav-aligners">Clear Aligners</a>
+                <a href="services-braces.html" class="dropdown-link" data-i18n="nav-braces">Braces</a>
+                <a href="services-retainers.html" class="dropdown-link" data-i18n="nav-retainers">Retainers</a>
+                <a href="services-early-ortho.html" class="dropdown-link" data-i18n="nav-early-ortho">Early Orthodontics</a>
+                <a href="services-bite-correction.html" class="dropdown-link" data-i18n="nav-bite-correction">Bite Correction</a>
+              </div>
+            </li>
+            <li><a href="new-patients.html" class="nav-link" data-i18n="nav-new-patients">New Patients</a></li>
+            <li><a href="reviews.html" class="nav-link" data-i18n="nav-reviews">Reviews</a></li>
+            <li><a href="faq.html" class="nav-link" data-i18n="nav-faq">FAQ</a></li>
+            <li><a href="contact.html" class="nav-link" data-i18n="nav-contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+          <button class="lang-toggle" data-lang-toggle aria-label="Toggle language">EN</button>
+          <a href="tel:+1-562-555-0117" class="phone-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <span>(562) 555-0117</span>
+          </a>
+          <a href="contact.html" class="btn btn-primary btn-sm" data-i18n="request-consultation">Request a Consultation</a>
+          <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav" id="mobile-nav" data-mobile-nav aria-label="Mobile navigation">
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" data-i18n="nav-home">Home</a></li>
+      <li><a href="about.html" data-i18n="nav-about">About</a></li>
+      <li>
+        <a href="services.html" data-i18n="nav-services">Services</a>
+        <div class="sub-links">
+          <a href="services-aligners.html" data-i18n="nav-aligners">Clear Aligners</a>
+          <a href="services-braces.html" data-i18n="nav-braces">Braces</a>
+          <a href="services-retainers.html" data-i18n="nav-retainers">Retainers</a>
+          <a href="services-early-ortho.html" data-i18n="nav-early-ortho">Early Orthodontics</a>
+          <a href="services-bite-correction.html" data-i18n="nav-bite-correction">Bite Correction</a>
+        </div>
+      </li>
+      <li><a href="new-patients.html" data-i18n="nav-new-patients">New Patients</a></li>
+      <li><a href="reviews.html" data-i18n="nav-reviews">Reviews</a></li>
+      <li><a href="faq.html" data-i18n="nav-faq">FAQ</a></li>
+      <li><a href="contact.html" data-i18n="nav-contact">Contact</a></li>
+    </ul>
+    <div class="mobile-nav-cta">
+      <a href="tel:+1-562-555-0117" class="btn btn-primary" data-i18n="hero-cta-call">Call to Schedule</a>
+      <a href="contact.html" class="btn btn-secondary" data-i18n="request-consultation">Request a Consultation</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <span class="hero-badge-dot"></span>
+              <span data-i18n="hero-badge">Now Accepting New Patients</span>
+            </div>
+            <h1 data-i18n="hero-title">Your Journey to a <span class="highlight">Confident Smile</span> Starts Here</h1>
+            <p class="hero-lead" data-i18n="hero-lead">Modern braces, clear aligners, and expert orthodontic care for the whole family. Discover treatment options tailored to your lifestyle.</p>
+            <div class="hero-actions">
+              <a href="tel:+1-562-555-0117" class="btn btn-primary btn-lg" data-i18n="hero-cta-call">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                Call to Schedule
+              </a>
+              <a href="services.html" class="btn btn-secondary btn-lg" data-i18n="hero-cta-explore">Explore Treatment Options</a>
+            </div>
+          </div>
+          <div class="hero-image">
+            <!-- Hero Carousel -->
+            <div class="hero-carousel" data-carousel>
+              <div class="carousel-track">
+                <div class="carousel-slide active">
+                  <img src="assets/img/title-1.png" alt="Happy patient with beautiful smile" loading="eager">
+                </div>
+                <div class="carousel-slide">
+                  <img src="assets/img/title-2.png" alt="Family orthodontic care" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                  <img src="assets/img/title-3.png" alt="Modern orthodontic treatment" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                  <img src="assets/img/title-4.png" alt="Confident smile transformation" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                  <img src="assets/img/title-5.png" alt="Professional orthodontic care" loading="lazy">
+                </div>
+              </div>
+              <div class="carousel-dots">
+                <button class="carousel-dot active" data-slide="0" aria-label="Slide 1"></button>
+                <button class="carousel-dot" data-slide="1" aria-label="Slide 2"></button>
+                <button class="carousel-dot" data-slide="2" aria-label="Slide 3"></button>
+                <button class="carousel-dot" data-slide="3" aria-label="Slide 4"></button>
+                <button class="carousel-dot" data-slide="4" aria-label="Slide 5"></button>
+              </div>
+            </div>
+            <div class="hero-image-badge">
+              <div class="stars">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <span class="text">200+ 5-Star Reviews</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SOCIAL PROOF STRIP ===== -->
+    <section class="social-proof">
+      <div class="container">
+        <div class="social-proof-inner">
+          <div class="proof-item">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span data-i18n="proof-reviews"><strong>200+</strong> 5-Star Reviews</span>
+          </div>
+          <div class="proof-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span data-i18n="proof-experience"><strong>15+ Years</strong> Experience</span>
+          </div>
+          <div class="proof-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span data-i18n="proof-patients"><strong>5,000+</strong> Smiles Created</span>
+          </div>
+          <div class="proof-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            <span data-i18n="proof-family">Family-Friendly Practice</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="why-choose-title">Why Patients Choose <span class="highlight">AlignBright</span></h2>
+          <p data-i18n="why-choose-desc">We combine modern orthodontic technology with personalized care to deliver exceptional results.</p>
+        </div>
+        <div class="features-grid stagger-children">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            </div>
+            <h3 data-i18n="feature-1-title">Modern Treatment Options</h3>
+            <p data-i18n="feature-1-desc">Clear aligners, ceramic braces, and advanced techniques for every smile.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+            </div>
+            <h3 data-i18n="feature-2-title">Clear Communication</h3>
+            <p data-i18n="feature-2-desc">We explain every step so you always know what to expect.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 data-i18n="feature-3-title">Flexible Financing</h3>
+            <p data-i18n="feature-3-desc">Payment plans and insurance guidance to fit your budget.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            </div>
+            <h3 data-i18n="feature-4-title">Teen-Friendly Coaching</h3>
+            <p data-i18n="feature-4-desc">Specialized support to help teens stay on track with treatment.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <h3 data-i18n="feature-5-title">Retainer Support</h3>
+            <p data-i18n="feature-5-desc">Easy replacement and care guidance for long-lasting results.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            </div>
+            <h3 data-i18n="feature-6-title">Comfortable Office</h3>
+            <p data-i18n="feature-6-desc">Relaxing environment with modern amenities for your comfort.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </div>
+            <h3 data-i18n="feature-7-title">Family Care</h3>
+            <p data-i18n="feature-7-desc">Convenient scheduling for the whole family under one roof.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+            </div>
+            <h3 data-i18n="feature-8-title">Expert Team</h3>
+            <p data-i18n="feature-8-desc">Board-certified orthodontists with specialized training.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="section" style="background: var(--white);">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="services-title">Our <span class="highlight">Services</span></h2>
+          <p data-i18n="services-desc">Comprehensive orthodontic solutions for patients of all ages.</p>
+        </div>
+        <div class="services-grid stagger-children">
+          <div class="service-card">
+            <div class="service-image">
+              <img src="assets/img/clear-aligners.png" alt="Clear aligners treatment" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);">
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="service-aligners-title">Clear Aligners</h3>
+              <p data-i18n="service-aligners-desc">Virtually invisible aligners for adults and teens. Straighten your teeth discreetly without metal brackets.</p>
+              <a href="services-aligners.html" class="service-link" data-i18n="learn-more">
+                Learn more
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-image">
+              <img src="assets/img/braces.png" alt="Braces treatment" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);">
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="service-braces-title">Braces</h3>
+              <p data-i18n="service-braces-desc">Traditional metal and ceramic options for effective, reliable results. Modern designs are more comfortable than ever.</p>
+              <a href="services-braces.html" class="service-link" data-i18n="learn-more">
+                Learn more
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-image">
+              <img src="assets/img/retainers.png" alt="Retainers for smile maintenance" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);">
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="service-retainers-title">Retainers</h3>
+              <p data-i18n="service-retainers-desc">Keep your smile perfect with custom retainers. Replacement and post-treatment care available.</p>
+              <a href="services-retainers.html" class="service-link" data-i18n="learn-more">
+                Learn more
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-image">
+              <img src="assets/img/early-othodontics.png" alt="Early orthodontics for children" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);">
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="service-early-title">Early Orthodontics</h3>
+              <p data-i18n="service-early-desc">Evaluations starting at age 7 to guide jaw growth and prevent future issues.</p>
+              <a href="services-early-ortho.html" class="service-link" data-i18n="learn-more">
+                Learn more
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-image">
+              <img src="assets/img/bite-correction.png" alt="Bite correction treatment" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);">
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="service-bite-title">Bite Correction</h3>
+              <p data-i18n="service-bite-desc">Specialized treatment for overbites, underbites, crossbites, and jaw alignment issues.</p>
+              <a href="services-bite-correction.html" class="service-link" data-i18n="learn-more">
+                Learn more
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TEAM SECTION ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="team-title">Meet Our <span class="highlight">Team</span></h2>
+          <p data-i18n="team-desc">Experienced professionals dedicated to your smile.</p>
+        </div>
+        <div class="team-grid stagger-children">
+          <div class="team-card">
+            <div class="team-photo">
+              <img src="assets/img/lead-orthodontist.png" alt="Dr. Priya Sharma" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <h3 data-i18n="team-1-name">Dr. Priya Sharma</h3>
+            <p class="team-role" data-i18n="team-1-role">Lead Orthodontist</p>
+            <p data-i18n="team-1-bio">Board-certified orthodontist with 15+ years of experience. Dr. Sharma specializes in complex cases and clear aligner therapy.</p>
+          </div>
+          <div class="team-card">
+            <div class="team-photo">
+              <img src="assets/img/orthodontist.png" alt="Dr. Jennifer Wells" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <h3 data-i18n="team-2-name">Dr. Jennifer Wells</h3>
+            <p class="team-role" data-i18n="team-2-role">Orthodontist</p>
+            <p data-i18n="team-2-bio">With over 12 years of experience, Dr. Wells specializes in teen orthodontics and early intervention. Her warm, patient approach makes families feel at ease.</p>
+          </div>
+          <div class="team-card">
+            <div class="team-photo">
+              <img src="assets/img/patient-coordinator.png" alt="Sarah Thompson" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <h3 data-i18n="team-3-name">Sarah Thompson</h3>
+            <p class="team-role" data-i18n="team-3-role">Patient Coordinator</p>
+            <p data-i18n="team-3-bio">Sarah helps make your experience seamless, from scheduling to insurance questions. She's here to support you every step.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROCESS SECTION ===== -->
+    <section class="section process-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="process-title">How Treatment <span class="highlight">Works</span></h2>
+          <p data-i18n="process-desc">A simple, clear path to your new smile.</p>
+        </div>
+        <div class="process-grid stagger-children">
+          <div class="process-step">
+            <div class="process-number">1</div>
+            <h3 data-i18n="process-1-title">Consultation & Digital Records</h3>
+            <p data-i18n="process-1-desc">Meet with our team, discuss your goals, and get digital scans for a precise treatment plan.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-number">2</div>
+            <h3 data-i18n="process-2-title">Personalized Plan</h3>
+            <p data-i18n="process-2-desc">Receive a custom treatment plan designed around your lifestyle, timeline, and budget.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-number">3</div>
+            <h3 data-i18n="process-3-title">Progress Checks & Retainers</h3>
+            <p data-i18n="process-3-desc">Regular visits to ensure you're on track, followed by retainers to maintain your beautiful results.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== REVIEWS SECTION ===== -->
+    <section class="section" style="background: var(--white);">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="reviews-title">What Our <span class="highlight">Patients</span> Say</h2>
+          <p data-i18n="reviews-desc">Real experiences from real patients.</p>
+        </div>
+        <div class="reviews-grid stagger-children">
+          <div class="review-card">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-text" data-i18n="review-1-text">"Dr. Sharma made my aligner treatment so easy. I barely noticed I was wearing them, and my teeth look amazing now!"</p>
+            <div class="review-author">
+              <div class="review-avatar">MG</div>
+              <div class="review-info">
+                <span class="name" data-i18n="review-1-name">Mariana G.</span>
+                <span class="type" data-i18n="review-1-type">Clear Aligners</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-text" data-i18n="review-2-text">"My son was nervous about braces, but the team made him feel comfortable from day one. Great experience!"</p>
+            <div class="review-author">
+              <div class="review-avatar">DL</div>
+              <div class="review-info">
+                <span class="name" data-i18n="review-2-name">David L.</span>
+                <span class="type" data-i18n="review-2-type">Teen Braces</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-text" data-i18n="review-3-text">"I lost my retainer and they got me a replacement so quickly. The staff is always helpful and responsive."</p>
+            <div class="review-author">
+              <div class="review-avatar">JK</div>
+              <div class="review-info">
+                <span class="name" data-i18n="review-3-name">Jennifer K.</span>
+                <span class="type" data-i18n="review-3-type">Retainers</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-text" data-i18n="review-4-text">"Professional, friendly, and the office is beautiful. I actually look forward to my appointments!"</p>
+            <div class="review-author">
+              <div class="review-avatar">RM</div>
+              <div class="review-info">
+                <span class="name" data-i18n="review-4-name">Robert M.</span>
+                <span class="type" data-i18n="review-4-type">Metal Braces</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-text" data-i18n="review-5-text">"As an adult getting braces, I was self-conscious. The ceramic braces they recommended are barely visible."</p>
+            <div class="review-author">
+              <div class="review-avatar">LT</div>
+              <div class="review-info">
+                <span class="name" data-i18n="review-5-name">Lisa T.</span>
+                <span class="type" data-i18n="review-5-type">Ceramic Braces</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-text" data-i18n="review-6-text">"Dr. Chen caught my daughter's bite issue early. So glad we started treatment at age 8 instead of waiting."</p>
+            <div class="review-author">
+              <div class="review-avatar">PH</div>
+              <div class="review-info">
+                <span class="name" data-i18n="review-6-name">Patricia H.</span>
+                <span class="type" data-i18n="review-6-type">Early Ortho</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-text" data-i18n="review-7-text">"The payment plan options made treatment affordable for our family. Transparent pricing, no surprises."</p>
+            <div class="review-author">
+              <div class="review-avatar">MS</div>
+              <div class="review-info">
+                <span class="name" data-i18n="review-7-name">Michael S.</span>
+                <span class="type" data-i18n="review-7-type">Family Care</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-text" data-i18n="review-8-text">"I've been to other orthodontists, and AlignBright is by far the best. They truly care about their patients."</p>
+            <div class="review-author">
+              <div class="review-avatar">AR</div>
+              <div class="review-info">
+                <span class="name" data-i18n="review-8-name">Amanda R.</span>
+                <span class="type" data-i18n="review-8-type">Clear Aligners</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="reviews.html" class="btn btn-secondary" data-i18n="see-all-reviews">See All Reviews</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ PREVIEW ===== -->
+    <section class="section faq-section">
+      <div class="container">
+        <div class="faq-section-grid">
+          <div class="faq-section-content">
+            <span class="section-badge" data-i18n="nav-faq">FAQ</span>
+            <h2 data-i18n="faq-preview-title">Frequently Asked <span class="highlight">Questions</span></h2>
+            <p class="faq-section-desc" data-i18n="faq-preview-desc">Everything you need to know about orthodontic treatment at AlignBright.</p>
+            <a href="faq.html" class="btn btn-primary" data-i18n="view-all-faqs">View All FAQs</a>
+          </div>
+          <div class="faq-accordion-list">
+            <details class="faq-item-modern" open>
+              <summary>
+                <span class="faq-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+                </span>
+                <span data-i18n="faq-preview-1-q">What's the difference between aligners and braces?</span>
+                <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+              </summary>
+              <div class="faq-answer">
+                <p data-i18n="faq-preview-1-a">Clear aligners are removable, nearly invisible trays that gradually shift teeth—perfect for adults and teens who want discretion. Braces use fixed brackets and wires for precise control, ideal for complex cases. Both are highly effective, and we'll help you choose the best option for your lifestyle and goals.</p>
+              </div>
+            </details>
+            <details class="faq-item-modern">
+              <summary>
+                <span class="faq-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </span>
+                <span data-i18n="faq-preview-2-q">How long does orthodontic treatment typically take?</span>
+                <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+              </summary>
+              <div class="faq-answer">
+                <p data-i18n="faq-preview-2-a">Treatment duration varies based on your unique case. Minor corrections may take 6-12 months, while moderate cases average 12-18 months. Complex cases can take 18-24+ months. During your free consultation, we'll provide a personalized timeline based on your specific needs.</p>
+              </div>
+            </details>
+            <details class="faq-item-modern">
+              <summary>
+                <span class="faq-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                </span>
+                <span data-i18n="faq-preview-3-q">What if I lose or break my retainer?</span>
+                <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+              </summary>
+              <div class="faq-answer">
+                <p data-i18n="faq-preview-3-a">Contact us immediately—we understand these things happen! We can create a replacement retainer within days to protect your investment. Delaying can lead to teeth shifting, so prompt action is important. We keep digital records on file for quick replacements.</p>
+              </div>
+            </details>
+            <details class="faq-item-modern">
+              <summary>
+                <span class="faq-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <span data-i18n="faq-preview-4-q">Am I too old for orthodontic treatment?</span>
+                <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+              </summary>
+              <div class="faq-answer">
+                <p data-i18n="faq-preview-4-a">Absolutely not! We treat patients of all ages, and adult orthodontics is more popular than ever. Clear aligners are especially popular with adults due to their discretion. Whether you're 25 or 65, a healthy, beautiful smile is achievable.</p>
+              </div>
+            </details>
+            <details class="faq-item-modern">
+              <summary>
+                <span class="faq-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </span>
+                <span data-i18n="faq-preview-5-q">Does orthodontic treatment hurt?</span>
+                <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+              </summary>
+              <div class="faq-answer">
+                <p data-i18n="faq-preview-5-a">Most patients experience mild discomfort for a few days after adjustments or new aligner trays—this is normal and means treatment is working! Over-the-counter pain relievers help, and any discomfort typically fades quickly. Modern braces and aligners are more comfortable than ever.</p>
+              </div>
+            </details>
+            <details class="faq-item-modern">
+              <summary>
+                <span class="faq-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </span>
+                <span data-i18n="faq-preview-6-q">What should I expect at my first appointment?</span>
+                <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+              </summary>
+              <div class="faq-answer">
+                <p data-i18n="faq-preview-6-a">Your first visit includes a comprehensive exam, digital X-rays and photos, and a detailed discussion of your goals. We'll explain all your options, answer every question, and provide a clear treatment plan with transparent pricing—no pressure, just information to help you decide.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA BAND ===== -->
+    <section class="cta-band">
+      <div class="container">
+        <h2 data-i18n="cta-title">Ready for a Confident Smile?</h2>
+        <p data-i18n="cta-desc">Take the first step toward the smile you've always wanted.</p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="tel:+1-562-555-0117" class="btn btn-primary btn-lg" data-i18n="cta-call">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Call (562) 555-0117
+          </a>
+          <a href="contact.html" class="btn btn-secondary btn-lg" data-i18n="cta-contact">Contact Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <img src="assets/img/logo-mark.svg" alt="AlignBright" width="44" height="44">
+            <div class="logo-text">
+              <span class="logo-name" data-i18n="brand-name">AlignBright</span>
+              <span class="logo-tagline" data-i18n="brand-tagline">Orthodontics</span>
+            </div>
+          </a>
+          <p data-i18n="footer-description">Modern braces and clear aligners for confident smiles. AlignBright Orthodontics provides personalized orthodontic care for patients of all ages in Lakewood Hills, CA.</p>
+        </div>
+        <div>
+          <h4 data-i18n="footer-quick-links">Quick Links</h4>
+          <nav class="footer-links">
+            <a href="index.html" data-i18n="nav-home">Home</a>
+            <a href="about.html" data-i18n="nav-about">About</a>
+            <a href="services.html" data-i18n="nav-services">Services</a>
+            <a href="new-patients.html" data-i18n="nav-new-patients">New Patients</a>
+            <a href="reviews.html" data-i18n="nav-reviews">Reviews</a>
+            <a href="faq.html" data-i18n="nav-faq">FAQ</a>
+            <a href="contact.html" data-i18n="nav-contact">Contact</a>
+          </nav>
+        </div>
+        <div class="footer-contact">
+          <h4 data-i18n="footer-contact-title">Contact</h4>
+          <p><a href="tel:+1-562-555-0117">(562) 555-0117</a></p>
+          <p><a href="mailto:hello@alignbright.example">hello@alignbright.example</a></p>
+          <p data-i18n="footer-address">4120 Seabreeze Way, Suite 260<br>Lakewood Hills, CA 90814</p>
+        </div>
+        <div class="footer-hours">
+          <h4 data-i18n="footer-hours-title">Hours</h4>
+          <p><strong data-i18n="footer-mon-thu">Mon–Thu:</strong> <span data-i18n="footer-mon-thu-hours">10:00 AM – 6:30 PM</span></p>
+          <p><strong data-i18n="footer-fri">Friday:</strong> <span data-i18n="footer-fri-hours">9:00 AM – 3:00 PM</span></p>
+          <p><strong data-i18n="footer-sat">Saturday:</strong> <span data-i18n="footer-sat-hours">9:00 AM – 1:00 PM</span></p>
+          <p><strong data-i18n="footer-sun">Sunday:</strong> <span data-i18n="footer-sun-hours">Closed</span></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer-copyright">© 2026 AlignBright Orthodontics. All rights reserved.</p>
+        <p><a href="privacy.html" data-i18n="footer-privacy">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/translations.js"></script>
+  <script src="assets/js/main.js"></script>
+  
+  <!-- Chatwoot Widget (Lazy Loaded) -->
+  <script>
+    (function() {
+      var loaded = false;
+      function loadChatwoot() {
+        if (loaded) return;
+        loaded = true;
+        var BASE_URL = "https://inbox.automatia.bot";
+        var g = document.createElement("script");
+        g.src = BASE_URL + "/packs/js/sdk.js";
+        g.async = true;
+        g.onload = function() {
+          window.chatwootSDK.run({
+            websiteToken: 'MsgMGewNxthKR5o2gFfFsnMQ',
+            baseUrl: BASE_URL
+          });
+        };
+        document.body.appendChild(g);
+      }
+      // Load on user interaction or after 3 seconds
+      ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function(evt) {
+        window.addEventListener(evt, loadChatwoot, { once: true, passive: true });
+      });
+      setTimeout(loadChatwoot, 3000);
+    })();
+  </script>
+</body>
+</html>

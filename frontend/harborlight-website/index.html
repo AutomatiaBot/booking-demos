@@ -3,26 +3,37 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="Harborlight Counseling & Wellness — evidence-based therapy with a human approach (fictional demo)."/>
+  <meta name="description" content="Harborlight Counseling & Wellness — evidence-based therapy with a human approach. Individual therapy, couples therapy, and teen counseling in Brookhaven + virtual."/>
   <meta name="theme-color" content="#102A43"/>
   <title>Harborlight Counseling & Wellness | Therapy in Brookhaven + Virtual</title>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css"/>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
+<!-- Floating decorative shapes -->
+<div class="floating-shapes" aria-hidden="true">
+  <div class="floating-shape shape-1"></div>
+  <div class="floating-shape shape-2"></div>
+  <div class="floating-shape shape-3"></div>
+</div>
+
+<a class="skip-link" href="#main" data-i18n="skip-link">Skip to content</a>
 
 <header>
   <div class="topbar">
     <div class="container">
       <div class="row">
-        <div>In-person in Brookhaven + virtual options • <a href="privacy.html">Privacy</a></div>
+        <div><span data-i18n="topbar-info">In-person in Brookhaven + virtual options</span> • <a href="privacy.html" data-i18n="privacy-link">Privacy</a></div>
         <div>
           <a href="tel:+1-555-641-2289">(555) 641-2289</a> •
           <a href="mailto:contact@harborlightcounseling.example">contact@harborlightcounseling.example</a>
+          <button class="lang-toggle" data-lang-toggle aria-label="Toggle language">
+            <svg class="lang-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+            <span class="lang-text">ES</span>
+          </button>
         </div>
       </div>
     </div>
@@ -33,34 +44,37 @@
       <a class="brand" href="index.html" aria-label="Go to home">
         <img src="assets/img/logo-mark.svg" alt="Harborlight mark"/>
         <div class="name">
-          <strong>Harborlight</strong>
-          <span>Counseling &amp; Wellness</span>
+          <strong data-i18n="brand-name">Harborlight</strong>
+          <span data-i18n="brand-tagline">Counseling &amp; Wellness</span>
         </div>
       </a>
 
       <nav aria-label="Primary">
         <button class="menu-btn" type="button" data-menu-btn aria-expanded="false" aria-controls="menu">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
-          Menu
+          <span data-i18n="menu">Menu</span>
         </button>
         <ul id="menu" data-menu>
-          <li><a href="index.html" class="active">Home</a></li>
-<li><a href="services.html" class="">Services</a></li>
-<li><a href="about.html" class="">About</a></li>
-<li><a href="faqs.html" class="">FAQs</a></li>
-<li><a href="resources.html" class="">Resources</a></li>
-<li><a href="contact.html" class="">Contact</a></li>
+          <li><a href="index.html" class="active" data-i18n="nav-home">Home</a></li>
+          <li><a href="services.html" data-i18n="nav-services">Services</a></li>
+          <li><a href="about.html" data-i18n="nav-about">About</a></li>
+          <li><a href="faqs.html" data-i18n="nav-faqs">FAQs</a></li>
+          <li><a href="contact.html" data-i18n="nav-contact">Contact</a></li>
         </ul>
       </nav>
 
       <div class="nav-cta">
+        <a class="btn demo-btn" href="https://demo.automatia.bot/" target="_blank">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+          <span data-i18n="back-to-demo">Back to Demo</span>
+        </a>
         <a class="btn ghost" href="contact.html#crisis">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm1 14h-2v-2h2v2Zm0-4h-2V6h2v6Z"/></svg>
-          Crisis info
+          <span data-i18n="crisis-info">Crisis info</span>
         </a>
         <a class="btn primary" href="tel:+1-555-641-2289">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C10.07 22 2 13.93 2 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.21 2.2Z"/></svg>
-          Call to schedule
+          <span data-i18n="call">Call</span>
         </a>
       </div>
     </div>
@@ -73,47 +87,45 @@
       <div class="hero-grid">
         <div>
           <div class="kicker">
-            <span class="pill">Trauma-informed</span>
-            <span class="pill">Evidence-based</span>
-            <span class="pill">Virtual + In-person</span>
+            <span class="pill" data-i18n="pill-trauma">Trauma-informed</span>
+            <span class="pill" data-i18n="pill-evidence">Evidence-based</span>
+            <span class="pill" data-i18n="pill-virtual">Virtual + In-person</span>
           </div>
-          <h1 class="h1">Steady support, clear next steps.</h1>
-          <p class="lead">
+          <h1 class="h1" data-i18n="hero-title">Steady <span class="highlight-word">support</span>, clear next steps.</h1>
+          <p class="lead" data-i18n="hero-lead">
             Harborlight Counseling &amp; Wellness offers individual therapy, couples therapy, and teen counseling (13+).
-            We’ll help you start with a calm, structured intake and match you to the right clinician.
+            We'll help you start with a calm, structured intake and match you to the right clinician.
           </p>
 
           <div class="hero-actions">
-            <a class="btn primary" href="tel:+1-555-641-2289">
+            <a class="btn primary pulse-subtle" href="tel:+1-555-641-2289">
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C10.07 22 2 13.93 2 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.21 2.2Z"/></svg>
-              Call to schedule
+              <span data-i18n="call-to-schedule">Call to schedule</span>
             </a>
             <a class="btn" href="contact.html">
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
-              Send a message
+              <span data-i18n="send-message">Send a message</span>
             </a>
-            <a class="btn ghost" href="services.html">Explore services</a>
+            <a class="btn ghost" href="services.html" data-i18n="explore-services">Explore services</a>
           </div>
 
           <div class="hero-meta" aria-label="Quick facts">
             <div class="meta">
-              <strong>New client intake</strong>
-              <span>Short call + paperwork + first session plan</span>
+              <strong data-i18n="new-client-intake">New client intake</strong>
+              <span data-i18n="intake-desc">Short call + paperwork + first session plan</span>
             </div>
             <div class="meta">
-              <strong>Session options</strong>
-              <span>In-person in Brookhaven or secure virtual</span>
+              <strong data-i18n="session-options">Session options</strong>
+              <span data-i18n="session-desc">In-person in Brookhaven or secure virtual</span>
             </div>
           </div>
         </div>
 
-        <div class="hero-card" aria-label="Calm illustration">
-          <img src="assets/img/hero-illustration.svg" alt="Abstract calming illustration"/>
-          <div class="pad">
-            <div class="badge">Not for emergencies</div>
-            <p class="small" style="margin:10px 0 0;">
-              If you’re in immediate danger, call 911. In the U.S., call or text 988 for the Suicide &amp; Crisis Lifeline.
-            </p>
+        <div class="hero-image-wrapper">
+          <img src="assets/img/clinician.png" alt="Welcoming therapy environment" class="hero-image"/>
+          <div class="hero-image-badge">
+            <div class="badge" data-i18n="not-for-emergencies">Not for emergencies</div>
+            <p class="small" data-i18n="emergency-notice">If you're in immediate danger, call 911. In the U.S., call or text 988.</p>
           </div>
         </div>
       </div>
@@ -122,24 +134,33 @@
 
   <section class="section">
     <div class="container">
-      <h2>How we can help</h2>
-      <p class="sub">Choose the service that best matches what you’re looking for. If you’re not sure, we’ll help you figure it out.</p>
+      <h2 data-i18n="how-we-can-help">How we can help</h2>
+      <p class="sub" data-i18n="services-sub">Choose the service that best matches what you're looking for. If you're not sure, we'll help you figure it out.</p>
 
-      <div class="grid-3">
-        <div class="card">
-          <span class="pill">Individual therapy</span>
-          <h3>Anxiety, stress, mood support</h3>
-          <p>Build practical skills, reduce overwhelm, and create a plan you can actually follow between sessions.</p>
+      <div class="grid-3 stagger-children fade-in">
+        <div class="card service-card card-lift">
+          <div class="service-image">
+            <img src="assets/img/happy-boy.png" alt="Individual therapy session"/>
+          </div>
+          <span class="pill" data-i18n="individual-therapy">Individual therapy</span>
+          <h3 data-i18n="individual-title">Anxiety, stress, mood support</h3>
+          <p data-i18n="individual-desc">Build practical skills, reduce overwhelm, and create a plan you can actually follow between sessions.</p>
         </div>
-        <div class="card">
-          <span class="pill">Couples therapy</span>
-          <h3>Communication &amp; relationship repair</h3>
-          <p>Improve conflict patterns, strengthen trust, and rebuild connection with structured sessions.</p>
+        <div class="card service-card card-lift">
+          <div class="service-image">
+            <img src="assets/img/happy-couple.png" alt="Couples counseling session"/>
+          </div>
+          <span class="pill" data-i18n="couples-therapy">Couples therapy</span>
+          <h3 data-i18n="couples-title">Communication &amp; relationship repair</h3>
+          <p data-i18n="couples-desc">Improve conflict patterns, strengthen trust, and rebuild connection with structured sessions.</p>
         </div>
-        <div class="card">
-          <span class="pill">Teen counseling (13+)</span>
-          <h3>School stress &amp; life transitions</h3>
-          <p>Support for teens navigating anxiety, mood changes, family transitions, and confidence.</p>
+        <div class="card service-card card-lift">
+          <div class="service-image">
+            <img src="assets/img/happy-teen.png" alt="Teen counseling support"/>
+          </div>
+          <span class="pill" data-i18n="teen-counseling">Teen counseling (13+)</span>
+          <h3 data-i18n="teen-title">School stress &amp; life transitions</h3>
+          <p data-i18n="teen-desc">Support for teens navigating anxiety, mood changes, family transitions, and confidence.</p>
         </div>
       </div>
     </div>
@@ -147,36 +168,72 @@
 
   <section class="section">
     <div class="container">
-      <h2>What to expect</h2>
-      <p class="sub">A simple, respectful process designed to reduce friction and help you start.</p>
+<div class="section-divider"></div>
+      <h2 data-i18n="what-to-expect">What to <span class="highlight-word">expect</span></h2>
+      <p class="sub" data-i18n="expect-sub">A simple, respectful process designed to reduce friction and help you start.</p>
 
       <div class="split">
         <div class="panel">
-          <h3>Step 1 — Quick intake</h3>
+          <h3 data-i18n="step1-title">Step 1 — Quick intake</h3>
           <ul class="list">
-            <li>Call us at <a href="tel:+1-555-641-2289">(555) 641-2289</a> or email <a href="mailto:contact@harborlightcounseling.example">contact@harborlightcounseling.example</a>.</li>
-            <li>We’ll ask a few questions about what you’re looking for and whether you prefer virtual or in-person.</li>
-            <li>You’ll receive basic paperwork and policies.</li>
+            <li data-i18n="step1-item1">Call us at <a href="tel:+1-555-641-2289">(555) 641-2289</a> or email <a href="mailto:contact@harborlightcounseling.example">contact@harborlightcounseling.example</a>.</li>
+            <li data-i18n="step1-item2">We'll ask a few questions about what you're looking for and whether you prefer virtual or in-person.</li>
+            <li data-i18n="step1-item3">You'll receive basic paperwork and policies.</li>
           </ul>
         </div>
         <div class="panel">
-          <h3>Step 2 — First session</h3>
+          <h3 data-i18n="step2-title">Step 2 — First session</h3>
           <ul class="list">
-            <li>We’ll focus on your goals, what’s been hard lately, and what support is most useful.</li>
-            <li>You’ll leave with clear next steps (no pressure, no judgment).</li>
-            <li>We do not provide crisis counseling via this website.</li>
+            <li data-i18n="step2-item1">We'll focus on your goals, what's been hard lately, and what support is most useful.</li>
+            <li data-i18n="step2-item2">You'll leave with clear next steps (no pressure, no judgment).</li>
+            <li data-i18n="step2-item3">We do not provide crisis counseling via this website.</li>
           </ul>
         </div>
       </div>
 
-      <div class="split">
-        <div class="quote">
-          <p>“I felt heard without being rushed. The plan was practical and easy to follow.”</p>
-          <footer>— Fictional client testimonial (demo)</footer>
-        </div>
-        <div class="quote">
-          <p>“The intake process was straightforward. I knew what to expect before the first session.”</p>
-          <footer>— Fictional client testimonial (demo)</footer>
+      <div class="testimonials fade-in">
+        <h3 style="margin: 0 0 16px; font-size: 18px; color: var(--navy);" data-i18n="testimonials-title">What our clients say</h3>
+        <div class="testimonials-grid stagger-children">
+          <div class="testimonial">
+            <p class="testimonial-text" data-i18n="testimonial1-text">"I felt heard without being rushed. The plan was practical and easy to follow between sessions."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">SM</div>
+              <div class="testimonial-info">
+                <span class="testimonial-name" data-i18n="testimonial1-name">Sarah M.</span>
+                <span class="testimonial-location" data-i18n="testimonial1-location">Brookhaven, IL</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <p class="testimonial-text" data-i18n="testimonial2-text">"The intake process was straightforward. I knew exactly what to expect before my first session."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">JT</div>
+              <div class="testimonial-info">
+                <span class="testimonial-name" data-i18n="testimonial2-name">James T.</span>
+                <span class="testimonial-location" data-i18n="testimonial2-location">Virtual Client</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <p class="testimonial-text" data-i18n="testimonial3-text">"After trying other therapists, I finally found someone who listens. The virtual sessions fit perfectly into my schedule."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">MR</div>
+              <div class="testimonial-info">
+                <span class="testimonial-name" data-i18n="testimonial3-name">Michelle R.</span>
+                <span class="testimonial-location" data-i18n="testimonial3-location">Virtual Client</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <p class="testimonial-text" data-i18n="testimonial4-text">"My teenager was hesitant at first, but now looks forward to sessions. We've seen real positive changes at home."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">DK</div>
+              <div class="testimonial-info">
+                <span class="testimonial-name" data-i18n="testimonial4-name">David K.</span>
+                <span class="testimonial-location" data-i18n="testimonial4-location">Parent, Brookhaven</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -184,14 +241,14 @@
 
   <section class="section">
     <div class="container">
-      <div class="card" style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
-        <div>
-          <h3 style="margin:0 0 6px; font-size:18px;">Ready to get started?</h3>
-          <p style="margin:0; color:rgba(36,59,83,.92);">Call for scheduling. If you prefer, email us and we’ll guide you.</p>
+      <div class="card cta-card">
+        <div class="cta-content">
+          <h3 data-i18n="ready-to-start">Ready to get started?</h3>
+          <p data-i18n="cta-desc">Call for scheduling. If you prefer, email us and we'll guide you.</p>
         </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <div class="cta-actions">
           <a class="btn primary" href="tel:+1-555-641-2289">Call (555) 641-2289</a>
-          <a class="btn" href="mailto:contact@harborlightcounseling.example">Email us</a>
+          <a class="btn" href="mailto:contact@harborlightcounseling.example" data-i18n="email-us">Email us</a>
         </div>
       </div>
     </div>
@@ -202,46 +259,67 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <img src="assets/img/logo.svg" alt="Harborlight logo" style="max-width:360px; width:100%;"/>
-        <p class="small" style="margin-top:10px; max-width:70ch;">
+        <div class="footer-brand">
+          <img src="assets/img/logo-mark.svg" alt="Harborlight mark"/>
+          <div class="footer-brand-text">
+            <strong data-i18n="brand-name">Harborlight</strong>
+            <span data-i18n="brand-tagline">Counseling &amp; Wellness</span>
+          </div>
+        </div>
+        <p class="small" data-i18n="footer-description">
           Evidence-based therapy with a human approach. We offer a supportive space for individuals, couples, and teens (13+).
-          This website is a fictional demo.
         </p>
       </div>
 
       <div>
-        <h3 style="margin:0 0 10px; font-size:14px; letter-spacing:.3px; text-transform:uppercase; opacity:.95;">Contact</h3>
+        <h3 style="margin:0 0 12px; font-size:13px; letter-spacing:.3px; text-transform:uppercase; opacity:.7; font-weight: 600;" data-i18n="footer-contact-title">Contact</h3>
         <p class="small" style="margin:0 0 8px;">
           <a href="tel:+1-555-641-2289">(555) 641-2289</a><br/>
           <a href="mailto:contact@harborlightcounseling.example">contact@harborlightcounseling.example</a><br/>
-          730 Magnolia Terrace, Suite 402, Brookhaven, IL 60192
+          730 Magnolia Terrace, Suite 402<br/>
+          Brookhaven, IL 60192
         </p>
-        <p class="small" style="margin:10px 0 0;"><a href="privacy.html">Privacy Policy</a></p>
+        <p class="small" style="margin:12px 0 0;"><a href="privacy.html" data-i18n="privacy-policy">Privacy Policy</a></p>
       </div>
 
       <div>
-        <h3 style="margin:0 0 10px; font-size:14px; letter-spacing:.3px; text-transform:uppercase; opacity:.95;">Hours</h3>
-        <ul class="small" style="margin:0; padding-left:18px;">
-          <li><b>Monday:</b> 10:00 AM – 7:00 PM</li>
-<li><b>Tuesday:</b> 10:00 AM – 7:00 PM</li>
-<li><b>Wednesday:</b> 10:00 AM – 7:00 PM</li>
-<li><b>Thursday:</b> 10:00 AM – 7:00 PM</li>
-<li><b>Friday:</b> 10:00 AM – 4:00 PM</li>
-<li><b>Saturday:</b> Limited virtual sessions (call to confirm)</li>
-<li><b>Sunday:</b> Closed</li>
-        </ul>
+        <h3 style="margin:0 0 12px; font-size:13px; letter-spacing:.3px; text-transform:uppercase; opacity:.7; font-weight: 600;" data-i18n="footer-hours-title">Hours</h3>
+        <p class="small" style="margin:0; line-height: 1.8">
+          <b data-i18n="footer-mon-thu">Mon–Thu:</b> <span data-i18n="footer-mon-thu-hours">10am – 7pm</span><br/>
+          <b data-i18n="footer-friday">Friday:</b> <span data-i18n="footer-friday-hours">10am – 4pm</span><br/>
+          <b data-i18n="footer-saturday">Saturday:</b> <span data-i18n="footer-saturday-hours">Limited virtual</span><br/>
+          <b data-i18n="footer-sunday">Sunday:</b> <span data-i18n="footer-sunday-hours">Closed</span>
+        </p>
       </div>
     </div>
 
     <hr class="sep"/>
 
     <div class="footer-bottom">
-      <div class="small">© 2026 Harborlight Counseling &amp; Wellness (fictional). All rights reserved.</div>
-      <div class="small">Not for emergencies. If you’re in immediate danger, call 911. In the U.S., call or text 988.</div>
+      <div class="small" data-i18n="footer-copyright">© 2026 Harborlight Counseling &amp; Wellness. All rights reserved.</div>
+      <div class="small" data-i18n="footer-emergency">Not for emergencies. Call 911 or text 988 (U.S.).</div>
     </div>
   </div>
 </footer>
 
+<script src="assets/js/translations.js"></script>
 <script src="assets/js/main.js"></script>
+
+<!-- Chatwoot Widget -->
+<script>
+  (function(d,t) {
+    var BASE_URL="https://inbox.automatia.bot";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    g.async = true;
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: 'nmriKc3ib7849TZZf78Y3VgQ',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");
+</script>
 </body>
 </html>

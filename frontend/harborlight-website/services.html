@@ -3,26 +3,37 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="Harborlight Counseling & Wellness — evidence-based therapy with a human approach (fictional demo)."/>
+  <meta name="description" content="Therapy services at Harborlight Counseling & Wellness — individual therapy, couples therapy, and teen counseling (13+) in Brookhaven and virtually."/>
   <meta name="theme-color" content="#102A43"/>
   <title>Services | Harborlight Counseling & Wellness</title>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css"/>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
+<!-- Floating decorative shapes -->
+<div class="floating-shapes" aria-hidden="true">
+  <div class="floating-shape shape-1"></div>
+  <div class="floating-shape shape-2"></div>
+  <div class="floating-shape shape-3"></div>
+</div>
+
+<a class="skip-link" href="#main" data-i18n="skip-link">Skip to content</a>
 
 <header>
   <div class="topbar">
     <div class="container">
       <div class="row">
-        <div>In-person in Brookhaven + virtual options • <a href="privacy.html">Privacy</a></div>
+        <div><span data-i18n="topbar-info">In-person in Brookhaven + virtual options</span> • <a href="privacy.html" data-i18n="privacy-link">Privacy</a></div>
         <div>
           <a href="tel:+1-555-641-2289">(555) 641-2289</a> •
           <a href="mailto:contact@harborlightcounseling.example">contact@harborlightcounseling.example</a>
+          <button class="lang-toggle" data-lang-toggle aria-label="Toggle language">
+            <svg class="lang-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+            <span class="lang-text">ES</span>
+          </button>
         </div>
       </div>
     </div>
@@ -33,34 +44,37 @@
       <a class="brand" href="index.html" aria-label="Go to home">
         <img src="assets/img/logo-mark.svg" alt="Harborlight mark"/>
         <div class="name">
-          <strong>Harborlight</strong>
-          <span>Counseling &amp; Wellness</span>
+          <strong data-i18n="brand-name">Harborlight</strong>
+          <span data-i18n="brand-tagline">Counseling &amp; Wellness</span>
         </div>
       </a>
 
       <nav aria-label="Primary">
         <button class="menu-btn" type="button" data-menu-btn aria-expanded="false" aria-controls="menu">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
-          Menu
+          <span data-i18n="menu">Menu</span>
         </button>
         <ul id="menu" data-menu>
-          <li><a href="index.html" class="">Home</a></li>
-<li><a href="services.html" class="active">Services</a></li>
-<li><a href="about.html" class="">About</a></li>
-<li><a href="faqs.html" class="">FAQs</a></li>
-<li><a href="resources.html" class="">Resources</a></li>
-<li><a href="contact.html" class="">Contact</a></li>
+          <li><a href="index.html" data-i18n="nav-home">Home</a></li>
+          <li><a href="services.html" class="active" data-i18n="nav-services">Services</a></li>
+          <li><a href="about.html" data-i18n="nav-about">About</a></li>
+          <li><a href="faqs.html" data-i18n="nav-faqs">FAQs</a></li>
+          <li><a href="contact.html" data-i18n="nav-contact">Contact</a></li>
         </ul>
       </nav>
 
       <div class="nav-cta">
+        <a class="btn demo-btn" href="https://demo.automatia.bot/" target="_blank">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+          <span data-i18n="back-to-demo">Back to Demo</span>
+        </a>
         <a class="btn ghost" href="contact.html#crisis">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm1 14h-2v-2h2v2Zm0-4h-2V6h2v6Z"/></svg>
-          Crisis info
+          <span data-i18n="crisis-info">Crisis info</span>
         </a>
         <a class="btn primary" href="tel:+1-555-641-2289">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C10.07 22 2 13.93 2 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.21 2.2Z"/></svg>
-          Call to schedule
+          <span data-i18n="call">Call</span>
         </a>
       </div>
     </div>
@@ -69,62 +83,72 @@
 
 <section class="page-hero">
   <div class="container">
-    <h1>Services</h1>
-    <div class="breadcrumb"><a href="index.html">Home</a> / Services</div>
+    <h1 data-i18n="services-title"><span class="highlight-word">Services</span></h1>
+    <div class="breadcrumb"><a href="index.html" data-i18n="services-breadcrumb-home">Home</a> / <span data-i18n="services-breadcrumb-current">Services</span></div>
   </div>
 </section>
 
 <main id="main">
   <section class="section">
     <div class="container">
-      <p class="sub">We provide therapy services that are structured, practical, and tailored to your goals. We can help you decide what fits during a brief intake.</p>
+      <p class="sub" data-i18n="services-intro">We provide therapy services that are structured, practical, and tailored to your goals. We can help you decide what fits during a brief intake.</p>
 
-      <div class="grid-3">
-        <div class="card">
-          <span class="pill">Individual Therapy</span>
-          <h3>Adults</h3>
-          <p>Support for anxiety, stress, depression support, burnout, self-esteem, coping skills, and life transitions.</p>
-          <p class="small" style="margin-top:10px;"><b>Formats:</b> In-person or virtual</p>
+      <div class="grid-3 stagger-children fade-in">
+        <div class="card service-card card-lift">
+          <div class="service-image">
+            <img src="assets/img/happy-boy.png" alt="Individual therapy session"/>
+          </div>
+          <span class="pill" data-i18n="individual-therapy-pill">Individual Therapy</span>
+          <h3 data-i18n="adults">Adults</h3>
+          <p data-i18n="adults-desc">Support for anxiety, stress, depression support, burnout, self-esteem, coping skills, and life transitions.</p>
+          <p class="small" style="margin-top:10px; color:rgba(36,59,83,.6)"><strong data-i18n="formats-label">Formats:</strong> <span data-i18n="formats-in-person-virtual">In-person or virtual</span></p>
         </div>
 
-        <div class="card">
-          <span class="pill">Couples Therapy</span>
-          <h3>Partners</h3>
-          <p>Communication skills, conflict patterns, intimacy repair, rebuilding trust, and premarital counseling.</p>
-          <p class="small" style="margin-top:10px;"><b>Formats:</b> In-person or virtual</p>
+        <div class="card service-card card-lift">
+          <div class="service-image">
+            <img src="assets/img/happy-couple.png" alt="Couples therapy session"/>
+          </div>
+          <span class="pill" data-i18n="couples-therapy-pill">Couples Therapy</span>
+          <h3 data-i18n="partners">Partners</h3>
+          <p data-i18n="partners-desc">Communication skills, conflict patterns, intimacy repair, rebuilding trust, and premarital counseling.</p>
+          <p class="small" style="margin-top:10px; color:rgba(36,59,83,.6)"><strong data-i18n="formats-label">Formats:</strong> <span data-i18n="formats-in-person-virtual">In-person or virtual</span></p>
         </div>
 
-        <div class="card">
-          <span class="pill">Teen Counseling (13+)</span>
-          <h3>Adolescents</h3>
-          <p>Support for school stress, anxiety, mood support, confidence, and family transitions. Parent/guardian involvement as appropriate.</p>
-          <p class="small" style="margin-top:10px;"><b>Formats:</b> In-person or limited virtual</p>
+        <div class="card service-card card-lift">
+          <div class="service-image">
+            <img src="assets/img/happy-teen.png" alt="Teen counseling support"/>
+          </div>
+          <span class="pill" data-i18n="teen-counseling-pill">Teen Counseling (13+)</span>
+          <h3 data-i18n="adolescents">Adolescents</h3>
+          <p data-i18n="adolescents-desc">Support for school stress, anxiety, mood support, confidence, and family transitions. Parent/guardian involvement as appropriate.</p>
+          <p class="small" style="margin-top:10px; color:rgba(36,59,83,.6)"><strong data-i18n="formats-label">Formats:</strong> <span data-i18n="formats-teen">In-person or limited virtual</span></p>
         </div>
       </div>
 
-      <div class="split">
-        <div class="panel">
-          <h3>Approaches we may use</h3>
+      <div class="section-divider"></div>
+      <div class="split fade-in">
+        <div class="panel card-lift">
+          <h3 data-i18n="approaches-title">Approaches we may use</h3>
           <ul class="list">
-            <li>Skills-based therapy (coping, communication, emotion regulation)</li>
-            <li>Trauma-informed care (stabilization and support)</li>
-            <li>Goal setting and progress review</li>
-            <li>Mindfulness and stress reduction tools</li>
+            <li data-i18n="approach-item1">Skills-based therapy (coping, communication, emotion regulation)</li>
+            <li data-i18n="approach-item2">Trauma-informed care (stabilization and support)</li>
+            <li data-i18n="approach-item3">Goal setting and progress review</li>
+            <li data-i18n="approach-item4">Mindfulness and stress reduction tools</li>
           </ul>
-          <p class="small" style="margin:10px 0 0;">Note: We don’t diagnose or provide crisis counseling through the website.</p>
+          <p class="small" style="margin:12px 0 0; color:rgba(36,59,83,.6)" data-i18n="approaches-note">Note: We don't diagnose or provide crisis counseling through the website.</p>
         </div>
 
-        <div class="panel">
-          <h3>Common questions we can answer</h3>
+        <div class="panel card-lift">
+          <h3 data-i18n="common-questions-title">Common questions we can answer</h3>
           <ul class="list">
-            <li>What’s the difference between individual and couples therapy?</li>
-            <li>Do you offer virtual sessions?</li>
-            <li>How does teen counseling work with parents/guardians?</li>
-            <li>What should I expect in the first session?</li>
+            <li data-i18n="common-q1">What's the difference between individual and couples therapy?</li>
+            <li data-i18n="common-q2">Do you offer virtual sessions?</li>
+            <li data-i18n="common-q3">How does teen counseling work with parents/guardians?</li>
+            <li data-i18n="common-q4">What should I expect in the first session?</li>
           </ul>
-          <div style="margin-top:12px;">
-            <a class="btn primary" href="tel:+1-555-641-2289">Call to schedule</a>
-            <a class="btn" href="contact.html">Message us</a>
+          <div style="margin-top:14px;">
+            <a class="btn primary" href="tel:+1-555-641-2289" data-i18n="call-to-schedule">Call to schedule</a>
+            <a class="btn" href="contact.html" data-i18n="message-us">Message us</a>
           </div>
         </div>
       </div>
@@ -136,46 +160,67 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <img src="assets/img/logo.svg" alt="Harborlight logo" style="max-width:360px; width:100%;"/>
-        <p class="small" style="margin-top:10px; max-width:70ch;">
+        <div class="footer-brand">
+          <img src="assets/img/logo-mark.svg" alt="Harborlight mark"/>
+          <div class="footer-brand-text">
+            <strong data-i18n="brand-name">Harborlight</strong>
+            <span data-i18n="brand-tagline">Counseling &amp; Wellness</span>
+          </div>
+        </div>
+        <p class="small" data-i18n="footer-description">
           Evidence-based therapy with a human approach. We offer a supportive space for individuals, couples, and teens (13+).
-          This website is a fictional demo.
         </p>
       </div>
 
       <div>
-        <h3 style="margin:0 0 10px; font-size:14px; letter-spacing:.3px; text-transform:uppercase; opacity:.95;">Contact</h3>
+        <h3 style="margin:0 0 12px; font-size:13px; letter-spacing:.3px; text-transform:uppercase; opacity:.7; font-weight: 600;" data-i18n="footer-contact-title">Contact</h3>
         <p class="small" style="margin:0 0 8px;">
           <a href="tel:+1-555-641-2289">(555) 641-2289</a><br/>
           <a href="mailto:contact@harborlightcounseling.example">contact@harborlightcounseling.example</a><br/>
-          730 Magnolia Terrace, Suite 402, Brookhaven, IL 60192
+          730 Magnolia Terrace, Suite 402<br/>
+          Brookhaven, IL 60192
         </p>
-        <p class="small" style="margin:10px 0 0;"><a href="privacy.html">Privacy Policy</a></p>
+        <p class="small" style="margin:12px 0 0;"><a href="privacy.html" data-i18n="privacy-policy">Privacy Policy</a></p>
       </div>
 
       <div>
-        <h3 style="margin:0 0 10px; font-size:14px; letter-spacing:.3px; text-transform:uppercase; opacity:.95;">Hours</h3>
-        <ul class="small" style="margin:0; padding-left:18px;">
-          <li><b>Monday:</b> 10:00 AM – 7:00 PM</li>
-<li><b>Tuesday:</b> 10:00 AM – 7:00 PM</li>
-<li><b>Wednesday:</b> 10:00 AM – 7:00 PM</li>
-<li><b>Thursday:</b> 10:00 AM – 7:00 PM</li>
-<li><b>Friday:</b> 10:00 AM – 4:00 PM</li>
-<li><b>Saturday:</b> Limited virtual sessions (call to confirm)</li>
-<li><b>Sunday:</b> Closed</li>
-        </ul>
+        <h3 style="margin:0 0 12px; font-size:13px; letter-spacing:.3px; text-transform:uppercase; opacity:.7; font-weight: 600;" data-i18n="footer-hours-title">Hours</h3>
+        <p class="small" style="margin:0; line-height: 1.8">
+          <b data-i18n="footer-mon-thu">Mon–Thu:</b> <span data-i18n="footer-mon-thu-hours">10am – 7pm</span><br/>
+          <b data-i18n="footer-friday">Friday:</b> <span data-i18n="footer-friday-hours">10am – 4pm</span><br/>
+          <b data-i18n="footer-saturday">Saturday:</b> <span data-i18n="footer-saturday-hours">Limited virtual</span><br/>
+          <b data-i18n="footer-sunday">Sunday:</b> <span data-i18n="footer-sunday-hours">Closed</span>
+        </p>
       </div>
     </div>
 
     <hr class="sep"/>
 
     <div class="footer-bottom">
-      <div class="small">© 2026 Harborlight Counseling &amp; Wellness (fictional). All rights reserved.</div>
-      <div class="small">Not for emergencies. If you’re in immediate danger, call 911. In the U.S., call or text 988.</div>
+      <div class="small" data-i18n="footer-copyright">© 2026 Harborlight Counseling &amp; Wellness. All rights reserved.</div>
+      <div class="small" data-i18n="footer-emergency">Not for emergencies. Call 911 or text 988 (U.S.).</div>
     </div>
   </div>
 </footer>
 
+<script src="assets/js/translations.js"></script>
 <script src="assets/js/main.js"></script>
+
+<!-- Chatwoot Widget -->
+<script>
+  (function(d,t) {
+    var BASE_URL="https://inbox.automatia.bot";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    g.async = true;
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: 'nmriKc3ib7849TZZf78Y3VgQ',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");
+</script>
 </body>
 </html>

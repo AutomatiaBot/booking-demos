@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <!-- AlignBright Logo - Primary Horizontal Lockup -->
+  <!-- Abstract smile arc with subtle aligner motif -->
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0891B2"/>
+      <stop offset="100%" style="stop-color:#22D3EE"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Icon Mark -->
+  <g>
+    <!-- Outer smile arc -->
+    <path d="M8 28C8 28 14 36 24 36C34 36 40 28 40 28" stroke="url(#logoGradient)" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <!-- Inner aligner suggestion (two subtle curved lines representing aligners) -->
+    <path d="M12 24C12 24 16 30 24 30C32 30 36 24 36 24" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <!-- Top arc suggesting alignment/straightness -->
+    <path d="M14 18C14 18 18 14 24 14C30 14 34 18 34 18" stroke="url(#logoGradient)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <!-- Small dots suggesting bracket positions -->
+    <circle cx="17" cy="21" r="2" fill="#0891B2"/>
+    <circle cx="24" cy="19" r="2" fill="#0891B2"/>
+    <circle cx="31" cy="21" r="2" fill="#0891B2"/>
+  </g>
+  
+  <!-- Text: AlignBright -->
+  <text x="52" y="32" font-family="'DM Sans', 'Inter', -apple-system, sans-serif" font-size="22" font-weight="700" fill="#0F172A">
+    <tspan>Align</tspan><tspan fill="#0891B2">Bright</tspan>
+  </text>
+</svg>

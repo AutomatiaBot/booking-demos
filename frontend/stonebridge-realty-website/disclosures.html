@@ -31,17 +31,25 @@
       </button>
 
       <div class="nav-links" id="navLinks" data-nav-links>
-        <a href="buy.html">Buy</a>
-        <a href="sell.html">Sell</a>
-        <a href="rent.html">Rent</a>
-        <a href="agents.html">Agents</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+        <a href="https://demo.automatia.bot" class="nav-portal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span data-i18n="nav_back_portal">Back to Portal</span>
+        </a>
+        <a href="buy.html" data-i18n="nav_buy">Buy</a>
+        <a href="sell.html" data-i18n="nav_sell">Sell</a>
+        <a href="rent.html" data-i18n="nav_rent">Rent</a>
+        <a href="agents.html" data-i18n="nav_agents">Agents</a>
+        <a href="about.html" data-i18n="nav_about">About</a>
+        <a href="contact.html" data-i18n="nav_contact">Contact</a>
+        <button class="lang-toggle" type="button" aria-label="Toggle language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="lang-text">ES</span>
+        </button>
       </div>
 
       <div class="nav-cta">
-        <span class="badge">Call: <a href="tel:+15557750193">(555) 775-0193</a></span>
-        <a class="btn primary" href="contact.html">Get matched</a>
+        <span class="badge"><span data-i18n="nav_call">Call:</span> <a href="tel:+15557750193">(555) 775-0193</a></span>
+        <a class="btn primary small" href="contact.html" data-i18n="nav_get_matched">Get matched</a>
       </div>
     </div>
   </div>
@@ -53,40 +61,43 @@
   <div class="container">
     <div class="hero-grid">
       <div class="hero-card">
-        <div class="kicker"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 2L20 6V12C20 16.5 16.6 20.5 12 22C7.4 20.5 4 16.5 4 12V6L12 2Z" stroke="#0B1F2A" stroke-width="1.8" stroke-linejoin="round"/>
-  <path d="M9 12L11 14L15.5 9.5" stroke="#0B1F2A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-</svg> Disclosures</div>
-        <h1>Safety, fairness, and clear boundaries.</h1>
-        <p class="lede">This demo site includes standard cautions for real estate clients. Replace or expand these disclosures to fit your local requirements.</p>
+        <div class="kicker">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L20 6V12C20 16.5 16.6 20.5 12 22C7.4 20.5 4 16.5 4 12V6L12 2Z" stroke="#0B1F2A" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M9 12L11 14L15.5 9.5" stroke="#0B1F2A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span data-i18n="disclosures_kicker">Disclosures</span>
+        </div>
+        <h1 data-i18n="disclosures_h1">Safety, fairness, and clear boundaries.</h1>
+        <p class="lede" data-i18n="disclosures_lede">This demo site includes standard cautions for real estate clients. Replace or expand these disclosures to fit your local requirements.</p>
         <div class="hero-actions">
-          <a class="btn primary" href="contact.html">Ask a question</a>
+          <a class="btn primary" href="contact.html" data-i18n="disclosures_cta_primary">Ask a question</a>
           <a class="btn ghost" href="tel:+15557750193">Call (555) 775-0193</a>
         </div>
       </div>
       <aside class="panel">
-        <h2>At a glance</h2>
+        <h2 data-i18n="disclosures_panel_title">At a glance</h2>
         <ul>
-          <li><strong>No wiring details</strong> shared via chat/email</li>
-          <li><strong>No legal advice</strong> on the website</li>
-          <li><strong>Fair housing</strong> neutral, criteria-based help</li>
+          <li><strong data-i18n="disclosures_panel_1">No wiring details</strong> <span data-i18n="disclosures_panel_1_desc">shared via chat/email</span></li>
+          <li><strong data-i18n="disclosures_panel_2">No legal advice</strong> <span data-i18n="disclosures_panel_2_desc">on the website</span></li>
+          <li><strong data-i18n="disclosures_panel_3">Fair housing</strong> <span data-i18n="disclosures_panel_3_desc">neutral, criteria-based help</span></li>
         </ul>
       </aside>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section section-mist">
   <div class="container">
     <div class="panel" id="wire-fraud">
-      <h2>Wire fraud warning</h2>
-      <p>Cyber criminals sometimes impersonate parties in a real estate transaction and send convincing messages that “change” payment details. For your safety:</p>
+      <h2 data-i18n="wire_fraud_title">Wire fraud warning</h2>
+      <p data-i18n="wire_fraud_desc">Cyber criminals sometimes impersonate parties in a real estate transaction and send convincing messages that "change" payment details. For your safety:</p>
       <ul>
-        <li>Do not trust wiring instructions delivered through email, chat, or text.</li>
-        <li>Independently verify any payment details by calling a trusted, verified phone number.</li>
-        <li>If you receive a “rush” request or last-minute change, treat it as suspicious until verified.</li>
+        <li data-i18n="wire_fraud_1">Do not trust wiring instructions delivered through email, chat, or text.</li>
+        <li data-i18n="wire_fraud_2">Independently verify any payment details by calling a trusted, verified phone number.</li>
+        <li data-i18n="wire_fraud_3">If you receive a "rush" request or last-minute change, treat it as suspicious until verified.</li>
       </ul>
-      <p class="small">This is general safety information for demo use only.</p>
+      <p class="small" data-i18n="wire_fraud_note">This is general safety information for demo use only.</p>
     </div>
   </div>
 </section>
@@ -94,10 +105,10 @@
 <section class="section">
   <div class="container">
     <div class="panel" id="fair-housing">
-      <h2>Fair housing commitment</h2>
-      <p>We support equal housing opportunity. We can help you based on objective criteria (budget, commute, features, and property attributes). We do not steer or filter options based on protected characteristics.</p>
+      <h2 data-i18n="fair_housing_title">Fair housing commitment</h2>
+      <p data-i18n="fair_housing_desc">We support equal housing opportunity. We can help you filter by objective criteria (budget, commute, home features) and will not steer based on protected characteristics.</p>
       <ul>
-        <li>We won’t answer demographic-based neighborhood questions or recommend areas based on protected traits.</li>
+        <li>We won't answer demographic-based neighborhood questions or recommend areas based on protected traits.</li>
         <li>We can suggest neutral ways to evaluate communities (public safety stats, commuting tools, school district boundaries).</li>
         <li>We focus on your must-haves: price range, beds/baths, property type, HOA preferences, and commute goals.</li>
       </ul>
@@ -112,68 +123,45 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <img src="assets/img/logo.svg" alt="Stonebridge Realty Group" style="width: 260px; height: auto; background: rgba(255,255,255,0.06); padding: 10px 12px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.10);">
-        <p style="margin: 12px 0 0;">Buying, selling, and relocating—without the chaos.</p>
-        <p style="margin: 10px 0 0; font-size: 13px; color: rgba(255,255,255,0.78);">Service area: Easton Harbor & surrounding communities</p>
+        <img src="assets/img/logo.svg" alt="Stonebridge Realty Group" style="width: 260px; height: auto; background: rgba(255,255,255,0.95); padding: 12px 14px; border-radius: 16px;">
+        <p style="margin: 16px 0 0;" data-i18n="footer_tagline">Buying, selling, and relocating—without the chaos.</p>
+        <p style="margin: 10px 0 0; font-size: 13px; color: rgba(255,255,255,0.70);" data-i18n="footer_service_area">Service area: Easton Harbor & surrounding communities</p>
       </div>
 
       <div>
-        <h3 style="margin: 0 0 8px; font-size: 14px; letter-spacing: 0.2px;">Office</h3>
-        <p style="margin: 0 0 8px;">2950 Marketway Plaza, Suite 110, Easton Harbor, WA 98118</p>
-        <p style="margin: 0 0 8px;">Phone: <a href="tel:+15557750193">(555) 775-0193</a><br>Email: <a href="mailto:team@stonebridgerealty.example">team@stonebridgerealty.example</a></p>
-        <ul><li><strong>Monday–Friday:</strong> 9:00 AM – 6:00 PM</li>
-<li><strong>Saturday:</strong> 10:00 AM – 3:00 PM</li>
-<li><strong>Sunday:</strong> By appointment</li></ul>
-      </div>
-
-      <div>
-        <h3 style="margin: 0 0 8px; font-size: 14px; letter-spacing: 0.2px;">Important</h3>
+        <h3 data-i18n="footer_office">Office</h3>
+        <p style="margin: 0 0 10px;">2950 Marketway Plaza, Suite 110, Easton Harbor, WA 98118</p>
+        <p style="margin: 0 0 10px;">Phone: <a href="tel:+15557750193">(555) 775-0193</a><br>Email: <a href="mailto:team@stonebridgerealty.example">team@stonebridgerealty.example</a></p>
         <ul>
-          <li><a href="disclosures.html">Wire fraud & safety</a></li>
-          <li><a href="disclosures.html#fair-housing">Fair housing commitment</a></li>
-          <li><a href="privacy.html">Privacy policy (demo)</a></li>
+          <li><strong>Monday–Friday:</strong> 9:00 AM – 6:00 PM</li>
+          <li><strong>Saturday:</strong> 10:00 AM – 3:00 PM</li>
+          <li><strong>Sunday:</strong> By appointment</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 data-i18n="footer_important">Important</h3>
+        <ul>
+          <li><a href="disclosures.html" data-i18n="footer_wire_fraud">Wire fraud & safety</a></li>
+          <li><a href="disclosures.html#fair-housing" data-i18n="footer_fair_housing">Fair housing commitment</a></li>
+          <li><a href="privacy.html" data-i18n="footer_privacy">Privacy policy (demo)</a></li>
         </ul>
 
-        <div class="footer-badges" style="margin-top: 12px;">
-          <div class="footer-badge">Equal Housing Opportunity</div>
-          <div class="footer-badge">Secure callbacks for wires</div>
+        <div class="footer-badges">
+          <div class="footer-badge" data-i18n="footer_equal_housing">Equal Housing Opportunity</div>
+          <div class="footer-badge" data-i18n="footer_secure">Secure callbacks for wires</div>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <div>© 2026 Stonebridge Realty Group — Demo site content only.</div>
-      <div>Built for chatbot + lead capture demos.</div>
+      <div data-i18n="footer_copyright">© 2026 Stonebridge Realty Group — Demo site content only.</div>
+      <div data-i18n="footer_demo">Built for chatbot + lead capture demos.</div>
     </div>
   </div>
 </footer>
 
-<button class="btn primary chat-fab" data-chat-open type="button" aria-haspopup="dialog" aria-controls="chatModal">
-  Chat with Mia
-</button>
-
-<div class="modal" id="chatModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Chat demo">
-  <div class="modal-card">
-    <div class="modal-head">
-      <h3>Chat demo placeholder</h3>
-      <button class="btn" type="button" data-chat-close>Close</button>
-    </div>
-    <div class="modal-body">
-      <p style="margin: 0 0 10px;">
-        This site is wired for an embedded chatbot. Replace this modal with your widget script (or iframe) when deploying.
-      </p>
-      <div class="note">
-        <strong>Recommended behavior</strong>
-        Capture: name + phone (required), email (optional). Ask whether they’re buying/selling/renting, timeline, and key criteria. Route scheduling to (555) 775-0193 / team@stonebridgerealty.example.
-      </div>
-    </div>
-    <div class="modal-actions">
-      <a class="btn primary" href="contact.html">Contact the team</a>
-      <button class="btn ghost" type="button" data-chat-close>Done</button>
-    </div>
-  </div>
-</div>
-
+<script src="assets/js/translations.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

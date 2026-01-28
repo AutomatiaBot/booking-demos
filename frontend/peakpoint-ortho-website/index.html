@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PeakPoint Orthopedics & Sports Medicine | Northbridge, TX</title>
-  <meta name="description" content="Orthopedic and sports medicine care designed to keep you moving." />
+  <meta name="description" content="Orthopedic and sports medicine care designed to keep you moving. Expert evaluation for knee, shoulder, hip, ankle, and spine conditions." />
   <meta name="theme-color" content="#0B1F3A" />
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,18 +24,18 @@
     <div class="container wrap">
       <div class="meta">
         <span class="pill">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 2h10v2H7V2Zm-2 4h14a2 2 0 0 1 2 2v11a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M8 12h8M8 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          <span><b>Hours</b> Mon–Fri 8:30–5:30</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/></svg>
+          <span><b data-i18n="topbar.hours">Hours</b> <span data-i18n="topbar.hours.value">Mon–Fri 8:30 AM – 5:30 PM</span></span>
         </span>
         <span class="pill">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 16.5a3.5 3.5 0 0 1-3.5 3.5H8a5 5 0 1 1 .5-10 6 6 0 0 1 11.5 2.5v.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-          <span>Performance-minded care for active lives</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+          <span>Northbridge, TX</span>
         </span>
       </div>
       <div class="meta">
         <a class="pill" href="tel:5559071148">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 3.5 9 3c.7-.1 1.3.3 1.5 1l1 3c.2.6 0 1.3-.5 1.7l-1.6 1.2c1.2 2.1 2.9 3.8 5 5l1.2-1.6c.4-.5 1.1-.7 1.7-.5l3 1c.7.2 1.1.8 1 1.5l-.5 2.5c-.1.7-.7 1.2-1.4 1.2-9.6 0-17.3-7.7-17.3-17.3 0-.7.5-1.3 1.2-1.4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-          <span><b>Call</b> (555) 907-1148</span>
+          <span><b data-i18n="topbar.call">Call Now</b> (555) 907-1148</span>
         </a>
       </div>
     </div>
@@ -48,16 +48,28 @@
           <img src="assets/icon.svg" alt="" />
           <div class="name">
             <span>PeakPoint Ortho</span>
-            <small>ORTHO &amp; SPORTS MED</small>
+            <small data-i18n="brand.tagline">Sports Medicine</small>
           </div>
         </a>
 
+        <div class="nav-utils">
+          <a href="https://demo.automatia.bot" class="back-demo">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="demo.back">Back to Demo</span>
+          </a>
+          <div class="lang-toggle" data-lang-toggle>
+            <button data-lang="en" class="active">EN</button>
+            <span class="divider"></span>
+            <button data-lang="es">ES</button>
+          </div>
+        </div>
+
         <nav class="menu" aria-label="Primary navigation">
-          <a data-nav href="index.html">Home</a>
-          <a data-nav href="services.html">Services</a>
-          <a data-nav href="conditions.html">Conditions</a>
-          <a data-nav href="patients.html">Patients</a>
-          <a data-nav href="contact.html" class="cta">Call to Schedule</a>
+          <a data-nav href="index.html" data-i18n="nav.home">Home</a>
+          <a data-nav href="services.html" data-i18n="nav.services">Services</a>
+          <a data-nav href="conditions.html" data-i18n="nav.conditions">Conditions</a>
+          <a data-nav href="patients.html" data-i18n="nav.patients">Patients</a>
+          <a data-nav href="contact.html" class="cta" data-i18n="nav.schedule">Schedule Now</a>
         </nav>
 
         <button class="hamburger" data-hamburger aria-label="Open menu" aria-expanded="false">
@@ -68,67 +80,58 @@
       </div>
 
       <div class="mobile-panel" data-mobile-panel>
-        <a data-nav href="index.html">Home</a>
-        <a data-nav href="services.html">Services</a>
-        <a data-nav href="conditions.html">Conditions</a>
-        <a data-nav href="patients.html">Patients</a>
-        <a data-nav class="cta" href="tel:5559071148">Call (555) 907-1148</a>
+        <a data-nav href="index.html" data-i18n="nav.home">Home</a>
+        <a data-nav href="services.html" data-i18n="nav.services">Services</a>
+        <a data-nav href="conditions.html" data-i18n="nav.conditions">Conditions</a>
+        <a data-nav href="patients.html" data-i18n="nav.patients">Patients</a>
+        <a data-nav class="cta" href="tel:5559071148" data-i18n="nav.call">Call (555) 907-1148</a>
+        <div class="mobile-utils">
+          <a href="https://demo.automatia.bot" class="back-demo">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="demo.back">Back to Demo</span>
+          </a>
+          <div class="lang-toggle" data-lang-toggle>
+            <button data-lang="en" class="active">EN</button>
+            <span class="divider"></span>
+            <button data-lang="es">ES</button>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
   <main id="main">
     
+<!-- Hero Section -->
 <section class="hero">
   <div class="container">
     <div class="hero-grid">
-      <div class="hero-card">
-        <div class="kicker"><span class="dot"></span><span>Orthopedics • Sports Medicine • Injury Care</span></div>
-        <h1 style="margin-top:10px">Get answers fast. Get back to moving.</h1>
-        <p class="lead">Orthopedic and sports medicine care designed to keep you moving. We help with knee, shoulder, hip, ankle/foot, hand/wrist, and neck/back concerns—whether it’s a new injury or chronic pain.</p>
+      <div class="hero-content">
+        <div class="kicker">
+          <span class="dot"></span>
+          <span data-i18n="hero.kicker">Orthopedics & Sports Medicine</span>
+        </div>
+        <h1 data-i18n="hero.title">Get Back to Moving. Get Back to Living.</h1>
+        <p class="lead" data-i18n="hero.lead">Expert orthopedic and sports medicine care designed to help you recover faster and stay active. From acute injuries to chronic conditions, we provide personalized evaluation and clear next steps.</p>
         <div class="hero-actions">
           <a class="btn primary" href="tel:5559071148">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 3.5 9 3c.7-.1 1.3.3 1.5 1l1 3c.2.6 0 1.3-.5 1.7l-1.6 1.2c1.2 2.1 2.9 3.8 5 5l1.2-1.6c.4-.5 1.1-.7 1.7-.5l3 1c.7.2 1.1.8 1 1.5l-.5 2.5c-.1.7-.7 1.2-1.4 1.2-9.6 0-17.3-7.7-17.3-17.3 0-.7.5-1.3 1.2-1.4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-            Call (555) 907-1148
+            <span data-i18n="hero.cta.call">Call (555) 907-1148</span>
           </a>
-          <a class="btn" href="contact.html">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            Send a message
-          </a>
-          <a class="btn ghost" href="services.html">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            Explore services
-          </a>
-        </div>
-        <hr class="sep"/>
-        <div class="grid-2">
-          <div class="badge">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 9.6 8 10 4.6-.4 8-5 8-10V6l-8-4Z" stroke="currentColor" stroke-width="1.8"/><path d="m8.5 12 2.3 2.3L15.6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            <div><b>Clear next steps</b><small>We’ll guide you on what to do next and who to see.</small></div>
-          </div>
-          <div class="badge">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 7h10v10H7V7Z" stroke="currentColor" stroke-width="1.8"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 9v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            <div><b>Fast routing</b><small>Tell us the area and urgency; we’ll route you quickly.</small></div>
-          </div>
+          <a class="btn secondary" href="services.html" data-i18n="hero.cta.services">Our Services</a>
+          <a class="btn ghost" href="patients.html" data-i18n="hero.cta.patients">New Patient Info</a>
         </div>
       </div>
 
-      <div class="hero-aside">
-        <div class="panel">
-          <h3>Common reasons patients call</h3>
-          <div class="grid-2" style="margin-top:10px">
-            <div class="badge"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h10v4H7V3Z" stroke="currentColor" stroke-width="1.8"/><path d="M6 7h12v14H6V7Z" stroke="currentColor" stroke-width="1.8"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><div><b>Knee pain</b><small>ACL/meniscus, arthritis, runner’s knee</small></div></div>
-            <div class="badge"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 14c4-10 12-10 16 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 7v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><div><b>Shoulder pain</b><small>Rotator cuff, instability, impingement</small></div></div>
-            <div class="badge"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 20c2-7 8-7 10 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 4c2 2 2 4 0 6-2-2-2-4 0-6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><div><b>Hip issues</b><small>Mobility limits, groin pain, arthritis</small></div></div>
-            <div class="badge"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 4h6v6H9V4Z" stroke="currentColor" stroke-width="1.8"/><path d="M8 10h8v10H8V10Z" stroke="currentColor" stroke-width="1.8"/><path d="M10 14h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><div><b>Ankle/foot</b><small>Sprains, tendon pain, fractures follow-up</small></div></div>
+      <div class="hero-visual">
+        <img src="assets/doctor.png" alt="Orthopedic specialist providing care" class="hero-image" />
+        <div class="hero-badge">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.4 9.6 8 10 4.6-.4 8-5 8-10V6l-8-4Z" stroke="currentColor" stroke-width="1.8"/><path d="m8.5 12 2.3 2.3L15.6 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
           </div>
-        </div>
-        <div class="panel">
-          <h3>Urgent symptoms?</h3>
-          <p style="color:rgba(11,31,58,.78)">If you have severe swelling, a visible deformity, cannot bear weight, new weakness/numbness, or fever with a hot painful joint, seek urgent care or go to the ER.</p>
-          <div class="hero-actions" style="margin-top:12px">
-            <a class="btn primary" href="tel:5559071148">Call now</a>
-            <a class="btn" href="patients.html#urgent">Read triage guidance</a>
+          <div class="text">
+            <b data-i18n="hero.badge.years">20+ Years</b>
+            <span data-i18n="hero.badge.experience">Trusted Experience</span>
           </div>
         </div>
       </div>
@@ -136,14 +139,37 @@
   </div>
 </section>
 
+<!-- Stats Bar -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="number">20K+</span>
+        <span class="label" data-i18n="stats.patients">Patients Treated</span>
+      </div>
+      <div class="stat-item">
+        <span class="number">98%</span>
+        <span class="label" data-i18n="stats.satisfaction">Patient Satisfaction</span>
+      </div>
+      <div class="stat-item">
+        <span class="number" data-i18n="stats.sameday">Same Day</span>
+        <span class="label" data-i18n="stats.appointments">Appointments Available</span>
+      </div>
+      <div class="stat-item">
+        <span class="number">15+</span>
+        <span class="label" data-i18n="stats.teams">Sports Teams Served</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Services Section -->
 <section class="section">
   <div class="container">
-    <div class="intro">
-      <div>
-        <h2>What we help with</h2>
-        <p>We focus on orthopedic evaluation and sports medicine care—starting with a clear assessment, then matching you to the right next step.</p>
-      </div>
-      <a class="btn" href="conditions.html">View all conditions</a>
+    <div class="section-header">
+      <span class="overline" data-i18n="services.overline">What We Treat</span>
+      <h2 data-i18n="services.title">Expert Orthopedic Care for Every Need</h2>
+      <p data-i18n="services.subtitle">From sports injuries to chronic joint pain, our team provides comprehensive evaluation and personalized treatment plans.</p>
     </div>
 
     <div class="cards">
@@ -151,84 +177,369 @@
         <div class="icon">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 7h8v10H8V7Z" stroke="currentColor" stroke-width="1.8"/><path d="M6 9h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </div>
-        <h3>Joint pain &amp; arthritis</h3>
-        <p>Options that may include activity modification, therapy, bracing, and injection consults—based on your exam.</p>
+        <h3 data-i18n="services.joint.title">Joint Pain & Arthritis</h3>
+        <p data-i18n="services.joint.desc">Comprehensive evaluation and treatment options including activity modification, therapy, bracing, and injection consults.</p>
       </div>
       <div class="card">
         <div class="icon">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17c5-10 5-10 10 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 4v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </div>
-        <h3>Sports injuries</h3>
-        <p>Sprains, strains, tendon pain, instability, and overuse concerns—acute and chronic.</p>
+        <h3 data-i18n="services.sports.title">Sports Injuries</h3>
+        <p data-i18n="services.sports.desc">Specialized care for sprains, strains, tendon injuries, instability, and overuse conditions in athletes of all levels.</p>
       </div>
       <div class="card">
         <div class="icon">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h8v18H8V3Z" stroke="currentColor" stroke-width="1.8"/><path d="M10 7h4M10 11h4M10 15h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </div>
-        <h3>Neck &amp; back issues</h3>
-        <p>Evaluation and routing, with urgent escalation guidance for red-flag symptoms.</p>
+        <h3 data-i18n="services.spine.title">Neck & Back Issues</h3>
+        <p data-i18n="services.spine.desc">Expert evaluation for spinal conditions with urgent escalation guidance for red-flag symptoms requiring immediate care.</p>
       </div>
       <div class="card">
         <div class="icon">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 7h10v10H7V7Z" stroke="currentColor" stroke-width="1.8"/><path d="M9 9h6v6H9V9Z" stroke="currentColor" stroke-width="1.8"/></svg>
         </div>
-        <h3>Imaging coordination</h3>
-        <p>We can guide you on how to send prior X-rays/MRIs and what to bring to your visit.</p>
+        <h3 data-i18n="services.imaging.title">Imaging Coordination</h3>
+        <p data-i18n="services.imaging.desc">Guidance on how to send prior X-rays and MRIs, plus coordination for any additional imaging needed for diagnosis.</p>
       </div>
       <div class="card">
         <div class="icon">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 6v12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </div>
-        <h3>Injection consults</h3>
-        <p>General information and scheduling support—specific options depend on your evaluation.</p>
+        <h3 data-i18n="services.injection.title">Injection Consults</h3>
+        <p data-i18n="services.injection.desc">Information and scheduling support for therapeutic injections—specific options determined after your evaluation.</p>
       </div>
       <div class="card">
         <div class="icon">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 18c4-8 8-8 12 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8 6h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </div>
-        <h3>Surgical consults</h3>
-        <p>When appropriate, we coordinate next steps for arthroscopy or joint replacement consults.</p>
+        <h3 data-i18n="services.surgical.title">Surgical Consults</h3>
+        <p data-i18n="services.surgical.desc">When surgery may be needed, we coordinate next steps for arthroscopy or joint replacement consultations.</p>
       </div>
     </div>
+
+    <a class="btn" href="services.html" style="display: inline-flex; margin-top: 32px" data-i18n="services.viewall">View All Services</a>
   </div>
 </section>
 
-<section class="section">
+<!-- Sports Medicine Section -->
+<section class="section alt">
   <div class="container">
-    <div class="split">
-      <div class="note">
-        <b>New patient? Here’s what to do.</b>
-        <p>Call <a href="tel:5559071148">(555) 907-1148</a> to schedule. If you have prior imaging, send it to <a href="mailto:appointments@peakpointortho.example">appointments@peakpointortho.example</a> and call to confirm we received it.</p>
-      </div>
-      <div class="note">
-        <b>Insurance &amp; billing</b>
-        <p>We can help verify benefits and explain next steps. For pricing questions, please call the clinic for a personalized estimate.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="intro">
+    <div class="hero-grid" style="gap: 48px">
       <div>
-        <h2>Frequently asked questions</h2>
-        <p>Quick answers to common questions. For anything urgent or specific, please call the clinic.</p>
+        <span class="overline" style="margin-bottom: 20px; display: inline-block" data-i18n="sports.overline">Sports Medicine</span>
+        <h2 data-i18n="sports.title">Get Athletes Back in the Game</h2>
+        <p style="color: var(--muted); font-size: 1.1rem; max-width: 55ch; margin-bottom: 28px" data-i18n="sports.desc">Whether you're a weekend warrior or competitive athlete, our sports medicine team specializes in treating and preventing athletic injuries. We work with athletes at all levels to optimize performance and recovery.</p>
+        
+        <div class="grid-2" style="margin-bottom: 28px">
+          <div class="badge">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.4 9.6 8 10 4.6-.4 8-5 8-10V6l-8-4Z" stroke="currentColor" stroke-width="1.8"/></svg>
+            <div><b data-i18n="sports.acl">ACL & Ligament Injuries</b><small data-i18n="sports.acl.desc">Comprehensive rehab and surgical consults</small></div>
+          </div>
+          <div class="badge">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 14c4-10 12-10 16 0" stroke="currentColor" stroke-width="1.8"/></svg>
+            <div><b data-i18n="sports.rotator">Rotator Cuff Issues</b><small data-i18n="sports.rotator.desc">Shoulder pain and instability treatment</small></div>
+          </div>
+          <div class="badge">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <div><b data-i18n="sports.concussion">Concussion Care</b><small data-i18n="sports.concussion.desc">Return-to-play protocols and monitoring</small></div>
+          </div>
+          <div class="badge">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 4h6v6H9V4Z" stroke="currentColor" stroke-width="1.8"/><path d="M8 10h8v10H8V10Z" stroke="currentColor" stroke-width="1.8"/></svg>
+            <div><b data-i18n="sports.overuse">Overuse Injuries</b><small data-i18n="sports.overuse.desc">Tendinitis, stress fractures, and more</small></div>
+          </div>
+        </div>
+
+        <a class="btn primary" href="conditions.html" data-i18n="sports.conditions.cta">See All Conditions We Treat</a>
+      </div>
+
+      <div class="image-card">
+        <img src="assets/doctor-and-patient.png" alt="Doctor examining patient's knee" />
+        <div class="overlay">
+          <h3 data-i18n="sports.card.title">Personalized Treatment Plans</h3>
+          <p data-i18n="sports.card.desc">Every athlete is different. We create customized recovery plans based on your sport, goals, and timeline.</p>
+        </div>
       </div>
     </div>
-    <div class="faq">
-      <details>
-        <summary>Do you treat same-day injuries?</summary>
-        <p>Same-day appointments are sometimes possible. Please call <a href="tel:5559071148">(555) 907-1148</a> to confirm availability and get routed to the right provider.</p>
-      </details>
-      <details>
-        <summary>Can you review an MRI I already have?</summary>
-        <p>Yes—our team can guide you on how to send imaging or bring a disc/report. Email <a href="mailto:appointments@peakpointortho.example">appointments@peakpointortho.example</a> and call to confirm receipt.</p>
-      </details>
-      <details>
-        <summary>Do you provide medical advice online?</summary>
-        <p>No. We can share general information and help route you to care, but diagnosis and treatment decisions happen with a clinician after an evaluation.</p>
-      </details>
+
+    <div class="sports-banner">
+      <div>
+        <h3 data-i18n="sports.banner.title">Trusted by Local Athletes & Teams</h3>
+        <p data-i18n="sports.banner.desc">From high school athletics to recreational leagues, we're proud to support our community's athletes with expert sports medicine care.</p>
+      </div>
+      <div class="sports-images">
+        <img src="assets/basketball.png" alt="Basketball" />
+        <img src="assets/baseball.png" alt="Baseball" />
+        <img src="assets/american-football.png" alt="Football" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews Section -->
+<section class="reviews-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="overline" data-i18n="reviews.overline">Patient Reviews</span>
+      <h2 data-i18n="reviews.title">What Our Patients Say</h2>
+      <p data-i18n="reviews.subtitle">Don't just take our word for it. Here's what patients have to say about their experience with PeakPoint Orthopedics.</p>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p>"After my ACL tear, Dr. Martinez and the team got me back on the field faster than I expected. The care was exceptional from day one."</p>
+        <div class="review-author">
+          <div class="avatar">JR</div>
+          <div>
+            <div class="name">James Rodriguez</div>
+            <div class="date">Soccer Player</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p>"I was dealing with chronic knee pain for years. The team here finally diagnosed the issue and created a treatment plan that actually worked."</p>
+        <div class="review-author">
+          <div class="avatar">SM</div>
+          <div>
+            <div class="name">Sarah Mitchell</div>
+            <div class="date">Marathon Runner</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p>"Same-day appointment when I injured my shoulder. Professional, thorough, and they explained everything clearly. Highly recommend!"</p>
+        <div class="review-author">
+          <div class="avatar">DK</div>
+          <div>
+            <div class="name">David Kim</div>
+            <div class="date">Tennis Player</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p>"The staff is incredibly caring and the facility is top-notch. My hip replacement recovery went smoother than I ever imagined."</p>
+        <div class="review-author">
+          <div class="avatar">PW</div>
+          <div>
+            <div class="name">Patricia Williams</div>
+            <div class="date">Retired Teacher</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p>"As a high school football coach, I trust PeakPoint with all my players' injuries. They understand athletes and get them back safely."</p>
+        <div class="review-author">
+          <div class="avatar">MT</div>
+          <div>
+            <div class="name">Mike Thompson</div>
+            <div class="date">Football Coach</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p>"Finally found doctors who listen! They took the time to understand my wrist pain and found a solution that didn't require surgery."</p>
+        <div class="review-author">
+          <div class="avatar">EL</div>
+          <div>
+            <div class="name">Emily Lewis</div>
+            <div class="date">Graphic Designer</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p>"Quick to get an appointment, minimal wait time, and the physical therapy coordination was seamless. Five stars all around!"</p>
+        <div class="review-author">
+          <div class="avatar">RH</div>
+          <div>
+            <div class="name">Robert Harris</div>
+            <div class="date">Construction Worker</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p>"My daughter's gymnastics injury was handled with such care. The whole family felt supported throughout her recovery process."</p>
+        <div class="review-author">
+          <div class="avatar">LG</div>
+          <div>
+            <div class="name">Linda Garcia</div>
+            <div class="date">Parent</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section faq-section">
+  <div class="container">
+    <div class="faq-grid">
+      <div class="faq-intro">
+        <span class="overline" style="display: inline-block; margin-bottom: 20px" data-i18n="faq.overline">FAQ</span>
+        <h2 data-i18n="faq.title">Frequently Asked Questions</h2>
+        <p data-i18n="faq.subtitle">Get answers to common questions about our services, appointments, and what to expect during your visit.</p>
+        <a class="btn primary" href="contact.html" data-i18n="faq.contact.cta">Still Have Questions? Contact Us</a>
+        <img src="assets/doctor-and-patient.png" alt="Doctor consulting with patient" class="faq-image" />
+      </div>
+
+      <div class="faq-list faq">
+        <details>
+          <summary>Do you offer same-day appointments?</summary>
+          <div class="faq-content">
+            <p>Yes, we often have same-day appointments available for urgent injuries. Call us at <a href="tel:5559071148">(555) 907-1148</a> as early as possible to check availability. We prioritize acute injuries that need immediate evaluation.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Can you review imaging (X-rays/MRIs) I already have?</summary>
+          <div class="faq-content">
+            <p>Absolutely. You can email your imaging to <a href="mailto:appointments@peakpointortho.example">appointments@peakpointortho.example</a> or bring a disc to your appointment. Please call to confirm we received your images before your visit. This helps us prepare and make the most of your appointment time.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>What should I bring to my first appointment?</summary>
+          <div class="faq-content">
+            <p>Please bring:</p>
+            <p>• Photo ID and insurance card (if applicable)<br>
+            • List of current medications and allergies<br>
+            • Any prior imaging reports or discs<br>
+            • Brief timeline of your symptoms (when it started, what makes it better/worse)</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Do you provide medical advice online or over the phone?</summary>
+          <div class="faq-content">
+            <p>No. While we can share general information and help route you to appropriate care, diagnosis and specific treatment recommendations require an in-person evaluation with a clinician. This ensures we can properly assess your condition and provide safe, accurate guidance.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>What insurance plans do you accept?</summary>
+          <div class="faq-content">
+            <p>We accept most major insurance plans. For specific questions about your coverage, please call our office at <a href="tel:5559071148">(555) 907-1148</a>. Our team can verify your benefits and explain any out-of-pocket costs before your appointment.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>How long does a typical appointment take?</summary>
+          <div class="faq-content">
+            <p>Initial evaluations typically take 30-45 minutes, depending on the complexity of your condition. Follow-up appointments are usually 15-20 minutes. We recommend arriving 15 minutes early for your first visit to complete any necessary paperwork.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Do you treat sports injuries for all ages?</summary>
+          <div class="faq-content">
+            <p>Yes! We treat athletes of all ages and skill levels—from youth sports to recreational adult leagues to competitive athletes. Our sports medicine team understands the unique needs of different age groups and activity levels.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>When should I go to the ER instead of calling your office?</summary>
+          <div class="faq-content">
+            <p>Seek emergency care if you experience:</p>
+            <p>• Visible bone deformity or bone protruding through skin<br>
+            • Inability to bear weight after an injury<br>
+            • Severe swelling that develops rapidly<br>
+            • New weakness, numbness, or loss of function<br>
+            • Fever with a hot, swollen joint<br>
+            • Severe back pain with bowel/bladder changes</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Do you offer physical therapy on-site?</summary>
+          <div class="faq-content">
+            <p>We coordinate closely with trusted physical therapy partners and can provide referrals based on your location and needs. While we don't offer PT on-site, we ensure seamless communication between our office and your therapy team for optimal recovery.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>What happens if I need surgery?</summary>
+          <div class="faq-content">
+            <p>If surgery is recommended, we'll discuss all your options, explain the procedure in detail, and coordinate the entire process. This includes pre-surgical planning, the procedure itself, and post-operative rehabilitation. We'll be with you every step of the way.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="container">
+    <h2 data-i18n="cta.title">Ready to Get Moving Again?</h2>
+    <p data-i18n="cta.subtitle">Don't let pain hold you back. Our expert team is ready to help you recover and return to the activities you love.</p>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap">
+      <a class="btn secondary" href="tel:5559071148">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" style="width:20px;height:20px"><path d="M6.5 3.5 9 3c.7-.1 1.3.3 1.5 1l1 3c.2.6 0 1.3-.5 1.7l-1.6 1.2c1.2 2.1 2.9 3.8 5 5l1.2-1.6c.4-.5 1.1-.7 1.7-.5l3 1c.7.2 1.1.8 1 1.5l-.5 2.5c-.1.7-.7 1.2-1.4 1.2-9.6 0-17.3-7.7-17.3-17.3 0-.7.5-1.3 1.2-1.4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        <span data-i18n="cta.call">Call (555) 907-1148</span>
+      </a>
+      <a class="btn outline-white" href="contact.html" data-i18n="cta.message">Send a Message</a>
     </div>
   </div>
 </section>
@@ -236,39 +547,80 @@
   </main>
 
   <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <div class="brand" style="margin-bottom:10px">
-          <img src="assets/icon.svg" alt="" />
-          <div class="name">
-            <span>PeakPoint Orthopedics & Sports Medicine</span>
-            <small>Northbridge, TX</small>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand">
+            <img src="assets/icon.svg" alt="" />
+            <div class="name">
+              <span>PeakPoint Orthopedics & Sports Medicine</span>
+              <small>Northbridge, TX</small>
+            </div>
+          </div>
+          <p class="fineprint" data-i18n="footer.desc">
+            Expert orthopedic and sports medicine care designed to keep you moving. We provide personalized evaluation and treatment for joint pain, sports injuries, and musculoskeletal conditions.
+          </p>
+          <p class="fineprint" style="margin-top:16px">
+            <strong data-i18n="footer.address">Address:</strong> 4412 Juniper Crest Rd, Suite 300, Northbridge, TX 75019<br/>
+            <strong data-i18n="footer.phone">Phone:</strong> <a href="tel:5559071148">(555) 907-1148</a><br/>
+            <strong data-i18n="footer.email">Email:</strong> <a href="mailto:appointments@peakpointortho.example">appointments@peakpointortho.example</a>
+          </p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:16px" data-i18n="footer.quicklinks">Quick Links</h4>
+          <div class="footer-links">
+            <a href="services.html" data-i18n="footer.services">Our Services</a>
+            <a href="conditions.html" data-i18n="footer.conditions">Conditions We Treat</a>
+            <a href="patients.html" data-i18n="footer.patients">New Patient Info</a>
+            <a href="contact.html" data-i18n="footer.contact">Contact Us</a>
+            <a href="privacy-policy.html" data-i18n="footer.privacy">Privacy Policy</a>
           </div>
         </div>
-        <p class="fineprint">
-          Orthopedic and sports medicine care designed to keep you moving. This website is for general information only and does not provide medical advice.
-          For emergencies, call local emergency services or go to the nearest emergency room.
-        </p>
-        <p class="fineprint" style="margin-top:10px">
-          Address: 4412 Juniper Crest Rd, Suite 300, Northbridge, TX 75019<br/>
-          Phone: <a href="tel:5559071148">(555) 907-1148</a> · Email: <a href="mailto:appointments@peakpointortho.example">appointments@peakpointortho.example</a>
-        </p>
       </div>
-      <div>
-        <p style="margin-bottom:10px; font-weight:750">Quick links</p>
-        <p style="display:grid; gap:10px; margin:0">
-          <a href="services.html">Services</a>
-          <a href="conditions.html">Conditions we treat</a>
-          <a href="patients.html">New patient info</a>
-          <a href="privacy-policy.html">Privacy Policy</a>
-        </p>
-        <hr class="sep"/>
-        <p class="fineprint">© 2026 PeakPoint Ortho. All information on this demo site is fictional.</p>
+      <div class="footer-bottom">
+        <p class="fineprint" data-i18n="footer.copyright">© 2026 PeakPoint Orthopedics & Sports Medicine. All rights reserved.</p>
+        <p class="fineprint" data-i18n="footer.demo">This is a demo website. All information is fictional.</p>
       </div>
     </div>
   </footer>
 
   <div class="toast" data-toast role="status" aria-live="polite"></div>
   <script src="js/main.js"></script>
+
+  <!-- Chatwoot Widget (Lazy Loaded) -->
+  <script>
+    (function() {
+      var chatwootLoaded = false;
+      
+      function loadChatwoot() {
+        if (chatwootLoaded) return;
+        chatwootLoaded = true;
+        
+        var BASE_URL = "https://inbox.automatia.bot";
+        var d = document, t = "script";
+        var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        g.src = BASE_URL + "/packs/js/sdk.js";
+        g.async = true;
+        s.parentNode.insertBefore(g, s);
+        
+        g.onload = function() {
+          window.chatwootSDK.run({
+            websiteToken: 'bwRT73ZABMMRQHjpy5RemSS7',
+            baseUrl: BASE_URL
+          });
+        };
+        
+        ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function(event) {
+          window.removeEventListener(event, loadChatwoot, { passive: true });
+        });
+      }
+      
+      ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function(event) {
+        window.addEventListener(event, loadChatwoot, { passive: true, once: true });
+      });
+      
+      setTimeout(loadChatwoot, 5000);
+    })();
+  </script>
 </body>
 </html>

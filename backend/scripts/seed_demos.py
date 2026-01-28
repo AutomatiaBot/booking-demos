@@ -184,7 +184,7 @@ INITIAL_DEMOS = [
         "description_es": "Sitio web de fisioterapia para RestoreMotion PT en Bayshore, FL. Ofrece rehabilitación ortopédica, cuidado post-operatorio, tratamiento de lesiones deportivas y programación asistida por IA.",
         "icon": "💪",
         "industry": "Physical Therapy",
-        "path": "RestoreMotionPT-Website/index.html",
+        "path": "restore-motion-pt-website/index.html",
         "tags": ["Physical Therapy", "Rehab", "Chatbot"],
         "tags_es": ["Fisioterapia", "Rehabilitación", "Chatbot"],
         "keywords": "physical therapy pt rehab rehabilitation sports injury post op orthopedic restoremotion bayshore florida",

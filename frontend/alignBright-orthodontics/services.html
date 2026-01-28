@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Orthodontic services at AlignBright in Lakewood Hills, CA: clear aligners, braces, retainers, early orthodontics, and bite correction.">
+  <meta name="theme-color" content="#0891B2">
+  <title>Services | AlignBright Orthodontics</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip-link">Skip to content</a>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <img src="assets/img/logo-mark.svg" alt="AlignBright" width="40" height="40">
+          <div class="logo-text">
+            <span class="logo-name" data-i18n="brand-name">AlignBright</span>
+            <span class="logo-tagline" data-i18n="brand-tagline">Orthodontics</span>
+          </div>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link" data-i18n="nav-home">Home</a></li>
+            <li><a href="about.html" class="nav-link" data-i18n="nav-about">About</a></li>
+            <li class="dropdown">
+              <a href="services.html" class="nav-link active dropdown-toggle" data-i18n="nav-services">Services<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></a>
+              <div class="dropdown-menu">
+                <a href="services-aligners.html" class="dropdown-link" data-i18n="nav-aligners">Clear Aligners</a>
+                <a href="services-braces.html" class="dropdown-link" data-i18n="nav-braces">Braces</a>
+                <a href="services-retainers.html" class="dropdown-link" data-i18n="nav-retainers">Retainers</a>
+                <a href="services-early-ortho.html" class="dropdown-link" data-i18n="nav-early-ortho">Early Orthodontics</a>
+                <a href="services-bite-correction.html" class="dropdown-link" data-i18n="nav-bite-correction">Bite Correction</a>
+              </div>
+            </li>
+            <li><a href="new-patients.html" class="nav-link" data-i18n="nav-new-patients">New Patients</a></li>
+            <li><a href="reviews.html" class="nav-link" data-i18n="nav-reviews">Reviews</a></li>
+            <li><a href="faq.html" class="nav-link" data-i18n="nav-faq">FAQ</a></li>
+            <li><a href="contact.html" class="nav-link" data-i18n="nav-contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button class="lang-toggle" data-lang-toggle aria-label="Toggle language">EN</button>
+          <a href="tel:+1-562-555-0117" class="phone-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <span>(562) 555-0117</span>
+          </a>
+          <a href="contact.html" class="btn btn-primary btn-sm" data-i18n="request-consultation">Request a Consultation</a>
+          <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav" id="mobile-nav" data-mobile-nav aria-label="Mobile navigation">
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" data-i18n="nav-home">Home</a></li>
+      <li><a href="about.html" data-i18n="nav-about">About</a></li>
+      <li><a href="services.html" data-i18n="nav-services">Services</a></li>
+      <li><a href="new-patients.html" data-i18n="nav-new-patients">New Patients</a></li>
+      <li><a href="reviews.html" data-i18n="nav-reviews">Reviews</a></li>
+      <li><a href="faq.html" data-i18n="nav-faq">FAQ</a></li>
+      <li><a href="contact.html" data-i18n="nav-contact">Contact</a></li>
+    </ul>
+    <div class="mobile-nav-cta">
+      <a href="tel:+1-562-555-0117" class="btn btn-primary">Call (562) 555-0117</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <h1 data-i18n="services-page-title">Our <span class="highlight">Services</span></h1>
+        <p class="breadcrumb" data-i18n="services-breadcrumb">Home / Services</p>
+      </div>
+    </section>
+
+    <!-- Services List -->
+    <section class="section">
+      <div class="container">
+        <p style="max-width:700px;margin-bottom:48px;font-size:18px;color:var(--slate);" data-i18n="services-intro">Comprehensive orthodontic care for patients of all ages. From clear aligners to traditional braces, we offer solutions tailored to your needs.</p>
+        
+        <div class="services-grid stagger-children" style="grid-template-columns:1fr;">
+          <!-- Clear Aligners -->
+          <div class="service-card" style="display:grid;grid-template-columns:1fr 2fr;gap:0;">
+            <div class="service-image" style="height:auto;min-height:200px;border-radius:var(--radius-lg) 0 0 var(--radius-lg);overflow:hidden;">
+              <img src="assets/img/clear-aligners.png" alt="Clear aligners" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="services-aligners-full-title">Clear Aligners (Adults & Teens)</h3>
+              <p data-i18n="services-aligners-full-desc">Nearly invisible, removable aligners that gradually straighten your teeth. Perfect for adults and teens who want a discreet option.</p>
+              <a href="services-aligners.html" class="service-link" data-i18n="learn-more">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>
+
+          <!-- Braces -->
+          <div class="service-card" style="display:grid;grid-template-columns:1fr 2fr;gap:0;">
+            <div class="service-image" style="height:auto;min-height:200px;border-radius:var(--radius-lg) 0 0 var(--radius-lg);overflow:hidden;">
+              <img src="assets/img/braces.png" alt="Braces treatment" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="services-braces-full-title">Braces (Metal & Ceramic)</h3>
+              <p data-i18n="services-braces-full-desc">Traditional metal braces and tooth-colored ceramic options for effective, reliable results at any age.</p>
+              <a href="services-braces.html" class="service-link" data-i18n="learn-more">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>
+
+          <!-- Retainers -->
+          <div class="service-card" style="display:grid;grid-template-columns:1fr 2fr;gap:0;">
+            <div class="service-image" style="height:auto;min-height:200px;border-radius:var(--radius-lg) 0 0 var(--radius-lg);overflow:hidden;">
+              <img src="assets/img/retainers.png" alt="Retainers" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="services-retainers-full-title">Retainers</h3>
+              <p data-i18n="services-retainers-full-desc">Custom retainers to maintain your results. Replacement retainers available for lost or damaged ones.</p>
+              <a href="services-retainers.html" class="service-link" data-i18n="learn-more">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>
+
+          <!-- Early Ortho -->
+          <div class="service-card" style="display:grid;grid-template-columns:1fr 2fr;gap:0;">
+            <div class="service-image" style="height:auto;min-height:200px;border-radius:var(--radius-lg) 0 0 var(--radius-lg);overflow:hidden;">
+              <img src="assets/img/early-othodontics.png" alt="Early orthodontics" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="services-early-full-title">Early Orthodontics (Age 7+)</h3>
+              <p data-i18n="services-early-full-desc">Early evaluations to guide jaw development and identify potential issues before they become complex.</p>
+              <a href="services-early-ortho.html" class="service-link" data-i18n="learn-more">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>
+
+          <!-- Bite Correction -->
+          <div class="service-card" style="display:grid;grid-template-columns:1fr 2fr;gap:0;">
+            <div class="service-image" style="height:auto;min-height:200px;border-radius:var(--radius-lg) 0 0 var(--radius-lg);overflow:hidden;">
+              <img src="assets/img/bite-correction.png" alt="Bite correction" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="services-bite-full-title">Bite Correction</h3>
+              <p data-i18n="services-bite-full-desc">Specialized treatment for overbites, underbites, crossbites, and other bite alignment issues.</p>
+              <a href="services-bite-correction.html" class="service-link" data-i18n="learn-more">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-band">
+      <div class="container">
+        <h2 data-i18n="cta-title">Ready for a Confident Smile?</h2>
+        <p data-i18n="cta-desc">Take the first step toward the smile you've always wanted.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="tel:+1-562-555-0117" class="btn btn-primary btn-lg" data-i18n="cta-call">Call (562) 555-0117</a>
+          <a href="contact.html" class="btn btn-secondary btn-lg" data-i18n="cta-contact">Contact Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <img src="assets/img/logo-mark.svg" alt="AlignBright" width="44" height="44">
+            <div class="logo-text">
+              <span class="logo-name" data-i18n="brand-name">AlignBright</span>
+              <span class="logo-tagline" data-i18n="brand-tagline">Orthodontics</span>
+            </div>
+          </a>
+          <p data-i18n="footer-description">Modern braces and clear aligners for confident smiles.</p>
+        </div>
+        <div>
+          <h4 data-i18n="footer-quick-links">Quick Links</h4>
+          <nav class="footer-links">
+            <a href="index.html" data-i18n="nav-home">Home</a>
+            <a href="about.html" data-i18n="nav-about">About</a>
+            <a href="services.html" data-i18n="nav-services">Services</a>
+            <a href="new-patients.html" data-i18n="nav-new-patients">New Patients</a>
+            <a href="faq.html" data-i18n="nav-faq">FAQ</a>
+            <a href="contact.html" data-i18n="nav-contact">Contact</a>
+          </nav>
+        </div>
+        <div class="footer-contact">
+          <h4 data-i18n="footer-contact-title">Contact</h4>
+          <p><a href="tel:+1-562-555-0117">(562) 555-0117</a></p>
+          <p><a href="mailto:hello@alignbright.example">hello@alignbright.example</a></p>
+          <p data-i18n="footer-address">4120 Seabreeze Way, Suite 260<br>Lakewood Hills, CA 90814</p>
+        </div>
+        <div class="footer-hours">
+          <h4 data-i18n="footer-hours-title">Hours</h4>
+          <p><strong data-i18n="footer-mon-thu">Mon–Thu:</strong> <span data-i18n="footer-mon-thu-hours">10:00 AM – 6:30 PM</span></p>
+          <p><strong data-i18n="footer-fri">Friday:</strong> <span data-i18n="footer-fri-hours">9:00 AM – 3:00 PM</span></p>
+          <p><strong data-i18n="footer-sat">Saturday:</strong> <span data-i18n="footer-sat-hours">9:00 AM – 1:00 PM</span></p>
+          <p><strong data-i18n="footer-sun">Sunday:</strong> <span data-i18n="footer-sun-hours">Closed</span></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer-copyright">© 2026 AlignBright Orthodontics. All rights reserved.</p>
+        <p><a href="privacy.html" data-i18n="footer-privacy">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/translations.js"></script>
+  <script src="assets/js/main.js"></script>
+  
+  <!-- Chatwoot Widget (Lazy Loaded) -->
+  <script>
+    (function() {
+      var loaded = false;
+      function loadChatwoot() {
+        if (loaded) return;
+        loaded = true;
+        var BASE_URL = "https://inbox.automatia.bot";
+        var g = document.createElement("script");
+        g.src = BASE_URL + "/packs/js/sdk.js";
+        g.async = true;
+        g.onload = function() {
+          window.chatwootSDK.run({
+            websiteToken: 'MsgMGewNxthKR5o2gFfFsnMQ',
+            baseUrl: BASE_URL
+          });
+        };
+        document.body.appendChild(g);
+      }
+      ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function(evt) {
+        window.addEventListener(evt, loadChatwoot, { once: true, passive: true });
+      });
+      setTimeout(loadChatwoot, 3000);
+    })();
+  </script>
+</body>
+</html>

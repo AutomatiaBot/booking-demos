@@ -4,21 +4,33 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About | Paws & Pines Veterinary Care</title>
-  <meta name="description" content="About a fictional veterinary clinic demo brand." />
+  <meta name="description" content="Learn about Paws & Pines Veterinary Care — our philosophy, approach, and commitment to calm, clear veterinary care in Cedar Glen, CO." />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/translations.js"></script>
   <script defer src="js/main.js"></script>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
+<!-- Floating decorative shapes -->
+<div class="floating-shapes" aria-hidden="true">
+  <div class="floating-shape shape-1"></div>
+  <div class="floating-shape shape-2"></div>
+  <div class="floating-shape shape-3"></div>
+</div>
+
+<a class="skip-link" href="#main" data-i18n="skip-link">Skip to content</a>
 
 <header class="header">
   <div class="container header__inner">
     <a class="brand" href="index.html" aria-label="Paws & Pines Veterinary Care home">
-      <img class="brand__logo" src="assets/logo.svg" alt="Paws & Pines Veterinary Care logo" />
+      <img class="brand__logo" src="assets/favicon.svg?v=2" alt="" />
+      <div class="brand__text">
+        <span class="brand__name" data-i18n="brand-name">Paws & Pines</span>
+        <span class="brand__tagline" data-i18n="brand-tagline">Veterinary Care</span>
+      </div>
     </a>
 
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
@@ -26,23 +38,32 @@
     </button>
 
     <nav id="site-nav" class="nav" aria-label="Primary">
-      <a class="nav__link" href="services.html">Services</a>
-      <a class="nav__link" href="new-patients.html">New Patients</a>
-      <a class="nav__link nav__link--active" href="about.html">About</a>
-      <a class="nav__link" href="contact.html">Contact</a>
-      <a class="btn btn--small btn--primary nav__cta" href="contact.html#request">Request a Call</a>
+      <a class="nav__link" href="services.html" data-i18n="nav-services">Services</a>
+      <a class="nav__link" href="new-patients.html" data-i18n="nav-new-patients">New Patients</a>
+      <a class="nav__link nav__link--active" href="about.html" data-i18n="nav-about">About</a>
+      <a class="nav__link" href="contact.html" data-i18n="nav-contact">Contact</a>
+      <a class="btn btn--small btn--primary nav__cta" href="contact.html#request" data-i18n="nav-request-call">Request a Call</a>
+      <span class="nav__sep" aria-hidden="true"></span>
+      <a class="demo-btn" href="https://demo.automatia.bot/" target="_blank">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        <span data-i18n="back-to-demo">Back to Demo</span>
+      </a>
+      <button class="lang-toggle" data-lang-toggle aria-label="Toggle language">
+        <svg class="lang-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+        <span class="lang-text">ES</span>
+      </button>
     </nav>
   </div>
 
   <div class="header__bar">
     <div class="container header__bar-inner">
       <div class="bar__left">
-        <span class="pill">Open today: 8:00 AM – 6:00 PM</span>
+        <span class="pill" data-i18n="open-today">Open today: 8:00 AM – 6:00 PM</span>
         <span class="bar__sep" aria-hidden="true">•</span>
         <a class="bar__link" href="tel:+15553329056">(555) 332-9056</a>
       </div>
       <div class="bar__right">
-        <a class="bar__link" href="contact.html#emergency">Emergency Guidance</a>
+        <a class="bar__link" href="contact.html#emergency" data-i18n="emergency-guidance">Emergency Guidance</a>
       </div>
     </div>
   </div>
@@ -50,56 +71,69 @@
 <main id="main">
 
 <div class="container">
-  <section class="banner">
-    <h1 style="margin-top:0;">About</h1>
-    <p class="lead">Paws & Pines Veterinary Care is a fictional demo clinic built to showcase a modern veterinary website experience—clear services, strong calls-to-action, and safety-first guidance.</p>
+  <section class="banner fade-in">
+    <h1 style="margin-top:0;" data-i18n="about-title"><span class="highlight-word">About</span> Us</h1>
+    <p class="lead" data-i18n="about-lead">Paws & Pines Veterinary Care provides compassionate, modern veterinary services for dogs and cats in Cedar Glen, CO—with clear communication, strong guidance, and a calm environment.</p>
   </section>
 
-  <section class="section split">
-    <div class="form">
-      <h2 class="section__title" style="margin-top:0;">Brand tone</h2>
+  <section class="section about-intro fade-in">
+    <div class="about-image">
+      <img src="assets/girl-cat.png" alt="Happy pet owner with their cat at Paws & Pines"/>
+    </div>
+    <div>
+      <h2 class="section__title" data-i18n="about-story-title">Our <span class="highlight-word">Story</span></h2>
+      <p data-i18n="about-story-p1">Founded with the belief that veterinary care should be accessible, professional, and calming, Paws & Pines offers a welcoming space for pets and their families. Our team of experienced veterinarians brings expertise in wellness care, sick visits, procedures, and preventive medicine.</p>
+      <p data-i18n="about-story-p2">Whether you're bringing in a new puppy for their first vaccines or helping a senior pet stay comfortable, we're here with clear next steps and genuine care.</p>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+  <section class="section split fade-in stagger-children">
+    <div class="form card-lift">
+      <h2 class="section__title" style="margin-top:0;" data-i18n="about-philosophy-title">Our Philosophy</h2>
       <ul class="list">
-        <li><strong>Calm:</strong> reduce anxiety with simple language and clear next steps.</li>
-        <li><strong>Trustworthy:</strong> no diagnosis online; exam-first care and safe routing.</li>
-        <li><strong>Efficient:</strong> one question at a time, fast scheduling handoff by phone.</li>
+        <li><strong data-i18n="about-philosophy-calm">Calm:</strong> <span data-i18n="about-philosophy-calm-desc">We reduce anxiety with simple language and clear next steps.</span></li>
+        <li><strong data-i18n="about-philosophy-trust">Trustworthy:</strong> <span data-i18n="about-philosophy-trust-desc">No diagnosis online—your pet's exam comes first.</span></li>
+        <li><strong data-i18n="about-philosophy-efficient">Efficient:</strong> <span data-i18n="about-philosophy-efficient-desc">One question at a time, fast scheduling by phone.</span></li>
       </ul>
       <div class="callout">
-        <strong>Design system</strong>
-        Primary color: Pine Green (#1B4332). Accent: Warm Amber (#D97706). Background: Cream (#F7F3E9).
+        <strong data-i18n="about-promise-title">Our Promise</strong>
+        <span data-i18n="about-promise-text">We respect your time with straightforward communication and handle urgent cases with care.</span>
       </div>
     </div>
 
-    <div class="form">
-      <h2 class="section__title" style="margin-top:0;">What we treat</h2>
-      <p class="section__desc">We focus on dogs and cats, with common visit types that are easy to demo:</p>
+    <div class="form card-lift">
+      <h2 class="section__title" style="margin-top:0;" data-i18n="about-treat-title">What We Treat</h2>
+      <p class="section__desc" data-i18n="about-treat-desc">We focus on dogs and cats, offering comprehensive care:</p>
       <ul class="list">
-        <li>Wellness exams and vaccines</li>
-        <li>Sick visits (stable, non-emergency)</li>
-        <li>Spay/neuter consult flow</li>
-        <li>Dental cleanings and follow-up</li>
-        <li>Microchipping</li>
+        <li data-i18n="about-treat-item1">Wellness exams and vaccines</li>
+        <li data-i18n="about-treat-item2">Sick visits (stable, non-emergency)</li>
+        <li data-i18n="about-treat-item3">Spay/neuter procedures</li>
+        <li data-i18n="about-treat-item4">Dental cleanings and follow-up</li>
+        <li data-i18n="about-treat-item5">Microchipping</li>
       </ul>
     </div>
   </section>
 
   <section class="section">
-    <h2 class="section__title">Accessibility &amp; clarity</h2>
-    <p class="section__desc">This demo uses clear navigation, readable typography, strong contrast, and obvious calls-to-action—helping more pet owners take the next step.</p>
-    <div class="grid">
-      <article class="card">
-        <div class="badge">Navigation</div>
-        <h3>Simple paths</h3>
-        <p>Services → New Patients → Contact. No confusing menus.</p>
+    <div class="section-divider"></div>
+    <h2 class="section__title" data-i18n="about-why-title">Why Families <span class="highlight-word">Choose</span> Us</h2>
+    <p class="section__desc" data-i18n="about-why-desc">Clear communication, easy navigation, and a calm environment for every visit.</p>
+    <div class="grid stagger-children fade-in">
+      <article class="card card-lift">
+        <div class="badge" data-i18n="about-nav-badge">Navigation</div>
+        <h3 data-i18n="about-nav-title">Simple paths</h3>
+        <p data-i18n="about-nav-desc">Services → New Patients → Contact. No confusing menus—just clear next steps.</p>
       </article>
-      <article class="card">
-        <div class="badge">Calls to action</div>
-        <h3>Call or request a callback</h3>
-        <p>Visitors always have a clear way to reach the clinic.</p>
+      <article class="card card-lift">
+        <div class="badge" data-i18n="about-comm-badge">Communication</div>
+        <h3 data-i18n="about-comm-title">Call or request a callback</h3>
+        <p data-i18n="about-comm-desc">You always have a clear way to reach our team when you need us.</p>
       </article>
-      <article class="card">
-        <div class="badge">Safety</div>
-        <h3>Emergency routing</h3>
-        <p>Red-flag symptoms route to urgent help without providing medical advice.</p>
+      <article class="card card-lift">
+        <div class="badge" data-i18n="about-safety-badge">Safety</div>
+        <h3 data-i18n="about-safety-title">Emergency guidance</h3>
+        <p data-i18n="about-safety-desc">Red-flag symptoms are routed to urgent help safely and quickly.</p>
       </article>
     </div>
   </section>
@@ -110,49 +144,73 @@
 <footer class="footer">
   <div class="container footer__grid">
     <div>
-      <img class="footer__logo" src="assets/logo.svg" alt="Paws & Pines Veterinary Care logo" />
-      <p class="muted">Calm, modern care for dogs and cats.</p>
+      <div class="footer__brand">
+        <img class="footer__logo" src="assets/favicon.svg?v=2" alt="" />
+        <div class="footer__brand-text">
+          <span class="footer__brand-name" data-i18n="brand-name">Paws & Pines</span>
+          <span class="footer__brand-tagline" data-i18n="brand-tagline">Veterinary Care</span>
+        </div>
+      </div>
+      <p class="muted" data-i18n="footer-tagline">Calm, modern care for dogs and cats.</p>
       <div class="footer__cta">
-        <a class="btn btn--primary" href="tel:+15553329056">Call (555) 332-9056</a>
-        <a class="btn btn--ghost" href="contact.html#request">Request a Call</a>
+        <a class="btn btn--primary" href="tel:+15553329056" data-i18n="footer-call">Call (555) 332-9056</a>
+        <a class="btn btn--ghost" href="contact.html#request" data-i18n="footer-request-call">Request a Call</a>
       </div>
     </div>
 
     <div>
-      <h3 class="footer__title">Clinic</h3>
+      <h3 class="footer__title" data-i18n="footer-clinic-title">Clinic</h3>
       <ul class="footer__list">
-        <li><strong>Address:</strong> 1670 Pine Hollow Dr, Cedar Glen, CO 80433</li>
-        <li><strong>Phone:</strong> <a href="tel:+15553329056">(555) 332-9056</a></li>
-        <li><strong>Email:</strong> <a href="mailto:frontdesk@pawsandpinesvet.example">frontdesk@pawsandpinesvet.example</a></li>
+        <li><strong data-i18n="footer-address-label">Address:</strong> <span data-i18n="footer-address">1670 Pine Hollow Dr, Cedar Glen, CO 80433</span></li>
+        <li><strong data-i18n="footer-phone-label">Phone:</strong> <a href="tel:+15553329056">(555) 332-9056</a></li>
+        <li><strong data-i18n="footer-email-label">Email:</strong> <a href="mailto:frontdesk@pawsandpinesvet.example">frontdesk@pawsandpinesvet.example</a></li>
       </ul>
     </div>
 
     <div>
-      <h3 class="footer__title">Hours</h3>
+      <h3 class="footer__title" data-i18n="footer-hours-title">Hours</h3>
       <ul class="footer__list">
-        <li><strong>Mon–Fri:</strong> 8:00 AM – 6:00 PM</li><li><strong>Sat:</strong> 9:00 AM – 2:00 PM</li><li><strong>Sun:</strong> Closed</li>
+        <li><strong data-i18n="footer-mon-fri">Mon–Fri:</strong> <span data-i18n="footer-mon-fri-hours">8:00 AM – 6:00 PM</span></li>
+        <li><strong data-i18n="footer-sat">Sat:</strong> <span data-i18n="footer-sat-hours">9:00 AM – 2:00 PM</span></li>
+        <li><strong data-i18n="footer-sun">Sun:</strong> <span data-i18n="footer-sun-hours">Closed</span></li>
       </ul>
     </div>
 
     <div>
-      <h3 class="footer__title">Quick Links</h3>
+      <h3 class="footer__title" data-i18n="footer-links-title">Quick Links</h3>
       <ul class="footer__list">
-        <li><a href="services.html">Services</a></li>
-        <li><a href="new-patients.html">New Patients</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="services.html" data-i18n="footer-link-services">Services</a></li>
+        <li><a href="new-patients.html" data-i18n="footer-link-new-patients">New Patients</a></li>
+        <li><a href="about.html" data-i18n="footer-link-about">About</a></li>
+        <li><a href="contact.html" data-i18n="footer-link-contact">Contact</a></li>
+        <li><a href="privacy.html" data-i18n="footer-link-privacy">Privacy</a></li>
       </ul>
     </div>
   </div>
 
   <div class="container footer__bottom">
-    <p class="small">© 2026 Paws & Pines Veterinary Care. All content is fictional for demo purposes.</p>
+    <p class="small" data-i18n="footer-copyright">© 2026 Paws & Pines Veterinary Care. All rights reserved.</p>
     <p class="small">
-      Accessibility-first design and clear calls-to-action are recommended best practices for veterinary websites.
+      <a href="privacy.html" data-i18n="footer-privacy-policy">Privacy Policy</a>
     </p>
   </div>
 </footer>
 
+<!-- Chatwoot Widget -->
+<script>
+  (function(d,t) {
+    var BASE_URL="https://inbox.automatia.bot";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    g.async = true;
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: 'NhbCjZDfQkE5oNjT9fg4LJin',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");
+</script>
 </body>
 </html>

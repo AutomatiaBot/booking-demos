@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn about AlignBright Orthodontics - our team, mission, and commitment to providing exceptional orthodontic care in Lakewood Hills, CA.">
+  <meta name="theme-color" content="#0891B2">
+  <title>About Us | AlignBright Orthodontics</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip-link">Skip to content</a>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <img src="assets/img/logo-mark.svg" alt="AlignBright" width="40" height="40">
+          <div class="logo-text">
+            <span class="logo-name" data-i18n="brand-name">AlignBright</span>
+            <span class="logo-tagline" data-i18n="brand-tagline">Orthodontics</span>
+          </div>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link" data-i18n="nav-home">Home</a></li>
+            <li><a href="about.html" class="nav-link active" data-i18n="nav-about">About</a></li>
+            <li class="dropdown">
+              <a href="services.html" class="nav-link dropdown-toggle" data-i18n="nav-services">Services<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></a>
+              <div class="dropdown-menu">
+                <a href="services-aligners.html" class="dropdown-link" data-i18n="nav-aligners">Clear Aligners</a>
+                <a href="services-braces.html" class="dropdown-link" data-i18n="nav-braces">Braces</a>
+                <a href="services-retainers.html" class="dropdown-link" data-i18n="nav-retainers">Retainers</a>
+                <a href="services-early-ortho.html" class="dropdown-link" data-i18n="nav-early-ortho">Early Orthodontics</a>
+                <a href="services-bite-correction.html" class="dropdown-link" data-i18n="nav-bite-correction">Bite Correction</a>
+              </div>
+            </li>
+            <li><a href="new-patients.html" class="nav-link" data-i18n="nav-new-patients">New Patients</a></li>
+            <li><a href="reviews.html" class="nav-link" data-i18n="nav-reviews">Reviews</a></li>
+            <li><a href="faq.html" class="nav-link" data-i18n="nav-faq">FAQ</a></li>
+            <li><a href="contact.html" class="nav-link" data-i18n="nav-contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button class="lang-toggle" data-lang-toggle aria-label="Toggle language">EN</button>
+          <a href="tel:+1-562-555-0117" class="phone-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <span>(562) 555-0117</span>
+          </a>
+          <a href="contact.html" class="btn btn-primary btn-sm" data-i18n="request-consultation">Request a Consultation</a>
+          <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav" id="mobile-nav" data-mobile-nav aria-label="Mobile navigation">
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" data-i18n="nav-home">Home</a></li>
+      <li><a href="about.html" data-i18n="nav-about">About</a></li>
+      <li><a href="services.html" data-i18n="nav-services">Services</a></li>
+      <li><a href="new-patients.html" data-i18n="nav-new-patients">New Patients</a></li>
+      <li><a href="reviews.html" data-i18n="nav-reviews">Reviews</a></li>
+      <li><a href="faq.html" data-i18n="nav-faq">FAQ</a></li>
+      <li><a href="contact.html" data-i18n="nav-contact">Contact</a></li>
+    </ul>
+    <div class="mobile-nav-cta">
+      <a href="tel:+1-562-555-0117" class="btn btn-primary">Call (562) 555-0117</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <h1 data-i18n="about-page-title">About <span class="highlight">AlignBright</span></h1>
+        <p class="breadcrumb" data-i18n="about-breadcrumb">Home / About</p>
+      </div>
+    </section>
+
+    <!-- About Intro -->
+    <section class="section">
+      <div class="container">
+        <div class="about-intro fade-in">
+          <div class="about-image">
+            <img src="assets/img/lead-orthodontist.png" alt="Our orthodontic team" style="width:100%;height:350px;object-fit:cover;border-radius:var(--radius-xl);">
+          </div>
+          <div class="about-content">
+            <h2 data-i18n="about-intro-title">Modern Orthodontics with a Personal Touch</h2>
+            <p data-i18n="about-intro-p1">AlignBright Orthodontics was founded on a simple belief: everyone deserves access to modern, comfortable orthodontic care delivered with genuine compassion.</p>
+            <p data-i18n="about-intro-p2">Located in Lakewood Hills, CA, we serve patients of all ages—from children getting early evaluations to adults seeking discreet treatment options. Our team combines advanced technology with personalized attention to create beautiful, healthy smiles.</p>
+          </div>
+        </div>
+
+        <!-- Mission -->
+        <div style="background:var(--primary-bg);border-radius:var(--radius-lg);padding:32px;margin:48px 0;">
+          <h3 data-i18n="about-mission-title">Our Mission</h3>
+          <p style="font-size:18px;color:var(--charcoal);margin:0;" data-i18n="about-mission-text">To provide exceptional orthodontic care in a welcoming environment, using modern techniques to help every patient achieve their best smile.</p>
+        </div>
+
+        <!-- Values -->
+        <h3 data-i18n="about-values-title">Our Values</h3>
+        <div class="values-grid stagger-children">
+          <div class="value-item">
+            <h4 data-i18n="about-value-1-title">Patient-Centered Care</h4>
+            <p data-i18n="about-value-1-desc">Every treatment plan is customized to your unique needs and goals.</p>
+          </div>
+          <div class="value-item">
+            <h4 data-i18n="about-value-2-title">Clear Communication</h4>
+            <p data-i18n="about-value-2-desc">We explain every step so you can make informed decisions.</p>
+          </div>
+          <div class="value-item">
+            <h4 data-i18n="about-value-3-title">Modern Excellence</h4>
+            <p data-i18n="about-value-3-desc">We stay current with the latest techniques and technology.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section" style="background:var(--white);">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="team-title">Meet Our <span class="highlight">Team</span></h2>
+          <p data-i18n="team-desc">Experienced professionals dedicated to your smile.</p>
+        </div>
+        <div class="team-grid stagger-children">
+          <div class="team-card">
+            <div class="team-photo">
+              <img src="assets/img/lead-orthodontist.png" alt="Dr. Priya Sharma" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <h3 data-i18n="team-1-name">Dr. Priya Sharma</h3>
+            <p class="team-role" data-i18n="team-1-role">Lead Orthodontist</p>
+            <p data-i18n="team-1-bio">Board-certified orthodontist with 15+ years of experience. Dr. Sharma specializes in complex cases and clear aligner therapy.</p>
+          </div>
+          <div class="team-card">
+            <div class="team-photo">
+              <img src="assets/img/orthodontist.png" alt="Dr. Jennifer Wells" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <h3 data-i18n="team-2-name">Dr. Jennifer Wells</h3>
+            <p class="team-role" data-i18n="team-2-role">Orthodontist</p>
+            <p data-i18n="team-2-bio">With over 12 years of experience, Dr. Wells specializes in teen orthodontics and early intervention. Her warm, patient approach makes families feel at ease.</p>
+          </div>
+          <div class="team-card">
+            <div class="team-photo">
+              <img src="assets/img/patient-coordinator.png" alt="Sarah Thompson" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <h3 data-i18n="team-3-name">Sarah Thompson</h3>
+            <p class="team-role" data-i18n="team-3-role">Patient Coordinator</p>
+            <p data-i18n="team-3-bio">Sarah helps make your experience seamless, from scheduling to insurance questions. She's here to support you every step.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Approach -->
+    <section class="section">
+      <div class="container">
+        <div class="content-grid">
+          <div class="content-main">
+            <h2 data-i18n="about-approach-title">Our Approach</h2>
+            <p data-i18n="about-approach-p1">We believe orthodontic treatment should fit your life—not the other way around. That's why we offer flexible scheduling, multiple treatment options, and clear guidance on costs and timelines.</p>
+            <p data-i18n="about-approach-p2">Whether you're considering clear aligners for their convenience or traditional braces for their precision, we'll help you find the right path to your goals.</p>
+            
+            <h2 data-i18n="about-community-title">Part of the Community</h2>
+            <p data-i18n="about-community-text">We're proud to serve Lakewood Hills and surrounding communities. Our practice is built on relationships—many of our patients are referrals from happy families who trust us with their smiles.</p>
+          </div>
+          <div>
+            <div class="sidebar-card">
+              <h3 data-i18n="contact-hours-title">Office Hours</h3>
+              <p><strong data-i18n="footer-mon-thu">Mon–Thu:</strong> <span data-i18n="footer-mon-thu-hours">10:00 AM – 6:30 PM</span></p>
+              <p><strong data-i18n="footer-fri">Friday:</strong> <span data-i18n="footer-fri-hours">9:00 AM – 3:00 PM</span></p>
+              <p><strong data-i18n="footer-sat">Saturday:</strong> <span data-i18n="footer-sat-hours">9:00 AM – 1:00 PM</span></p>
+              <p><strong data-i18n="footer-sun">Sunday:</strong> <span data-i18n="footer-sun-hours">Closed</span></p>
+              <hr style="margin:20px 0;border:none;border-top:1px solid var(--border);">
+              <p><strong>Phone:</strong><br><a href="tel:+1-562-555-0117">(562) 555-0117</a></p>
+              <a href="contact.html" class="btn btn-primary" style="width:100%;margin-top:16px;" data-i18n="cta-contact">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-band">
+      <div class="container">
+        <h2 data-i18n="cta-title">Ready for a Confident Smile?</h2>
+        <p data-i18n="cta-desc">Take the first step toward the smile you've always wanted.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="tel:+1-562-555-0117" class="btn btn-primary btn-lg" data-i18n="cta-call">Call (562) 555-0117</a>
+          <a href="contact.html" class="btn btn-secondary btn-lg" data-i18n="cta-contact">Contact Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <img src="assets/img/logo-mark.svg" alt="AlignBright" width="44" height="44">
+            <div class="logo-text">
+              <span class="logo-name" data-i18n="brand-name">AlignBright</span>
+              <span class="logo-tagline" data-i18n="brand-tagline">Orthodontics</span>
+            </div>
+          </a>
+          <p data-i18n="footer-description">Modern braces and clear aligners for confident smiles. AlignBright Orthodontics provides personalized orthodontic care for patients of all ages in Lakewood Hills, CA.</p>
+        </div>
+        <div>
+          <h4 data-i18n="footer-quick-links">Quick Links</h4>
+          <nav class="footer-links">
+            <a href="index.html" data-i18n="nav-home">Home</a>
+            <a href="about.html" data-i18n="nav-about">About</a>
+            <a href="services.html" data-i18n="nav-services">Services</a>
+            <a href="new-patients.html" data-i18n="nav-new-patients">New Patients</a>
+            <a href="reviews.html" data-i18n="nav-reviews">Reviews</a>
+            <a href="faq.html" data-i18n="nav-faq">FAQ</a>
+            <a href="contact.html" data-i18n="nav-contact">Contact</a>
+          </nav>
+        </div>
+        <div class="footer-contact">
+          <h4 data-i18n="footer-contact-title">Contact</h4>
+          <p><a href="tel:+1-562-555-0117">(562) 555-0117</a></p>
+          <p><a href="mailto:hello@alignbright.example">hello@alignbright.example</a></p>
+          <p data-i18n="footer-address">4120 Seabreeze Way, Suite 260<br>Lakewood Hills, CA 90814</p>
+        </div>
+        <div class="footer-hours">
+          <h4 data-i18n="footer-hours-title">Hours</h4>
+          <p><strong data-i18n="footer-mon-thu">Mon–Thu:</strong> <span data-i18n="footer-mon-thu-hours">10:00 AM – 6:30 PM</span></p>
+          <p><strong data-i18n="footer-fri">Friday:</strong> <span data-i18n="footer-fri-hours">9:00 AM – 3:00 PM</span></p>
+          <p><strong data-i18n="footer-sat">Saturday:</strong> <span data-i18n="footer-sat-hours">9:00 AM – 1:00 PM</span></p>
+          <p><strong data-i18n="footer-sun">Sunday:</strong> <span data-i18n="footer-sun-hours">Closed</span></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer-copyright">© 2026 AlignBright Orthodontics. All rights reserved.</p>
+        <p><a href="privacy.html" data-i18n="footer-privacy">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/translations.js"></script>
+  <script src="assets/js/main.js"></script>
+  
+  <!-- Chatwoot Widget (Lazy Loaded) -->
+  <script>
+    (function() {
+      var loaded = false;
+      function loadChatwoot() {
+        if (loaded) return;
+        loaded = true;
+        var BASE_URL = "https://inbox.automatia.bot";
+        var g = document.createElement("script");
+        g.src = BASE_URL + "/packs/js/sdk.js";
+        g.async = true;
+        g.onload = function() {
+          window.chatwootSDK.run({
+            websiteToken: 'MsgMGewNxthKR5o2gFfFsnMQ',
+            baseUrl: BASE_URL
+          });
+        };
+        document.body.appendChild(g);
+      }
+      ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function(evt) {
+        window.addEventListener(evt, loadChatwoot, { once: true, passive: true });
+      });
+      setTimeout(loadChatwoot, 3000);
+    })();
+  </script>
+</body>
+</html>

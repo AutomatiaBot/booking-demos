@@ -31,17 +31,25 @@
       </button>
 
       <div class="nav-links" id="navLinks" data-nav-links>
-        <a href="buy.html">Buy</a>
-        <a href="sell.html">Sell</a>
-        <a href="rent.html">Rent</a>
-        <a href="agents.html">Agents</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+        <a href="https://demo.automatia.bot" class="nav-portal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span data-i18n="nav_back_portal">Back to Portal</span>
+        </a>
+        <a href="buy.html" data-i18n="nav_buy">Buy</a>
+        <a href="sell.html" data-i18n="nav_sell">Sell</a>
+        <a href="rent.html" data-i18n="nav_rent">Rent</a>
+        <a href="agents.html" data-i18n="nav_agents">Agents</a>
+        <a href="about.html" data-i18n="nav_about">About</a>
+        <a href="contact.html" data-i18n="nav_contact">Contact</a>
+        <button class="lang-toggle" type="button" aria-label="Toggle language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="lang-text">ES</span>
+        </button>
       </div>
 
       <div class="nav-cta">
-        <span class="badge">Call: <a href="tel:+15557750193">(555) 775-0193</a></span>
-        <a class="btn primary" href="contact.html">Get matched</a>
+        <span class="badge"><span data-i18n="nav_call">Call:</span> <a href="tel:+15557750193">(555) 775-0193</a></span>
+        <a class="btn primary small" href="contact.html" data-i18n="nav_get_matched">Get matched</a>
       </div>
     </div>
   </div>
@@ -49,106 +57,385 @@
 
 <main id="main">
 
-<section class="hero">
+<!-- Hero Section with Background Image -->
+<section class="hero-fullwidth">
+  <div class="hero-bg">
+    <img src="assets/img/harbor-side-viewpoint.png" alt="Beautiful harbor side neighborhood">
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="kicker" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.25); color: var(--white);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C7.05 2 3 6.05 3 11C3 16.52 7.48 21 13 21C17.95 21 22 16.95 22 12C22 6.48 17.52 2 12 2Z" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M14.8 8.8L9.7 10.6L7.9 15.7L13 13.9L14.8 8.8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <span data-i18n="home_kicker">Local guidance. Clear next steps.</span>
+      </div>
+      <h1 data-i18n="home_h1">Find the right home—or the right buyer—with a calm, organized plan.</h1>
+      <p class="lede" style="color: rgba(255,255,255,0.90);" data-i18n="home_lede">Stonebridge Realty helps you buy, sell, or relocate with a simple process and responsive communication. Start here and we'll match you with an agent who fits your timeline.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="contact.html">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+          <span data-i18n="home_cta_inquiry">Start a quick inquiry</span>
+        </a>
+        <a class="btn" href="sell.html" style="background: rgba(255,255,255,0.95); color: var(--ink);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 13L13 20L4 11V4H11L20 13Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="8" cy="8" r="1.3" fill="currentColor"/>
+          </svg>
+          <span data-i18n="home_cta_consult">Request a listing consult</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Bar -->
+<section class="section-dark">
+  <div class="container">
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="number">500+</div>
+        <div class="label">Homes Sold</div>
+      </div>
+      <div class="stat-item">
+        <div class="number">15+</div>
+        <div class="label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="number">98%</div>
+        <div class="label">Client Satisfaction</div>
+      </div>
+      <div class="stat-item">
+        <div class="number">4.9★</div>
+        <div class="label">Average Rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Section -->
+<section class="section">
   <div class="container">
     <div class="hero-grid">
       <div class="hero-card">
-        <div class="kicker"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 2C7.05 2 3 6.05 3 11C3 16.52 7.48 21 13 21C17.95 21 22 16.95 22 12C22 6.48 17.52 2 12 2Z" stroke="#0B1F2A" stroke-width="1.8"/>
-  <path d="M14.8 8.8L9.7 10.6L7.9 15.7L13 13.9L14.8 8.8Z" stroke="#0B1F2A" stroke-width="1.8" stroke-linejoin="round"/>
-</svg> Local guidance. Clear next steps.</div>
-        <h1>Find the right home—or the right buyer—with a calm, organized plan.</h1>
-        <p class="lede">Stonebridge Realty helps you buy, sell, or relocate with a simple process and responsive communication. Start here and we’ll match you with an agent who fits your timeline.</p>
-
-        <div class="hero-actions">
-          <a class="btn primary" href="contact.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z" stroke="#0B1F2A" stroke-width="1.8" stroke-linejoin="round"/>
-</svg> Start a quick inquiry</a>
-          <a class="btn" href="sell.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <path d="M20 13L13 20L4 11V4H11L20 13Z" stroke="#0B1F2A" stroke-width="1.8" stroke-linejoin="round"/>
-  <circle cx="8" cy="8" r="1.3" fill="#0B1F2A"/>
-</svg> Request a listing consult</a>
-          <a class="btn ghost" href="disclosures.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 2L20 6V12C20 16.5 16.6 20.5 12 22C7.4 20.5 4 16.5 4 12V6L12 2Z" stroke="#0B1F2A" stroke-width="1.8" stroke-linejoin="round"/>
-  <path d="M9 12L11 14L15.5 9.5" stroke="#0B1F2A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-</svg> Safety & disclosures</a>
-        </div>
-
-        <div class="trust" aria-label="Highlights">
-          <div class="pill"><strong>Buyer support</strong><span>Criteria-driven search, tours routed fast</span></div>
-          <div class="pill"><strong>Seller strategy</strong><span>Pricing + marketing plan overview</span></div>
-          <div class="pill"><strong>Relocation</strong><span>Remote-friendly, no-pressure guidance</span></div>
+        <h2 data-i18n="panel_how_help">How we help</h2>
+        <p data-i18n="panel_how_help_desc">Choose a path and we'll handle the rest.</p>
+        <ul>
+          <li><strong data-i18n="panel_buy">Buy:</strong> <span data-i18n="panel_buy_desc">define must-haves, route showings, offer process overview</span></li>
+          <li><strong data-i18n="panel_sell">Sell:</strong> <span data-i18n="panel_sell_desc">CMA request, prep checklist, listing plan</span></li>
+          <li><strong data-i18n="panel_rent">Rent:</strong> <span data-i18n="panel_rent_desc">limited assistance based on availability</span></li>
+          <li><strong data-i18n="panel_relocate">Relocate:</strong> <span data-i18n="panel_relocate_desc">timeline planning + neighborhood-neutral options</span></li>
+        </ul>
+        <div class="note" style="margin-top: 20px;">
+          <strong data-i18n="panel_wire_safety">Wire safety</strong>
+          <span data-i18n="panel_wire_safety_desc">We never share or change wiring instructions via chat or email. Always verify any payment details by calling a trusted number.</span>
         </div>
       </div>
-
-      <aside class="panel">
-        <h2>How we help</h2>
-        <p>Choose a path and we’ll handle the rest.</p>
-        <ul>
-          <li><strong>Buy:</strong> define must-haves, route showings, offer process overview</li>
-          <li><strong>Sell:</strong> CMA request, prep checklist, listing plan</li>
-          <li><strong>Rent:</strong> limited assistance based on availability</li>
-          <li><strong>Relocate:</strong> timeline planning + neighborhood-neutral options</li>
-        </ul>
-        <div class="note" style="margin-top: 12px;">
-          <strong>Wire safety</strong>
-          We never share or change wiring instructions via chat or email. Always verify any payment details by calling a trusted number.
+      <div class="image-card" style="min-height: 400px;">
+        <img src="assets/img/agent-walking-a-couple.png" alt="Agent walking with a couple">
+        <div class="overlay">
+          <h3>Expert Guidance</h3>
+          <p>Our agents walk you through every step of the process</p>
         </div>
-      </aside>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- Services Cards -->
+<section class="section section-mist">
+  <div class="container">
+    <h2 data-i18n="section_busy_title">Built for busy people</h2>
+    <p class="sub" data-i18n="section_busy_desc">Short questions. Fast routing. No fluff. We focus on what moves your transaction forward.</p>
+
+    <div class="cards stagger-in">
+      <div class="card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 10.5L12 3L21 10.5V21H3V10.5Z" stroke="#0F4C5C" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M9 21V13H15V21" stroke="#0F4C5C" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 data-i18n="card_buyer_match">Buyer matchmaking</h3>
+        <p data-i18n="card_buyer_match_desc">Tell us your price range, commute goals, and must-haves. We'll route you to an agent who can move quickly.</p>
+      </div>
+      <div class="card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 13L13 20L4 11V4H11L20 13Z" stroke="#0F4C5C" stroke-width="1.8" stroke-linejoin="round"/>
+            <circle cx="8" cy="8" r="1.3" fill="#0F4C5C"/>
+          </svg>
+        </div>
+        <h3 data-i18n="card_seller_prep">Seller prep playbook</h3>
+        <p data-i18n="card_seller_prep_desc">We'll share a practical prep checklist and coordinate next steps for a listing consult and CMA.</p>
+      </div>
+      <div class="card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 12L9.2 9.8C10.3 8.7 12 8.7 13.1 9.8L14.1 10.8" stroke="#0F4C5C" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M16 12.7L13.8 14.9C12.7 16 11 16 9.9 14.9L8.9 13.9" stroke="#0F4C5C" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M3.5 9.5L7 12.9L9 10.9L5.5 7.5L3.5 9.5Z" stroke="#0F4C5C" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M20.5 14.5L17 11.1L15 13.1L18.5 16.5L20.5 14.5Z" stroke="#0F4C5C" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 data-i18n="card_human_first">Human-first communication</h3>
+        <p data-i18n="card_human_first_desc">One question at a time, clear expectations, and a focus on protecting clients from scams.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Property Section -->
 <section class="section">
   <div class="container">
-    <h2>Built for busy people</h2>
-    <p class="sub">Short questions. Fast routing. No fluff. We focus on what moves your transaction forward.</p>
-
-    <div class="cards">
-      <div class="card">
-        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <path d="M3 10.5L12 3L21 10.5V21H3V10.5Z" stroke="#0B1F2A" stroke-width="1.8" stroke-linejoin="round"/>
-  <path d="M9 21V13H15V21" stroke="#0B1F2A" stroke-width="1.8" stroke-linejoin="round"/>
-</svg></div>
-        <h3>Buyer matchmaking</h3>
-        <p>Tell us your price range, commute goals, and must-haves. We’ll route you to an agent who can move quickly.</p>
+    <div class="split-image">
+      <div class="content">
+        <h2>Discover Your Perfect Neighborhood</h2>
+        <p>From charming craftsman homes to modern waterfront properties, Easton Harbor offers diverse housing options for every lifestyle. Our agents know every street, every school district, and every hidden gem.</p>
+        <p>Whether you're looking for a family-friendly suburb or a vibrant urban setting, we'll help you find the community that fits your life.</p>
+        <a class="btn primary" href="buy.html">Explore Buying Options</a>
       </div>
-      <div class="card">
-        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <path d="M20 13L13 20L4 11V4H11L20 13Z" stroke="#0B1F2A" stroke-width="1.8" stroke-linejoin="round"/>
-  <circle cx="8" cy="8" r="1.3" fill="#0B1F2A"/>
-</svg></div>
-        <h3>Seller prep playbook</h3>
-        <p>We’ll share a practical prep checklist and coordinate next steps for a listing consult and CMA.</p>
-      </div>
-      <div class="card">
-        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <path d="M7 12L9.2 9.8C10.3 8.7 12 8.7 13.1 9.8L14.1 10.8" stroke="#0B1F2A" stroke-width="1.8" stroke-linecap="round"/>
-  <path d="M16 12.7L13.8 14.9C12.7 16 11 16 9.9 14.9L8.9 13.9" stroke="#0B1F2A" stroke-width="1.8" stroke-linecap="round"/>
-  <path d="M3.5 9.5L7 12.9L9 10.9L5.5 7.5L3.5 9.5Z" stroke="#0B1F2A" stroke-width="1.8" stroke-linejoin="round"/>
-  <path d="M20.5 14.5L17 11.1L15 13.1L18.5 16.5L20.5 14.5Z" stroke="#0B1F2A" stroke-width="1.8" stroke-linejoin="round"/>
-</svg></div>
-        <h3>Human-first communication</h3>
-        <p>One question at a time, clear expectations, and a focus on protecting clients from scams.</p>
+      <div class="image">
+        <img src="assets/img/modern-craftsman-home.png" alt="Beautiful modern craftsman home">
       </div>
     </div>
   </div>
 </section>
 
+<!-- Testimonials Section -->
+<section class="section section-mist">
+  <div class="container">
+    <h2 data-i18n="testimonials_title">What our clients say</h2>
+    <p class="sub" data-i18n="testimonials_desc">Real stories from families we've helped find their perfect home.</p>
+
+    <div class="testimonials-grid stagger-in">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote data-i18n="testimonial1_quote">"Stonebridge made our first home purchase feel manageable. Clear communication every step of the way."</blockquote>
+        <cite>
+          <div class="avatar">ST</div>
+          <div class="info">
+            <strong data-i18n="testimonial1_name">Sarah & Mike Thompson</strong>
+            <span data-i18n="testimonial1_type">First-time Buyers</span>
+          </div>
+        </cite>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote data-i18n="testimonial2_quote">"Sold our home in just 3 weeks above asking price. The prep checklist they provided was invaluable."</blockquote>
+        <cite>
+          <div class="avatar">DR</div>
+          <div class="info">
+            <strong data-i18n="testimonial2_name">David Rodriguez</strong>
+            <span data-i18n="testimonial2_type">Home Seller</span>
+          </div>
+        </cite>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote data-i18n="testimonial3_quote">"As out-of-state relocators, we appreciated their remote-friendly process and neighborhood insights."</blockquote>
+        <cite>
+          <div class="avatar">JW</div>
+          <div class="info">
+            <strong data-i18n="testimonial3_name">Jennifer Walsh</strong>
+            <span data-i18n="testimonial3_type">Relocation Client</span>
+          </div>
+        </cite>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote data-i18n="testimonial4_quote">"Professional, responsive, and truly focused on our needs. Would recommend to anyone buying or selling."</blockquote>
+        <cite>
+          <div class="avatar">RK</div>
+          <div class="info">
+            <strong data-i18n="testimonial4_name">Robert Kim</strong>
+            <span data-i18n="testimonial4_type">Repeat Client</span>
+          </div>
+        </cite>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote data-i18n="testimonial5_quote">"The CMA analysis helped us price our property perfectly. Received multiple offers within days."</blockquote>
+        <cite>
+          <div class="avatar">AF</div>
+          <div class="info">
+            <strong data-i18n="testimonial5_name">Amanda Foster</strong>
+            <span data-i18n="testimonial5_type">Home Seller</span>
+          </div>
+        </cite>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote data-i18n="testimonial6_quote">"Patient guidance through a competitive market. Never felt pressured, always informed."</blockquote>
+        <cite>
+          <div class="avatar">MC</div>
+          <div class="info">
+            <strong data-i18n="testimonial6_name">Marcus & Lisa Chen</strong>
+            <span data-i18n="testimonial6_type">Buyers</span>
+          </div>
+        </cite>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote data-i18n="testimonial7_quote">"Their wire fraud awareness saved us from a close call. Truly have their clients' safety in mind."</blockquote>
+        <cite>
+          <div class="avatar">PM</div>
+          <div class="info">
+            <strong data-i18n="testimonial7_name">Patricia Moreno</strong>
+            <span data-i18n="testimonial7_type">Home Buyer</span>
+          </div>
+        </cite>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote data-i18n="testimonial8_quote">"Exceptional service from start to finish. Found our dream home in Easton Harbor thanks to Avery."</blockquote>
+        <cite>
+          <div class="avatar">JD</div>
+          <div class="info">
+            <strong data-i18n="testimonial8_name">James & Emily Davis</strong>
+            <span data-i18n="testimonial8_type">New Homeowners</span>
+          </div>
+        </cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section">
+  <div class="container">
+    <h2 data-i18n="faq_title">Frequently asked questions</h2>
+    <p class="sub" data-i18n="faq_desc">Everything you need to know about working with Stonebridge Realty.</p>
+
+    <div class="faq-grid">
+      <details class="faq-item">
+        <summary data-i18n="faq_q1">How do I get started with buying a home?</summary>
+        <div class="faq-content" data-i18n="faq_a1">Simply fill out our quick inquiry form or give us a call. We'll ask about your timeline, budget, and must-haves, then match you with an agent who specializes in your needs.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary data-i18n="faq_q2">What is a CMA and why do I need one?</summary>
+        <div class="faq-content" data-i18n="faq_a2">A Comparative Market Analysis (CMA) helps determine your home's value based on recent comparable sales. It's essential for pricing your property competitively when selling.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary data-i18n="faq_q3">How long does the home buying process take?</summary>
+        <div class="faq-content" data-i18n="faq_a3">Typically 30-60 days from accepted offer to closing, though this can vary based on financing, inspections, and market conditions. We'll keep you informed every step of the way.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary data-i18n="faq_q4">What areas do you serve?</summary>
+        <div class="faq-content" data-i18n="faq_a4">We primarily serve Easton Harbor and surrounding communities in the greater Washington area. Contact us to confirm coverage for your specific location.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary data-i18n="faq_q5">Do you help with rentals?</summary>
+        <div class="faq-content" data-i18n="faq_a5">We offer limited rental assistance based on availability. Share your requirements and we'll let you know if we can help or recommend resources.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary data-i18n="faq_q6">What should I do to prepare my home for sale?</summary>
+        <div class="faq-content" data-i18n="faq_a6">We provide a detailed prep checklist covering decluttering, minor repairs, staging tips, and curb appeal improvements. Your agent will walk through priorities based on your timeline.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary data-i18n="faq_q7">How do you protect against wire fraud?</summary>
+        <div class="faq-content" data-i18n="faq_a7">We never send or change wiring instructions via email, chat, or text. Always verify payment details by calling a trusted, verified phone number before transferring funds.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary data-i18n="faq_q8">What are your fees and commissions?</summary>
+        <div class="faq-content" data-i18n="faq_a8">Commission rates vary and are negotiable. We'll discuss all fees transparently during your initial consultation so there are no surprises.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="section">
+  <div class="container">
+    <div class="cta-banner">
+      <h2 data-i18n="cta_title">Get a quick CMA request started</h2>
+      <p data-i18n="cta_desc">Want a pricing conversation (not a promise)? We can prepare a comparative market analysis based on recent comparable sales and your home's details.</p>
+      <a class="btn" href="contact.html" data-i18n="cta_request">Request a CMA</a>
+      <p class="small" style="margin-top: 16px; color: rgba(255,255,255,0.75);" data-i18n="cta_disclaimer">We do not guarantee value or outcomes in chat or on the website.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Fair Housing Section -->
 <section class="section">
   <div class="container">
     <div class="split">
       <div class="panel">
-        <h2>Get a quick CMA request started</h2>
-        <p>Want a pricing conversation (not a promise)? We can prepare a comparative market analysis based on recent comparable sales and your home’s details.</p>
-        <a class="btn primary" href="contact.html">Request a CMA</a>
-        <p class="small" style="margin-top: 10px;">We do not guarantee value or outcomes in chat or on the website.</p>
+        <h2 data-i18n="fair_housing_title">Fair housing commitment</h2>
+        <p data-i18n="fair_housing_desc">We support equal housing opportunity. We can help you filter by objective criteria (budget, commute, home features) and will not steer based on protected characteristics.</p>
+        <a class="btn" href="disclosures.html#fair-housing" data-i18n="fair_housing_cta">Read our commitment</a>
       </div>
-
-      <div class="panel">
-        <h2>Fair housing commitment</h2>
-        <p>We support equal housing opportunity. We can help you filter by objective criteria (budget, commute, home features) and will not steer based on protected characteristics.</p>
-        <a class="btn" href="disclosures.html#fair-housing">Read our commitment</a>
+      <div class="image-card" style="min-height: 280px;">
+        <img src="assets/img/Northwest-coastal-neighborhood.png" alt="Northwest coastal neighborhood">
+        <div class="overlay">
+          <h3>Easton Harbor</h3>
+          <p>Serving our community with integrity since 2010</p>
+        </div>
       </div>
     </div>
   </div>
@@ -160,68 +447,81 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <img src="assets/img/logo.svg" alt="Stonebridge Realty Group" style="width: 260px; height: auto; background: rgba(255,255,255,0.06); padding: 10px 12px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.10);">
-        <p style="margin: 12px 0 0;">Buying, selling, and relocating—without the chaos.</p>
-        <p style="margin: 10px 0 0; font-size: 13px; color: rgba(255,255,255,0.78);">Service area: Easton Harbor & surrounding communities</p>
+        <img src="assets/img/logo.svg" alt="Stonebridge Realty Group" style="width: 260px; height: auto; background: rgba(255,255,255,0.95); padding: 12px 14px; border-radius: 16px;">
+        <p style="margin: 16px 0 0;" data-i18n="footer_tagline">Buying, selling, and relocating—without the chaos.</p>
+        <p style="margin: 10px 0 0; font-size: 13px; color: rgba(255,255,255,0.70);" data-i18n="footer_service_area">Service area: Easton Harbor & surrounding communities</p>
       </div>
 
       <div>
-        <h3 style="margin: 0 0 8px; font-size: 14px; letter-spacing: 0.2px;">Office</h3>
-        <p style="margin: 0 0 8px;">2950 Marketway Plaza, Suite 110, Easton Harbor, WA 98118</p>
-        <p style="margin: 0 0 8px;">Phone: <a href="tel:+15557750193">(555) 775-0193</a><br>Email: <a href="mailto:team@stonebridgerealty.example">team@stonebridgerealty.example</a></p>
-        <ul><li><strong>Monday–Friday:</strong> 9:00 AM – 6:00 PM</li>
-<li><strong>Saturday:</strong> 10:00 AM – 3:00 PM</li>
-<li><strong>Sunday:</strong> By appointment</li></ul>
-      </div>
-
-      <div>
-        <h3 style="margin: 0 0 8px; font-size: 14px; letter-spacing: 0.2px;">Important</h3>
+        <h3 data-i18n="footer_office">Office</h3>
+        <p style="margin: 0 0 10px;">2950 Marketway Plaza, Suite 110, Easton Harbor, WA 98118</p>
+        <p style="margin: 0 0 10px;">Phone: <a href="tel:+15557750193">(555) 775-0193</a><br>Email: <a href="mailto:team@stonebridgerealty.example">team@stonebridgerealty.example</a></p>
         <ul>
-          <li><a href="disclosures.html">Wire fraud & safety</a></li>
-          <li><a href="disclosures.html#fair-housing">Fair housing commitment</a></li>
-          <li><a href="privacy.html">Privacy policy (demo)</a></li>
+          <li><strong>Monday–Friday:</strong> 9:00 AM – 6:00 PM</li>
+          <li><strong>Saturday:</strong> 10:00 AM – 3:00 PM</li>
+          <li><strong>Sunday:</strong> By appointment</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 data-i18n="footer_important">Important</h3>
+        <ul>
+          <li><a href="disclosures.html" data-i18n="footer_wire_fraud">Wire fraud & safety</a></li>
+          <li><a href="disclosures.html#fair-housing" data-i18n="footer_fair_housing">Fair housing commitment</a></li>
+          <li><a href="privacy.html" data-i18n="footer_privacy">Privacy policy (demo)</a></li>
         </ul>
 
-        <div class="footer-badges" style="margin-top: 12px;">
-          <div class="footer-badge">Equal Housing Opportunity</div>
-          <div class="footer-badge">Secure callbacks for wires</div>
+        <div class="footer-badges">
+          <div class="footer-badge" data-i18n="footer_equal_housing">Equal Housing Opportunity</div>
+          <div class="footer-badge" data-i18n="footer_secure">Secure callbacks for wires</div>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <div>© 2026 Stonebridge Realty Group — Demo site content only.</div>
-      <div>Built for chatbot + lead capture demos.</div>
+      <div data-i18n="footer_copyright">© 2026 Stonebridge Realty Group — Demo site content only.</div>
+      <div data-i18n="footer_demo">Built for chatbot + lead capture demos.</div>
     </div>
   </div>
 </footer>
 
-<button class="btn primary chat-fab" data-chat-open type="button" aria-haspopup="dialog" aria-controls="chatModal">
-  Chat with Mia
-</button>
-
-<div class="modal" id="chatModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Chat demo">
-  <div class="modal-card">
-    <div class="modal-head">
-      <h3>Chat demo placeholder</h3>
-      <button class="btn" type="button" data-chat-close>Close</button>
-    </div>
-    <div class="modal-body">
-      <p style="margin: 0 0 10px;">
-        This site is wired for an embedded chatbot. Replace this modal with your widget script (or iframe) when deploying.
-      </p>
-      <div class="note">
-        <strong>Recommended behavior</strong>
-        Capture: name + phone (required), email (optional). Ask whether they’re buying/selling/renting, timeline, and key criteria. Route scheduling to (555) 775-0193 / team@stonebridgerealty.example.
-      </div>
-    </div>
-    <div class="modal-actions">
-      <a class="btn primary" href="contact.html">Contact the team</a>
-      <button class="btn ghost" type="button" data-chat-close>Done</button>
-    </div>
-  </div>
-</div>
-
+<script src="assets/js/translations.js"></script>
 <script src="assets/js/main.js"></script>
+
+<!-- Chatwoot Widget (Lazy Loaded) -->
+<script>
+  (function() {
+    var chatwootLoaded = false;
+    
+    function loadChatwoot() {
+      if (chatwootLoaded) return;
+      chatwootLoaded = true;
+      
+      var BASE_URL = "https://inbox.automatia.bot";
+      var d = document, t = "script";
+      var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      g.src = BASE_URL + "/packs/js/sdk.js";
+      g.async = true;
+      s.parentNode.insertBefore(g, s);
+      
+      g.onload = function() {
+        window.chatwootSDK.run({
+          websiteToken: 'oee2GvRejViniL2BXSFVfcAj',
+          baseUrl: BASE_URL
+        });
+      };
+      
+      ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function(event) {
+        window.removeEventListener(event, loadChatwoot, { passive: true });
+      });
+    }
+    
+    ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function(event) {
+      window.addEventListener(event, loadChatwoot, { passive: true, once: true });
+    });
+    
+    setTimeout(loadChatwoot, 5000);
+  })();
+</script>
 </body>
 </html>

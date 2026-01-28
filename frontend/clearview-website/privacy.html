@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,7 +8,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -18,10 +18,31 @@
     <div class="container">
       <div class="header-inner">
         <a class="brand" href="index.html" aria-label="ClearView home">
-          <img src="assets/logo.svg" alt="ClearView Vision & Eye Care" />
+          <svg class="logo" width="160" height="36" viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ClearView">
+            <defs>
+              <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0EA5A8"/>
+                <stop offset="100%" stop-color="#1D4ED8"/>
+              </linearGradient>
+            </defs>
+            <path d="M4 18C10 8 16 4 22 4C28 4 34 8 40 18C34 28 28 32 22 32C16 32 10 28 4 18Z" fill="url(#logoGrad)"/>
+            <circle cx="22" cy="18" r="7" fill="white"/>
+            <circle cx="22" cy="18" r="4" fill="#0B1220"/>
+            <ellipse cx="24" cy="16" rx="1.5" ry="1.5" fill="white" fill-opacity="0.7"/>
+            <text x="50" y="24" font-family="Poppins, system-ui, sans-serif" font-size="18" font-weight="700" fill="#0B1220">Clear</text>
+            <text x="97" y="24" font-family="Poppins, system-ui, sans-serif" font-size="18" font-weight="700" fill="url(#logoGrad)">View</text>
+          </svg>
         </a>
-        <div style="display:flex; gap:10px; align-items:center;">
-          <a class="btn primary" href="tel:+15552037811">Call (555) 203-7811</a>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <button class="lang-toggle" type="button" aria-label="Change language" data-lang-toggle>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="lang-code" data-lang-label>ES</span>
+          </button>
+          <a class="btn-demo" href="https://demo.automatia.bot/">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12l6 6M5 12l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="nav.demo">Demo Portal</span>
+          </a>
+          <a class="btn primary" href="tel:+15552037811" data-i18n="nav.call">Call (555) 203-7811</a>
         </div>
       </div>
     </div>
@@ -29,38 +50,88 @@
 
   <main id="main" class="section">
     <div class="container">
-      <div class="section-head">
-        <h2>Privacy Policy (Demo)</h2>
-        <p>This is a placeholder privacy policy for demonstration purposes. Replace with your official policy and compliance language before publishing.</p>
+      <div class="section-head fade-in">
+        <span class="section-label" data-i18n="privacy.label">Legal</span>
+        <h2 data-i18n="privacy.title">Privacy Policy</h2>
+        <p data-i18n="privacy.intro">This is a placeholder privacy policy for demonstration purposes. Replace with your official policy and compliance language before publishing.</p>
       </div>
 
-      <div class="card">
-        <h3>What we collect</h3>
-        <p>We may collect contact information you choose to provide (such as name, phone number, and email) when you request an appointment or information.</p>
+      <div class="privacy-content">
+        <div class="privacy-card">
+          <h3 data-i18n="privacy.collect.title">What we collect</h3>
+          <p data-i18n="privacy.collect.desc">We may collect contact information you choose to provide (such as name, phone number, and email) when you request an appointment or information.</p>
+        </div>
 
-        <h3 style="margin-top:18px;">How we use information</h3>
-        <p>We use your information to respond to requests, provide customer service, and coordinate scheduling via phone or email.</p>
+        <div class="privacy-card">
+          <h3 data-i18n="privacy.use.title">How we use information</h3>
+          <p data-i18n="privacy.use.desc">We use your information to respond to requests, provide customer service, and coordinate scheduling via phone or email.</p>
+        </div>
 
-        <h3 style="margin-top:18px;">Medical information</h3>
-        <p>Do not submit sensitive medical information through website forms. If you have urgent symptoms, call our office or seek emergency care.</p>
+        <div class="privacy-card">
+          <h3 data-i18n="privacy.medical.title">Medical information</h3>
+          <p data-i18n="privacy.medical.desc">Do not submit sensitive medical information through website forms. If you have urgent symptoms, call our office or seek emergency care.</p>
+        </div>
 
-        <h3 style="margin-top:18px;">Contact</h3>
-        <p>Questions about privacy: hello@clearviewvision.example</p>
+        <div class="privacy-card">
+          <h3 data-i18n="privacy.contact.title">Contact</h3>
+          <p data-i18n="privacy.contact.desc">Questions about privacy? Email us at <a href="mailto:hello@clearviewvision.example">hello@clearviewvision.example</a></p>
+        </div>
       </div>
 
-      <div style="margin-top:16px;">
-        <a class="btn" href="index.html">Back to website</a>
+      <div style="margin-top: 32px;">
+        <a class="btn" href="index.html" data-i18n="privacy.back">Back to home</a>
       </div>
     </div>
   </main>
 
   <footer class="footer">
-    <div class="container" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center;">
-      <span>© <span data-year></span> ClearView Vision & Eye Care</span>
-      <span><a href="index.html">Home</a></span>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <svg class="logo" width="120" height="28" viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="logoGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0EA5A8"/>
+                <stop offset="100%" stop-color="#1D4ED8"/>
+              </linearGradient>
+            </defs>
+            <path d="M4 18C10 8 16 4 22 4C28 4 34 8 40 18C34 28 28 32 22 32C16 32 10 28 4 18Z" fill="url(#logoGrad2)"/>
+            <circle cx="22" cy="18" r="7" fill="white"/>
+            <circle cx="22" cy="18" r="4" fill="#0B1220"/>
+            <ellipse cx="24" cy="16" rx="1.5" ry="1.5" fill="white" fill-opacity="0.7"/>
+            <text x="50" y="24" font-family="Poppins, system-ui, sans-serif" font-size="18" font-weight="700" fill="#0B1220">Clear</text>
+            <text x="97" y="24" font-family="Poppins, system-ui, sans-serif" font-size="18" font-weight="700" fill="url(#logoGrad2)">View</text>
+          </svg>
+          <span>© <span data-year></span> ClearView Vision & Eye Care</span>
+        </div>
+        <nav class="footer-nav">
+          <a href="index.html" data-i18n="footer.home">Home</a>
+        </nav>
+      </div>
     </div>
   </footer>
 
   <script src="script.js"></script>
+
+  <!-- Chatwoot Widget (Lazy Loaded) -->
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        (function(d, t) {
+          var BASE_URL = "https://inbox.automatia.bot";
+          var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+          g.src = BASE_URL + "/packs/js/sdk.js";
+          g.async = true;
+          s.parentNode.insertBefore(g, s);
+          g.onload = function() {
+            window.chatwootSDK.run({
+              websiteToken: 'r7QVPcH965VbAbFU7A9bm6Fa',
+              baseUrl: BASE_URL
+            });
+          };
+        })(document, "script");
+      }, 1500);
+    });
+  </script>
 </body>
 </html>
